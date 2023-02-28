@@ -5,9 +5,10 @@ import { setUser } from '../store/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
+import { RootState } from '../store';
 
 const App = () => {
-    const { user } = useSelector(state => state.user);
+    const { user } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
 
     const loginWithToken = async () => {

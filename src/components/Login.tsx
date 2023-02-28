@@ -33,7 +33,7 @@ const Login = () => {
         const token = response.data;
         window.localStorage.setItem('token', token);
 
-        loginWithToken(token)
+        loginWithToken()
     };
 
     return (
