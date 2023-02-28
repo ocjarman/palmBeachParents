@@ -1,9 +1,7 @@
-const app = require('./app');
-const { seed } = require('./db');
+import app from './app'
 
 const init = async () => {
     try {
-        await seed();
         const port = process.env.PORT || 3000;
         app.listen(port, () => console.log(`listening on port ${port}`));
     }

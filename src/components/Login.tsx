@@ -10,7 +10,7 @@ const Login = () => {
         password: ''
     });
 
-    const onChange = ev => {
+    const onChange = (ev: { target: { name: any; value: any; }; }) => {
         setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
     };
 
@@ -27,13 +27,13 @@ const Login = () => {
         }
     };
 
-    const attemptLogin = async (event) => {
+    const attemptLogin = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         const response = await axios.post('/api/auth', credentials);
         const token = response.data;
         window.localStorage.setItem('token', token);
 
-        loginWithToken(token)
+        loginWithToken()
     };
 
     return (

@@ -1,10 +1,10 @@
-const Sequelize = require('sequelize');
+import { Sequelize } from 'sequelize';
 const config = {
     logging: false
 };
-const DB_NAME = 'grace_shopper_db';
+const DB_NAME = 'palmbeachparents';
 const URL = `postgres://localhost/${DB_NAME}`;
 
 const db = new Sequelize(process.env.DATABASE_URL || URL, config);
 
-module.exports = db;
+export default db;

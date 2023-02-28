@@ -5,9 +5,10 @@ import { setUser } from '../store/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
+import { RootState } from '../store';
 
 const App = () => {
-    const { user } = useSelector(state => state.user);
+    const { user } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
 
     const loginWithToken = async () => {
@@ -30,11 +31,10 @@ const App = () => {
     if (!user.id) return <Login />
     return (
         <div>
-            <h1>Hi, My name is totally Ben!!!!</h1>
-            <h1>My Name is Louis!!</h1>
+            <h1>Hi, My name is  Olivia!!!!</h1>
             <div>
                 <nav>
-                    <Link to='/'>Hooooooooome</Link>
+                    <Link to='/'>Home</Link>
                 </nav>
                 <Routes>
                     <Route path='/' element={<Home />} />
