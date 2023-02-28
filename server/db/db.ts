@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize';
 const config = {
     logging: false
 };
-const DB_NAME = 'palmBeachParents';
+const DB_NAME = 'palmbeachparents';
 const URL = `postgres://localhost/${DB_NAME}`;
 
 const db = new Sequelize(process.env.DATABASE_URL || URL, config);
