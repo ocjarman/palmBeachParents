@@ -85,14 +85,19 @@ interface AuthUser {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (User as any).authenticate = async function ({ username, password }: AuthUser) {
+  // find the user who client wnats to login as
   const user = await this.findOne({
     where: {
       username,
     },
   });
+  // check password against ours
   if (user && (await bcrypt.compare(password, user.password))) {
+    // if they match, give them JWT
+    // create obj with id in it, and encrypt it so later on we know who it is
     return jwt.sign({ id: user.id }, JWT as Secret);
   }
+  // otherwise, throw error
   const error = new Error("bad credentials") as ResponseError;
   error.status = 401;
   throw error;

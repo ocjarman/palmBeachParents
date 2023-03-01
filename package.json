@@ -11,7 +11,8 @@
     "test:dev:quiet": "QUIET=true npm run test:dev",
     "seed": " node --loader ts-node/esm server/db/seed.ts",
     "start": "node --loader ts-node/esm  server/index.ts --ignore dist/ --ignore src/",
-    "start:dev": "JWT=felix nodemon server/index.ts --ignore dist/ --ignore src/ & npm run build:dev"
+    "start:dev": "JWT=felix nodemon server/index.ts --ignore dist/ --ignore src/ & npm run build:dev",
+    "seed:needThis?": "DATABASE_URL=postgres://localhost/palmbeachparents node --loader ts-node/esm server/db/seed.ts"
   },
   "keywords": [],
   "author": "",
