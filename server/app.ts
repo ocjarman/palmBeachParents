@@ -7,10 +7,6 @@ import apiRouter from './api';
 const app: Express = express();
 
 
-// static middleware
-// app.use(express.static(path.join(__dirname, '..', 'public')));
-// app.use('/dist', express.static(path.join(__dirname, '..', 'dist')));
-
 // Set up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
