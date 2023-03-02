@@ -16,22 +16,22 @@ const App = () => {
         if (token) {
             const response = await axios.get('/api/auth', {
                 headers: {
-                    authorization: token
-                }
-            });
-            dispatch(setUser(response.data))
-            console.log('logged in!!!')
-        }
-    };
-
-    useEffect(() => {
+                  authorization: `Bearer ${token}`,
+                },
+              });
+              dispatch(setUser(response.data));
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
         loginWithToken();
-    }, []);
+      }, [dispatch]);
 
     if (!user.id) return <Login />
     return (
         <div>
-            <h1>Hi, My name is  Olivia!!!!</h1>
+            <h1>Welcome, {user.firstName} !</h1>
             <div>
                 <nav>
                     <Link to='/'>Home</Link>

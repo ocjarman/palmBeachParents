@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetUser } from "../store/userSlice";
 import { RootState } from "../store";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate()
 
   const logout = () => {
     window.localStorage.removeItem("token");
-    dispatch(resetUser());
+    dispatch(resetUser({}));
+    navigate("/");
   };
 
   const testAuth = async () => {

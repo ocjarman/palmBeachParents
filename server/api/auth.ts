@@ -32,14 +32,11 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 
 
 // this route runs authenticateUser middleware before running rest of fxn
-router.get(
-    "/testAuth",
-    authenticateUser,
-    (req: Request, res: Response, next) => {
-      if (req.body.user.isAdmin === false) return res.sendStatus(404);
-      const userInfo = req.body.user;
-      res.status(200).send(userInfo);
-    }
-  );
+router.get('/authTest', authenticateUser, (req: Request, res: Response, next: NextFunction) => {
+  // might decide to use this for admin auth later
+  // if (req.body.user.isAdmin === false) return res.sendStatus(404);
+  const userInfo = req.body.user;
+  res.status(200).send(userInfo);
+})
 
 export default router;
