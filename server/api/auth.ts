@@ -1,12 +1,10 @@
 import { User } from "../db/index";
-import express, {NextFunction, Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 const router = express.Router();
 
 import {authenticateUser} from "./helpers/authUserMiddleware";
 
-/**
- * Get user based on token
- */
+/* Get user based on token */
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         res.send(await (User as any).findByToken(req.headers.authorization));
@@ -17,9 +15,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-/**
- * Authenticate User
- */
+/* Authenticate User */
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         // user auth fxn in User.ts
