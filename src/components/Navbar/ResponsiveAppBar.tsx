@@ -12,13 +12,16 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { resetUser } from '../../store/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -33,6 +36,11 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logout = () => {
+    window.localStorage.removeItem("token");
+    dispatch(resetUser());
   };
 
   return (
@@ -55,7 +63,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            PBP
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -87,11 +95,15 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" onClick={() => navigate('/')}>{'Home'}</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" onClick={() => navigate('/events')}>{'Events'}</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center" onClick={() => navigate('/resources')}>{'Resources'}</Typography>
+                </MenuItem>
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -111,18 +123,31 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            PBP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
+                href="/"
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                Home
               </Button>
-            ))}
+              <Button
+                onClick={handleCloseNavMenu}
+                href="/events"
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Events
+              </Button>
+              <Button
+                onClick={handleCloseNavMenu}
+                href="/resources"
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                Resources
+              </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -147,11 +172,18 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" onClick={() => navigate('/profile')}>{'Profile'}</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" onClick={() => navigate('/account')}>{'Account'}</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" onClick={() => navigate('/dashboard')}>{'Dashboard'}</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center" onClick={logout}>{'Logout'}</Typography>
+                </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

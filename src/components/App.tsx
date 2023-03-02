@@ -34,7 +34,7 @@ const App = () => {
         <div>
             {/* NAV BAR */}
             <nav>
-                <Link to='/'>Home</Link>
+                
             </nav>
             <ResponsiveAppBar/>
             {/* PAGE HERO */}
