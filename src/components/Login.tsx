@@ -22,18 +22,24 @@ const Login = () => {
                     authorization: token
                 }
             });
-
             dispatch(setUser(response.data))
+        } else {
+            console.log('no token')
         }
     };
 
     const attemptLogin = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        const response = await axios.post('/api/auth', credentials);
-        const token = response.data;
-        window.localStorage.setItem('token', token);
-
-        loginWithToken()
+        // authenticating with backend
+        try {
+            const response = await axios.post('/api/auth', credentials);
+            const token = response.data;
+            // token is stable to current user
+            window.localStorage.setItem('token', token);
+            loginWithToken()
+        } catch {
+            console.log('user not authenticated')
+        }
     };
 
     return (

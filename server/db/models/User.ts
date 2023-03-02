@@ -1,4 +1,4 @@
-import db from "./db";
+import db from "../db";
 import Sequelize from "sequelize";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
@@ -7,25 +7,26 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
+  STRING, UUID, UUIDV4
 } from "sequelize";
 
 interface ResponseError extends Error {
   status?: number;
 }
 
-const { STRING, UUID, UUIDV4 } = Sequelize;
 const JWT = process.env.JWT;
 
-interface UserModel
+export interface UserModel
   extends Model<
     InferAttributes<UserModel>,
     InferCreationAttributes<UserModel>
   > {
-  id: CreationOptional<number>;
+  id: CreationOptional<string>;
   username: string;
   password: string;
   email: CreationOptional<string>;
 }
+
 const User = db.define<UserModel>("user", {
   id: {
     type: UUID,
@@ -39,6 +40,15 @@ const User = db.define<UserModel>("user", {
       notEmpty: true,
     },
     unique: true,
+    set(usernameInput: string) {
+      this.setDataValue("username", usernameInput.toLowerCase());
+    },
+    get() {
+      const username: string = this.getDataValue("username");
+      const usernameArr = username.split("");
+      usernameArr[0] = usernameArr[0].toUpperCase();
+      return usernameArr.join("");
+    },
   },
   password: {
     type: STRING,
@@ -85,14 +95,19 @@ interface AuthUser {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (User as any).authenticate = async function ({ username, password }: AuthUser) {
+  // find the user who client wnats to login as
   const user = await this.findOne({
     where: {
       username,
     },
   });
+  // check password against ours
   if (user && (await bcrypt.compare(password, user.password))) {
+    // if they match, give them JWT
+    // create obj with id in it, and encrypt it so later on we know who it is
     return jwt.sign({ id: user.id }, JWT as Secret);
   }
+  // otherwise, throw error
   const error = new Error("bad credentials") as ResponseError;
   error.status = 401;
   throw error;

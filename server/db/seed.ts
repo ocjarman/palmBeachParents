@@ -1,24 +1,23 @@
 import db from "./db";
-import User from "./User";
+import User from "./models/User";
 
 const seed = async () => {
-  await db.sync({ force: true });
+    console.log('STARTING SEED')
+      await db.sync({ force: true });
+    
+      const [olivia, shane] = await Promise.all([
+        User.create({ username: "olivia", password: "123", email: 'ocjarman@gmail.com' }),
+        User.create({ username: "shane", password: "123", email: 'sjarman@gmail.com' }),
+      ]);
 
-  const [moe, lucy, larry, ethyl] = await Promise.all([
-    User.create({ username: "olivia", password: "123" }),
-    User.create({ username: "lucy", password: "123" }),
-    User.create({ username: "larry", password: "123" }),
-    User.create({ username: "ethyl", password: "123" }),
-  ]);
-
-  return {
-    users: {
-      moe,
-      lucy,
-      larry,
-      ethyl,
-    },
-  };
+      console.log('ENDING SEED')
+      return {
+        users: {
+          olivia,
+          shane
+        },
+      };
+    
 };
 
-export default seed();
+seed();
