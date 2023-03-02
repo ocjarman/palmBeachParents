@@ -1,8 +1,8 @@
-import db from "../db";
+import { User } from "../db/index";
 import express, {NextFunction, Request, Response } from 'express';
 const router = express.Router();
-const User = db.User;
-import jwt from 'jsonwebtoken'
+
+import {authenticateUser} from "./helpers/authUserMiddleware";
 
 /**
  * Get user based on token
@@ -31,14 +31,14 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
-router.get('/authTest', (req: Request, res: Response, next: NextFunction) => {
-    const header = req.headers.authorization
-    const token = header && header.split(' ')[1]
-    if (!token) res.sendStatus(404) //unauthorized, you shouldnt even know about this
-    jwt.verify(token!, process.env.JWT!, (err, user) => {
-        if (err) return res.sendStatus(404)
-        res.send(user)
-    })
+
+
+// this route runs authenticateUser middleware before running rest of fxn
+router.get('/authTest', authenticateUser, (req: Request, res: Response, next: NextFunction) => {
+    // might decide to use this for admin auth later
+    // if (req.body.user.isAdmin === false) return res.sendStatus(404);
+    const userInfo = req.body.user;
+    res.status(200).send(userInfo);
 })
 
 export default router;

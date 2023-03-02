@@ -1,4 +1,4 @@
-import db from "./db";
+import db from "../db";
 import Sequelize from "sequelize";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
@@ -7,25 +7,26 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
+  STRING, UUID, UUIDV4
 } from "sequelize";
 
 interface ResponseError extends Error {
   status?: number;
 }
 
-const { STRING, UUID, UUIDV4 } = Sequelize;
 const JWT = process.env.JWT;
 
-interface UserModel
+export interface UserModel
   extends Model<
     InferAttributes<UserModel>,
     InferCreationAttributes<UserModel>
   > {
-  id: CreationOptional<number>;
+  id: CreationOptional<string>;
   username: string;
   password: string;
   email: CreationOptional<string>;
 }
+
 const User = db.define<UserModel>("user", {
   id: {
     type: UUID,
@@ -39,6 +40,15 @@ const User = db.define<UserModel>("user", {
       notEmpty: true,
     },
     unique: true,
+    set(usernameInput: string) {
+      this.setDataValue("username", usernameInput.toLowerCase());
+    },
+    get() {
+      const username: string = this.getDataValue("username");
+      const usernameArr = username.split("");
+      usernameArr[0] = usernameArr[0].toUpperCase();
+      return usernameArr.join("");
+    },
   },
   password: {
     type: STRING,

@@ -1,5 +1,5 @@
 import db from "./db";
-import User from "./User";
+import User from "./models/User";
 
 const seed = async () => {
     console.log('STARTING SEED')
