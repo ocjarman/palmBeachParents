@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import Home from './Home';
 import Login from './Login';
 import { setUser } from '../store/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Routes, Route } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import axios from 'axios';
 import { RootState } from '../store';
+import RouterComponent from './RouterComponent';
+import ResponsiveAppBar from './Navbar/ResponsiveAppBar';
 
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
@@ -31,15 +32,21 @@ const App = () => {
     if (!user.id) return <Login />
     return (
         <div>
-            <h1>Hi, My name is  Olivia!!!!</h1>
-            <div>
-                <nav>
-                    <Link to='/'>Home</Link>
-                </nav>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                </Routes>
-            </div>
+            {/* NAV BAR */}
+            <nav>
+                <Link to='/'>Home</Link>
+            </nav>
+            <ResponsiveAppBar/>
+            {/* PAGE HERO */}
+            <h1>Palm Beach Parents</h1>
+            <h2>Resource hub for families in the South Florida Region</h2>
+            {/* ROUTER COMPONENT */}
+            <RouterComponent/>
+            {/* <Routes>
+                <Route path='/' element={<Home />} />
+            </Routes> */}
+            
+            {/* FOOTER */}
         </div>
     );
 };
