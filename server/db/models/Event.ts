@@ -1,21 +1,17 @@
 import db from "../db";
 
 import {
-    CreationOptional,
     InferAttributes,
     InferCreationAttributes,
     Model,
-    STRING, UUID, UUIDV4, BOOLEAN, DATE, INTEGER, AbstractDataType, VIRTUAL
+    STRING, UUID, UUIDV4, BOOLEAN, DATE, INTEGER
   } from "sequelize";
 
-interface ResponseError extends Error {
-    status?: number;
-  }
 
-export interface EventModel
+export interface EventAttributes
   extends Model<
-    InferAttributes<EventModel>,
-    InferCreationAttributes<EventModel>
+    InferAttributes<EventAttributes>,
+    InferCreationAttributes<EventAttributes>
   > {
   id?: string;
   eventName: string;
@@ -30,7 +26,7 @@ export interface EventModel
   recurring: boolean | null;
 }
 
-const Event = db.define<EventModel>("event", {
+const Event = db.define<EventAttributes>("event", {
     id: {
       type: UUID,
       primaryKey: true,

@@ -3,39 +3,40 @@ import Sequelize from "sequelize";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import {
-  CreationOptional,
   InferAttributes,
   InferCreationAttributes,
   Model,
-  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL
+  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM
 } from "sequelize";
-
+import { EventAttributes } from "./Event";
 interface ResponseError extends Error {
   status?: number;
 }
 
 const JWT = process.env.JWT;
 
-export interface UserModel
+export interface UserAttributes
   extends Model<
-    InferAttributes<UserModel>,
-    InferCreationAttributes<UserModel>
+    InferAttributes<UserAttributes>,
+    InferCreationAttributes<UserAttributes>
   > {
-  id: CreationOptional<string>;
+  id?: string;
   username: string;
   password: string;
   firstName: string;
   lastName: string;
   fullName?: AbstractDataType;
+  accountType: string;
   phoneNum: string;
   email: string;
-  birthday: Date | null;
+  birthday: Date;
   address: string;
   avatarUrl: string | null;
   isAdmin: boolean;
+  addEvent(event: EventAttributes): unknown;
 }
 
-const User = db.define<UserModel>("user", {
+const User = db.define<UserAttributes>("user", {
   id: {
     type: UUID,
     primaryKey: true,
@@ -90,6 +91,15 @@ const User = db.define<UserModel>("user", {
       )}`;
     },
   },
+  accountType: {
+    type: ENUM,
+    values: ["admin", "user"],
+    allowNull: true,
+    defaultValue: "user",
+    validate: {
+      notEmpty: true,
+    },
+  },
   phoneNum: {
     type: STRING,
     allowNull: false,
@@ -132,7 +142,7 @@ const User = db.define<UserModel>("user", {
   },
 });
 
-User.addHook("beforeSave", async (user: UserModel) => {
+User.addHook("beforeSave", async (user: UserAttributes) => {
   if (user.changed("password")) {
     user.password = await bcrypt.hash(user.password, 5);
   }
