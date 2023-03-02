@@ -1,8 +1,8 @@
 # Palm Beach Parents
-## CRUD Project for Personal Use and (potentially) Parenting Resources in South Florida Area
+## CRUD Project for Personal Practice and (potentially) Parenting Resources in South Florida Area
 
 ## Goals
-- Provide the following:
+Provide the following:
 - Parenting resources / child development resources backed by science and research 
 - Hub for family events in South Florida area
 - Reviews for local services for families (i.e., pediatricians, schools, etc.)
