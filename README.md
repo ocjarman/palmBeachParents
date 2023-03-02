@@ -1,13 +1,6 @@
 # Palm Beach Parents
 ## Parenting Resources in South Florida Area
 
-## Goals
-Provide the following:
-- Parenting resources / child development resources backed by science and research 
-- Hub for family events in South Florida area
-- Reviews for local services for families (i.e., pediatricians, schools, etc.)
-- Connect families through parenting groups - (i.e., new mothers, new fathers, music classes, youth sports)
-
 ## Technical Goals
 - Solo CRUD app written entirely in TypeScript
 
@@ -23,6 +16,15 @@ Provide the following:
   <img src="https://img.shields.io/badge/Babel-red?&logo=babel"/>
   <img src="https://img.shields.io/badge/ESLint-764abc?&logo=eslint"/>
 </div>
+
+## Personal Goals
+Provide the following:
+- Parenting resources / child development resources backed by science and research 
+- Hub for family events in South Florida area
+- Reviews for local services for families (i.e., pediatricians, schools, etc.)
+- Connect families through parenting groups - (i.e., new mothers, new fathers, music classes, youth sports)
+
+
 
 
 
