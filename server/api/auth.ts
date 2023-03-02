@@ -5,36 +5,41 @@ const router = express.Router();
 import {authenticateUser} from "./helpers/authUserMiddleware";
 
 /* Get user based on token */
-router.get('/', async (req: Request, res: Response, next: NextFunction) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        res.send(await (User as any).findByToken(req.headers.authorization));
+      const header = req.headers.authorization;
+      const token = header && header.split(" ")[1];
+  
+      if (!token) return res.sendStatus(404);
+  
+      const foundUser = await User.prototype.findByToken(token);
+        console.log({foundUser})
+      res.status(200).send(foundUser);
+    } catch (error) {
+      res.status(404).send("Failed to Find User By Token");
     }
-    catch (error) {
-        next(error);
-        console.log('error on login')
-    }
-});
+  });
 
 /* Authenticate User */
-router.post('/', async (req: Request, res: Response, next: NextFunction) => {
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // user auth fxn in User.ts
-        // give token back to user
-        res.send(await (User as any).authenticate(req.body));
+      res.send(await User.prototype.authenticate(req.body));
+    } catch (error) {
+      next(error);
     }
-    catch (error) {
-        next(error);
-    }
-});
+  });
 
 
 
 // this route runs authenticateUser middleware before running rest of fxn
-router.get('/authTest', authenticateUser, (req: Request, res: Response, next: NextFunction) => {
-    // might decide to use this for admin auth later
-    // if (req.body.user.isAdmin === false) return res.sendStatus(404);
-    const userInfo = req.body.user;
-    res.status(200).send(userInfo);
-})
+router.get(
+    "/testAuth",
+    authenticateUser,
+    (req: Request, res: Response, next) => {
+      if (req.body.user.isAdmin === false) return res.sendStatus(404);
+      const userInfo = req.body.user;
+      res.status(200).send(userInfo);
+    }
+  );
 
 export default router;

@@ -19,8 +19,8 @@ const App = () => {
                     authorization: token
                 }
             });
-
             dispatch(setUser(response.data))
+            console.log('logged in!!!')
         }
     };
 

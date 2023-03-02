@@ -7,7 +7,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
-  STRING, UUID, UUIDV4
+  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL
 } from "sequelize";
 
 interface ResponseError extends Error {
@@ -24,7 +24,15 @@ export interface UserModel
   id: CreationOptional<string>;
   username: string;
   password: string;
-  email: CreationOptional<string>;
+  firstName: string;
+  lastName: string;
+  fullName?: AbstractDataType;
+  phoneNum: string;
+  email: string;
+  birthday: Date | null;
+  address: string;
+  avatarUrl: string | null;
+  isAdmin: boolean;
 }
 
 const User = db.define<UserModel>("user", {
@@ -57,8 +65,70 @@ const User = db.define<UserModel>("user", {
       notEmpty: true,
     },
   },
+  firstName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  lastName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  fullName: {
+    type: VIRTUAL,
+    validate: {
+      notEmpty: true,
+    },
+    get(): string {
+      return `${this.getDataValue("firstName")} ${this.getDataValue(
+        "lastName"
+      )}`;
+    },
+  },
+  phoneNum: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   email: {
     type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true,
+      isEmail: true,
+    },
+  },
+  birthday: {
+    type: DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true,
+      isDate: true,
+    },
+  },
+  address: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  avatarUrl: {
+    type: STRING,
+    allowNull: true,
+    defaultValue: "/public/logo.svg",
+  },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 });
 
@@ -68,8 +138,7 @@ User.addHook("beforeSave", async (user: UserModel) => {
   }
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(User as any).findByToken = async function (token: string) {
+User.prototype.findByToken = async function (token: string) {
   try {
     const { id } = jwt.verify(token, process.env.JWT as Secret) as JwtPayload;
     const user = await this.findByPk(id);
@@ -88,29 +157,22 @@ User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, JWT as Secret);
 };
 
-interface AuthUser {
+
+User.prototype.authenticate = async function (userAuth: {
   username: string;
   password: string;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(User as any).authenticate = async function ({ username, password }: AuthUser) {
-  // find the user who client wnats to login as
-  const user = await this.findOne({
+}) {
+  const { username, password } = userAuth;
+  const user = await User.findOne({
     where: {
       username,
     },
   });
-  // check password against ours
   if (user && (await bcrypt.compare(password, user.password))) {
-    // if they match, give them JWT
-    // create obj with id in it, and encrypt it so later on we know who it is
-    return jwt.sign({ id: user.id }, JWT as Secret);
+    return jwt.sign({ id: user.id }, process.env.JWT!);
   }
-  // otherwise, throw error
-  const error = new Error("bad credentials") as ResponseError;
-  error.status = 401;
+  const error = new Error("bad credentials");
+  error.message = "401";
   throw error;
 };
-
 export default User;
