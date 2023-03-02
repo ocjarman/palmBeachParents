@@ -7,7 +7,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
-  STRING, UUID, UUIDV4
+  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL
 } from "sequelize";
 
 interface ResponseError extends Error {
@@ -24,7 +24,15 @@ export interface UserModel
   id: CreationOptional<string>;
   username: string;
   password: string;
-  email: CreationOptional<string>;
+  firstName: string;
+  lastName: string;
+  fullName?: AbstractDataType;
+  phoneNum: string;
+  email: string;
+  birthday: Date | null;
+  address: string;
+  avatarUrl: string | null;
+  isAdmin: boolean;
 }
 
 const User = db.define<UserModel>("user", {
@@ -57,8 +65,70 @@ const User = db.define<UserModel>("user", {
       notEmpty: true,
     },
   },
+  firstName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  lastName: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  fullName: {
+    type: VIRTUAL,
+    validate: {
+      notEmpty: true,
+    },
+    get(): string {
+      return `${this.getDataValue("firstName")} ${this.getDataValue(
+        "lastName"
+      )}`;
+    },
+  },
+  phoneNum: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   email: {
     type: STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true,
+      isEmail: true,
+    },
+  },
+  birthday: {
+    type: DATE,
+    allowNull: true,
+    validate: {
+      notEmpty: true,
+      isDate: true,
+    },
+  },
+  address: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
+  avatarUrl: {
+    type: STRING,
+    allowNull: true,
+    defaultValue: "/public/logo.svg",
+  },
+  isAdmin: {
+    type: BOOLEAN,
+    defaultValue: false,
   },
 });
 
@@ -67,7 +137,6 @@ User.addHook("beforeSave", async (user: UserModel) => {
     user.password = await bcrypt.hash(user.password, 5);
   }
 });
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (User as any).findByToken = async function (token: string) {
   try {
