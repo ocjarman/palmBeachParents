@@ -42,10 +42,6 @@ const App = () => {
             <h2>Resource hub for families in the South Florida Region</h2>
             {/* ROUTER COMPONENT */}
             <RouterComponent/>
-            {/* <Routes>
-                <Route path='/' element={<Home />} />
-            </Routes> */}
-            
             {/* FOOTER */}
         </div>
     );
