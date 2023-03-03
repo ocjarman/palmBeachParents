@@ -1,15 +1,14 @@
 import db from "./db";
-import User from "./models/User";
-import Event from "./models/Event";
+import {User, Event} from './index'
 
 const seed = async () => {
     console.log('STARTING SEED')
       await db.sync({ force: true });
     
       const [olivia, shane, bob] = await Promise.all([
-        User.create({ username: "olivia", password: "123", email: 'ocjarman@gmail.com', firstName: 'olivia', lastName: 'jarman', accountType: 'admin', phoneNum: '561-674-2116', address: '151 SE 3rd Ave, #407, Delray Beach, FL, 33433', isAdmin: true, birthday: new Date(), isOrganization: true }),
-        User.create({ username: "shane", password: "123", email: 'sjarman@gmail.com', firstName: 'shane', lastName: 'jarman', accountType: 'user', phoneNum: '561-312-6281', address: '151 SE 3rd Ave, #407, Delray Beach, FL, 33433', isAdmin: false, birthday: new Date(), isOrganization: true }),
-        User.create({ username: "bob", password: "123", email: 'dda@gmail.com', firstName: 'bob', lastName: 'jarman', accountType: 'user', phoneNum: '561-312-6281', address: '151 SE 3rd Ave, #407, Delray Beach, FL, 33433', isAdmin: false, birthday: new Date(), isOrganization: false }),
+        User.create({ username: "olivia", password: "123", email: 'ocjarman@gmail.com', firstName: 'olivia', lastName: 'jarman', accountType: 'admin', phoneNum: '561-674-2116', address: '151 SE 3rd Ave, #407, Delray Beach, FL, 33433', isAdmin: true, birthday: new Date()}),
+        User.create({ username: "shane", password: "123", email: 'sjarman@gmail.com', firstName: 'shane', lastName: 'jarman', accountType: 'user', phoneNum: '561-312-6281', address: '151 SE 3rd Ave, #407, Delray Beach, FL, 33433', isAdmin: false, birthday: new Date()}),
+        User.create({ username: "bob", password: "123", email: 'dda@gmail.com', firstName: 'bob', lastName: 'jarman', accountType: 'organization', phoneNum: '561-312-6281', address: '151 SE 3rd Ave, #407, Delray Beach, FL, 33433', isAdmin: false, birthday: new Date(), companyName: 'Delray Downtown Authority' }),
       ]);
 
       const [savorTheAve, artAndJazz, event3, event4, event5, event6, event7, event8] = await Promise.all([
@@ -23,6 +22,14 @@ const seed = async () => {
         Event.create({ eventName: "Event 8" , eventAddress: 'Marathon, FL', eventDate: new Date(), eventTime: '10:00PM - 12PM', contactName: null, contactNumber: '561-243-1077', contactEmail: 'dda@downtowndelraybeach.com', cost: null, imageUrl: null, recurring: true}),
       ]);
 
+      olivia.addEvent(savorTheAve)
+      bob.addEvent(savorTheAve)
+      shane.addEvent(savorTheAve)
+      olivia.addEvent(artAndJazz)
+      // test purposes, will mostly be using 'addEvent' for users
+      artAndJazz.addUser(olivia)
+      artAndJazz.addUser(shane)
+      artAndJazz.addUser(bob)
 
      console.log('ENDING SEED')
       return {

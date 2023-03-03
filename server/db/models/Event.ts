@@ -6,7 +6,7 @@ import {
     Model,
     STRING, UUID, UUIDV4, BOOLEAN, DATE, INTEGER
   } from "sequelize";
-
+import { UserAttributes } from "./User";
 
 export interface EventAttributes
   extends Model<
@@ -24,6 +24,8 @@ export interface EventAttributes
   cost: number | null;
   imageUrl: string | null;
   recurring: boolean | null;
+  users?: [];
+  addUser(user: UserAttributes): unknown;
 }
 
 const Event = db.define<EventAttributes>("event", {

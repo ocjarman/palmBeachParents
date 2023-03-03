@@ -7,6 +7,7 @@ import {
   Model,
   STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM
 } from "sequelize";
+import { EventAttributes } from "./Event";
 
 interface ResponseError extends Error {
   status?: number;
@@ -32,9 +33,9 @@ export interface UserAttributes
   address: string;
   avatarUrl: string | null;
   isAdmin: boolean;
-  isOrganization: boolean;
   companyName: string | null;
-
+  events?: [];
+  addEvent(event: EventAttributes): unknown;
 }
 
 const User = db.define<UserAttributes>("user", {
@@ -94,7 +95,7 @@ const User = db.define<UserAttributes>("user", {
   },
   accountType: {
     type: ENUM,
-    values: ["admin", "user"],
+    values: ["admin", "user", "organization"],
     allowNull: true,
     defaultValue: "user",
     validate: {
@@ -138,10 +139,6 @@ const User = db.define<UserAttributes>("user", {
     defaultValue: "/public/logo.svg",
   },
   isAdmin: {
-    type: BOOLEAN,
-    defaultValue: false,
-  },
-  isOrganization: {
     type: BOOLEAN,
     defaultValue: false,
   },
