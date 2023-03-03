@@ -1,5 +1,4 @@
 import db from "../db";
-import Sequelize from "sequelize";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import {
@@ -8,7 +7,7 @@ import {
   Model,
   STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM
 } from "sequelize";
-import { EventAttributes } from "./Event";
+
 interface ResponseError extends Error {
   status?: number;
 }
@@ -33,7 +32,9 @@ export interface UserAttributes
   address: string;
   avatarUrl: string | null;
   isAdmin: boolean;
-  addEvent(event: EventAttributes): unknown;
+  isOrganization: boolean;
+  companyName: string | null;
+
 }
 
 const User = db.define<UserAttributes>("user", {
@@ -140,6 +141,14 @@ const User = db.define<UserAttributes>("user", {
     type: BOOLEAN,
     defaultValue: false,
   },
+  isOrganization: {
+    type: BOOLEAN,
+    defaultValue: false,
+  },
+  companyName: {
+    type: STRING,
+    allowNull: true,
+  }
 });
 
 User.addHook("beforeSave", async (user: UserAttributes) => {
