@@ -15,6 +15,7 @@ const RouterComponent = () => {
             <Route path='/' element={<PageHero />} />
             <Route path='/home' element={<Home />} />
             <Route path='/login' element={<Login />} />
+            {/* <Route path='/newUser' element={<NewUserForm />} /> */}
             <Route path='/events' element={<Events />} />
             <Route path='/resources' element={<Resources />} />
             <Route path='/profile' element={<Profile />} />
