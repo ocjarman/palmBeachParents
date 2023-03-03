@@ -18,7 +18,6 @@ import { RootState } from "../../store";
 
 function ResponsiveAppBar() {
   const { user } = useSelector((state: RootState) => state.user);
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -46,6 +45,7 @@ function ResponsiveAppBar() {
   const logout = () => {
     window.localStorage.removeItem("token");
     dispatch(resetUser());
+    navigate('/')
   };
 
   const loggedIn = user.id !== "" && user.id !== null;
@@ -104,7 +104,7 @@ function ResponsiveAppBar() {
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography
                   textAlign="center"
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/home")}
                 >
                   {"Home"}
                 </Typography>
@@ -131,7 +131,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

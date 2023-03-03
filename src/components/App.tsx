@@ -37,7 +37,7 @@ const App = () => {
                 {/* ROUTER COMPONENT */}
                 <RouterComponent/>
                 {/* FOOTER */}
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         </ThemeProvider>
     );

@@ -31,8 +31,6 @@ const Home = () => {
       <h1>Home</h1>
       <div>
         <p>Welcome {user.username}!!</p>
-        <button onClick={logout}>Logout</button>
-        <button onClick={testAuth}>Test Auth</button>
       </div>
     </div>
   );

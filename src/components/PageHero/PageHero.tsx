@@ -56,7 +56,7 @@ export default function PageHero() {
             variant="contained"
             size="large"
             component="a"
-            // onClick={() => navigate('/login')}
+            onClick={() => navigate('/newUser')}
             sx={{ minWidth: 200 }}
           >
             Create Account
