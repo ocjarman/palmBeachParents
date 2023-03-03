@@ -7,6 +7,7 @@ import axios from 'axios';
 import { RootState } from '../store';
 import RouterComponent from './RouterComponent';
 import ResponsiveAppBar from './Navbar/ResponsiveAppBar';
+import PageHero from './views/LandingPage/PageHero';
 
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
@@ -36,8 +37,7 @@ const App = () => {
             {/* NAV BAR */}
             <ResponsiveAppBar/>
             {/* PAGE HERO */}
-            <h1>Palm Beach Parents</h1>
-            <h2>Resource hub for families in the South Florida Region</h2>
+            <PageHero/>
             {!loggedIn && <Login/>}
             {/* ROUTER COMPONENT */}
             {loggedIn && <RouterComponent/>}
