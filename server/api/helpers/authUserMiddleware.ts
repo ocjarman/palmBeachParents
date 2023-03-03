@@ -1,15 +1,15 @@
 import jwt from 'jsonwebtoken'
 import { NextFunction, Request, Response } from 'express';
 import { User } from '../../db/index'
-import { UserModel } from "../../db/models/User";
+import { UserAttributes } from "../../db/models/User";
 
 export interface authUserRequestInterface extends Request {
     headers: { authorization: string };
-    user: UserModel;
+    user: UserAttributes;
   }
 export interface authUserResponseInterface extends Response {
     headers: { authorization: string };
-    user: UserModel;
+    user: UserAttributes;
   }
 
 // custom middleware  attaches user to req object if authenticated

@@ -35,6 +35,7 @@ const Login = () => {
             const response = await axios.post('/api/auth', credentials);
             const token = response.data;
             // token is stable to current user
+            console.log(token)
             window.localStorage.setItem('token', token);
             loginWithToken()
         } catch {
