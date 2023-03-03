@@ -7,6 +7,7 @@ import axios from 'axios';
 import { RootState } from '../store';
 import RouterComponent from './RouterComponent';
 import ResponsiveAppBar from './Navbar/ResponsiveAppBar';
+import PageHero from './PageHero/PageHero';
 
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
@@ -29,19 +30,17 @@ const App = () => {
         loginWithToken();
     }, []);
 
-    if (!user.id) return <Login />
+    const loggedIn = user.id !== '' && user.id !== null
+
     return (
         <div>
             {/* NAV BAR */}
-            <nav>
-                
-            </nav>
             <ResponsiveAppBar/>
             {/* PAGE HERO */}
-            <h1>Palm Beach Parents</h1>
-            <h2>Resource hub for families in the South Florida Region</h2>
+            <PageHero/>
+            {!loggedIn && <Login/>}
             {/* ROUTER COMPONENT */}
-            <RouterComponent/>
+            {loggedIn && <RouterComponent/>}
             {/* FOOTER */}
         </div>
     );
