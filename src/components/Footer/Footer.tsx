@@ -19,7 +19,7 @@ export default function Footer() {
   return (
     <Typography
       component="footer"
-      sx={{ display: "flex", bgcolor: "secondary.light",  }}
+      sx={{ display: "flex", bgcolor: "secondary.light", position: 'absolute', bottom: 0, width: '100%'  }}
     >
       <Container sx={{ my: 3, display: "flex", justifyContent: 'space-evenly' }}>
         <Box component="a" href="https://www.instagram.com/palmbeachparents/">

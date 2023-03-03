@@ -61,9 +61,6 @@ export default function PageHero() {
           >
             Create Account
           </Button>
-          <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-            Discover the experience
-          </Typography>
         </>
       )}
     </PageHeroLayout>
