@@ -17,6 +17,22 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+//api/user/usernameAuth
+router.post("/usernameAuth", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const header = req.headers.authorization;
+    const token = header && header.split(" ")[1];
+    if (!token) return res.status(404).send("No Token Found");
+    const user = await (User as any).findByToken(token);
+    console.log(user)
+    console.log(token)
+    // res.send(user);
+  } catch (err) {
+    res.sendStatus(404);
+    next(err);
+  }
+});
+
 
 
 export default router;

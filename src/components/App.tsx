@@ -5,7 +5,9 @@ import axios from 'axios';
 import { RootState } from '../store';
 import RouterComponent from './RouterComponent';
 import ResponsiveAppBar from './Navbar/ResponsiveAppBar';
-
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../theme';
+import Footer from './Footer/Footer'
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
@@ -28,14 +30,16 @@ const App = () => {
 
 
     return (
-        <div>
-            {/* NAV BAR */}
-            <ResponsiveAppBar/>
-            {/* {!loggedIn && <P/>} */}
-            {/* ROUTER COMPONENT */}
-            <RouterComponent/>
-            {/* FOOTER */}
-        </div>
+        <ThemeProvider theme={theme}>
+            <div>
+                {/* NAV BAR */}
+                <ResponsiveAppBar/>
+                {/* ROUTER COMPONENT */}
+                <RouterComponent/>
+                {/* FOOTER */}
+                {/* <Footer/> */}
+            </div>
+        </ThemeProvider>
     );
 };
 

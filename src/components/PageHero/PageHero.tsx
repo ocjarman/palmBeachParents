@@ -3,7 +3,7 @@ import Button from "../CustomMUI/Button";
 import Typography from "../CustomMUI/Typography";
 import PageHeroLayout from "./PageHeroLayout";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 const backgroundImage =
@@ -56,14 +56,11 @@ export default function PageHero() {
             variant="contained"
             size="large"
             component="a"
-            // onClick={() => navigate('/login')}
+            onClick={() => navigate('/newUser')}
             sx={{ minWidth: 200 }}
           >
             Create Account
           </Button>
-          <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-            Discover the experience
-          </Typography>
         </>
       )}
     </PageHeroLayout>
