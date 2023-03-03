@@ -3,7 +3,7 @@ import Button from "../CustomMUI/Button";
 import Typography from "../CustomMUI/Typography";
 import PageHeroLayout from "./PageHeroLayout";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 const backgroundImage =
