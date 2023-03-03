@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../store/userSlice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
@@ -38,6 +40,7 @@ const Login = () => {
             console.log(token)
             window.localStorage.setItem('token', token);
             loginWithToken()
+            navigate('/home')
         } catch {
             console.log('user not authenticated')
         }

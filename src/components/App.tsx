@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
-import Login from './Login';
 import { setUser } from '../store/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link} from 'react-router-dom';
 import axios from 'axios';
 import { RootState } from '../store';
 import RouterComponent from './RouterComponent';
 import ResponsiveAppBar from './Navbar/ResponsiveAppBar';
-import PageHero from './PageHero/PageHero';
 
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
@@ -21,7 +18,6 @@ const App = () => {
                     authorization: token
                 }
             });
-
             dispatch(setUser(response.data))
         }
     };
@@ -30,17 +26,14 @@ const App = () => {
         loginWithToken();
     }, []);
 
-    const loggedIn = user.id !== '' && user.id !== null
 
     return (
         <div>
             {/* NAV BAR */}
             <ResponsiveAppBar/>
-            {/* PAGE HERO */}
-            <PageHero/>
-            {!loggedIn && <Login/>}
+            {/* {!loggedIn && <P/>} */}
             {/* ROUTER COMPONENT */}
-            {loggedIn && <RouterComponent/>}
+            <RouterComponent/>
             {/* FOOTER */}
         </div>
     );
