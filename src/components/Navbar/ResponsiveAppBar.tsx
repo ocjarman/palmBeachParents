@@ -13,8 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { resetUser } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
 
 function ResponsiveAppBar() {
   const { user } = useSelector((state: RootState) => state.user);
@@ -48,10 +48,10 @@ function ResponsiveAppBar() {
     dispatch(resetUser());
   };
 
-  const loggedIn = user.id !== '' && user.id !== null
+  const loggedIn = user.id !== "" && user.id !== null;
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: "secondary.light" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -65,7 +65,7 @@ function ResponsiveAppBar() {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "secondary.dark",
               textDecoration: "none",
             }}
           >
@@ -102,7 +102,10 @@ function ResponsiveAppBar() {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center" onClick={() => navigate("/")}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => navigate("/")}
+                >
                   {"Home"}
                 </Typography>
               </MenuItem>
@@ -136,7 +139,7 @@ function ResponsiveAppBar() {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "secondary.dark",
               textDecoration: "none",
             }}
           >
@@ -145,94 +148,94 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
               onClick={() => navigate("/home")}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "primary.dark", display: "block" }}
             >
               Home
             </Button>
             <Button
               onClick={() => navigate("/events")}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "primary.dark", display: "block" }}
             >
               Events
             </Button>
             <Button
               onClick={() => navigate("/resources")}
-              sx={{ my: 2, color: "white", display: "block" }}
+              sx={{ my: 2, color: "primary.dark", display: "block" }}
             >
               Resources
             </Button>
           </Box>
 
-            {loggedIn && 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem>
-                <Typography
-                  textAlign="center"
-                  onClick={() => {
-                    navigate("/profile");
-                    handleCloseUserMenu();
-                  }}
-                >
-                  {"Profile"}
-                </Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography
-                  textAlign="center"
-                  onClick={() => {
-                    navigate("/account");
-                    handleCloseUserMenu();
-                  }}
-                >
-                  {"Account"}
-                </Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography
-                  textAlign="center"
-                  onClick={() => {
-                    navigate("/dashboard");
-                    handleCloseUserMenu();
-                  }}
-                >
-                  {"Dashboard"}
-                </Typography>
-              </MenuItem>
-              <MenuItem>
-                <Typography
-                  textAlign="center"
-                  onClick={() => {
-                    logout();
-                    handleCloseUserMenu();
-                  }}
-                >
-                  {"Logout"}
-                </Typography>
-              </MenuItem>
-            </Menu>
-          </Box>
-            }
+          {loggedIn && (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => {
+                      navigate("/profile");
+                      handleCloseUserMenu();
+                    }}
+                  >
+                    {"Profile"}
+                  </Typography>
+                </MenuItem>
+                <MenuItem>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => {
+                      navigate("/account");
+                      handleCloseUserMenu();
+                    }}
+                  >
+                    {"Account"}
+                  </Typography>
+                </MenuItem>
+                <MenuItem>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => {
+                      navigate("/dashboard");
+                      handleCloseUserMenu();
+                    }}
+                  >
+                    {"Dashboard"}
+                  </Typography>
+                </MenuItem>
+                <MenuItem>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => {
+                      logout();
+                      handleCloseUserMenu();
+                    }}
+                  >
+                    {"Logout"}
+                  </Typography>
+                </MenuItem>
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
