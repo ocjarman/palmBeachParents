@@ -12,12 +12,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { resetUser } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
 
 function ResponsiveAppBar() {
+  const { user } = useSelector((state: RootState) => state.user);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -46,6 +48,8 @@ function ResponsiveAppBar() {
     window.localStorage.removeItem("token");
     dispatch(resetUser());
   };
+
+  const loggedIn = user.id !== '' && user.id !== null
 
   return (
     <AppBar position="static">
@@ -143,7 +147,7 @@ function ResponsiveAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <Button
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/home")}
               sx={{ my: 2, color: "white", display: "block" }}
             >
               Home
@@ -162,6 +166,7 @@ function ResponsiveAppBar() {
             </Button>
           </Box>
 
+            {loggedIn && 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -230,6 +235,7 @@ function ResponsiveAppBar() {
               </MenuItem>
             </Menu>
           </Box>
+            }
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import Login from './Login';
 import { setUser } from '../store/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link} from 'react-router-dom';
 import axios from 'axios';
 import { RootState } from '../store';
 import RouterComponent from './RouterComponent';
@@ -20,7 +18,6 @@ const App = () => {
                     authorization: token
                 }
             });
-
             dispatch(setUser(response.data))
         }
     };
@@ -29,17 +26,12 @@ const App = () => {
         loginWithToken();
     }, []);
 
-    if (!user.id) return <Login />
+
     return (
         <div>
             {/* NAV BAR */}
-            <nav>
-                
-            </nav>
             <ResponsiveAppBar/>
-            {/* PAGE HERO */}
-            <h1>Palm Beach Parents</h1>
-            <h2>Resource hub for families in the South Florida Region</h2>
+            {/* {!loggedIn && <P/>} */}
             {/* ROUTER COMPONENT */}
             <RouterComponent/>
             {/* FOOTER */}
