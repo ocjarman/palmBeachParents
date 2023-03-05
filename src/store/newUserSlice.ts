@@ -1,11 +1,40 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserType } from "../utils/interfaces";
 
-interface initialStateType {
-  newUser: {};
+interface NewUser {
+  newUser: {
+    username: string | null;
+    password: string | null;
+    firstName: string | null;
+    lastName: string | null;
+    email: string | null;
+    phoneNum: string | null;
+    birthday: string | null;
+    address: string | null;
+  }
 }
+// interface NewUser {
+//   username: string | null;
+//   password: string | null;
+//   firstName: string | null;
+//   lastName: string | null;
+//   email: string | null;
+//   phoneNum: string | null;
+//   birthday: string | null;
+//   address: string | null;
+// }
 
-const initialState: initialStateType = {
-  newUser: {},
+const initialState: NewUser = {
+  newUser: {
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNum: '',
+    birthday: '',
+    address: '',
+  },
 };
 
 export const newUserSlice = createSlice({

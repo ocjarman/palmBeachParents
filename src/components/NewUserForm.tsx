@@ -10,12 +10,15 @@ import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import Typography from "./CustomMUI/Typography";
 import { RootState } from "../store";
-import { setNewUser } from "../store/newUserSlice";
 import { setUser } from "../store/userSlice";
+import { setNewUser } from "../store/newUserSlice";
+import { useEffect } from "react";
 
 const NewUserForm = () => {
   const { newUser } = useSelector((state: RootState) => state.newUser);
   const [validity, setValidity] = useState({ username: false, email: false });
+  const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,6 +35,7 @@ const NewUserForm = () => {
         event.preventDefault();
         const { data: created } = await axios.post("/api/user", newUser);
         dispatch(setUser(created));
+        dispatch(setNewUser({}));
         navigate("/");
       } catch (error) {
         console.error(error);
@@ -45,6 +49,7 @@ const NewUserForm = () => {
       const response = await axios.post("/api/user/usernameAuth", {
         currentUsername,
       });
+      console.log({response})
       const usernameValid = response.status !== 200;
       setValidity({ ...validity, username: usernameValid });
     } catch (error) {
@@ -55,7 +60,7 @@ const NewUserForm = () => {
   const validateEmail = async (event: BaseSyntheticEvent) => {
     try {
       const currentEmail = event.target.value;
-      const response = await axios.post("/api/user/userEmailAuth", {
+      const response = await axios.post("/api/user/emailAuth", {
         currentEmail,
       });
       const emailValid = response.status !== 200;
@@ -65,13 +70,30 @@ const NewUserForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (!validity.username && !validity.email) {
+      console.log('passed username and email check')
+      if (newUser.username && newUser.password && newUser.firstName && newUser.lastName && newUser.email && newUser.phoneNum && newUser.birthday && newUser.address) {
+          setButtonEnabled(false)
+          console.log('button should show')
+        } else {
+          setButtonEnabled(true)
+        }
+    } else {
+      setButtonEnabled(true)
+    }
+  }, [newUser, buttonEnabled, validity])
+
+  
+
   return (
-      <Container sx={{ display: "flex", flexDirection: "column", placeSelf: "center" }}>
-        <Typography sx={{ placeSelf: "center" }} variant={"h4"}>
-          Create Your Account
+      <Container sx={{ display: "flex", flexDirection: "column", placeSelf: "center" ,  marginTop: '10%'}}>
+        <Typography sx={{ placeSelf: "center" }} variant={"h5"}>
+          Join Palm Beach Parents
         </Typography>
-        <form style={{ placeSelf: "center" }}>
-            <FormControl error={validity.username} required>
+        <form style={{ placeSelf: "center", display: 'flex', alignItems: 'center'}}>
+          <Container sx={{display: 'flex', justifyContent: 'space-between', gap: 1}}>
+            <FormControl error={validity.username} required >
               <InputLabel htmlFor="username-input">Username</InputLabel>
               <Input
                 name="username"
@@ -79,52 +101,49 @@ const NewUserForm = () => {
                 aria-describedby="username-helper-text"
                 onChange={(event) => {
                   handleUserStateChange(event);
-                //   validateUsername(event);
+                  validateUsername(event);
                 }}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
-              <FormHelperText id="username-helper-text">
+              <FormHelperText id="username-helper-text" >
                 {validity.username
-                  ? "Your username must be unique."
-                  : "Other users will see this username."}
+                  ? "Username must be unique."
+                  : null}
               </FormHelperText>
             </FormControl>
-
-            <FormControl required>
+            <FormControl required sx={{ }}>
               <InputLabel htmlFor="password-input">Password</InputLabel>
               <Input
                 name="password"
                 id="password-input"
                 aria-describedby="password-helper-text"
                 onChange={handleUserStateChange}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
-              <FormHelperText id="password-helper-text">
-                Password should include at least one number.
-              </FormHelperText>
+              
             </FormControl>
-
-            <FormControl required>
+            <FormControl required sx={{ }}>
               <InputLabel htmlFor="firstName-input">First Name</InputLabel>
               <Input
                 name="firstName"
                 id="firstName-input"
                 aria-describedby="firstName-helper-text"
                 onChange={handleUserStateChange}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
             </FormControl>
-
-            <FormControl required>
+            <FormControl required sx={{ }}>
               <InputLabel htmlFor="lastName-input">Last Name</InputLabel>
               <Input
                 name="lastName"
                 id="lastName-input"
                 aria-describedby="lastName-helper-text"
                 onChange={handleUserStateChange}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
             </FormControl>
+          </Container>
+          <Container sx={{display: 'flex', justifyContent: 'space-between', gap: 1}}>
             <FormControl error={validity.email} required>
               <InputLabel htmlFor="email-input">E-mail</InputLabel>
               <Input
@@ -134,17 +153,16 @@ const NewUserForm = () => {
                 aria-describedby="email-helper-text"
                 onChange={(event) => {
                   handleUserStateChange(event);
-                //   validateEmail(event);
+                  validateEmail(event);
                 }}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
               <FormHelperText id="email-helper-text">
                 {validity.email
-                  ? "This email address has already been used."
-                  : "Please enter your email address."}
+                  ? "Account with this email already exists."
+                  : null}
               </FormHelperText>
             </FormControl>
-
             <FormControl required>
               <InputLabel htmlFor="phoneNum-input">
                 Phone Number
@@ -154,10 +172,10 @@ const NewUserForm = () => {
                 id="phoneNum-input"
                 aria-describedby="phoneNum-helper-text"
                 onChange={handleUserStateChange}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
               <FormHelperText id="phoneNum-helper-text">
-                Please include area code.
+                Include area code.
               </FormHelperText>
             </FormControl>
             <FormControl required>
@@ -170,32 +188,33 @@ const NewUserForm = () => {
                 id="birthday-input"
                 aria-describedby="birthday-helper-text"
                 onChange={handleUserStateChange}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
-              <FormHelperText id="birthday-helper-text">
-                Please provide your birth date.
-              </FormHelperText>
+              
             </FormControl>
 
-            <FormControl required>
+            <FormControl required sx={{ }}>
+            <InputLabel htmlFor="address-input">
+                Mailing Address
+              </InputLabel>
             <Input
                 name="address"
                 id="address-input"
                 aria-describedby="address-helper-text"
                 onChange={handleUserStateChange}
-                sx={{width: "30vh"}}
+                sx={{width: "15vw"}}
               />
-              <FormHelperText id="address-helper-text">
-                Current home address.
-              </FormHelperText>
+            
             </FormControl>
+          </Container>
           <Button
             size="small"
             onClick={handleSubmit}
             variant="contained"
-            sx={{ my: 2, color: "secondary.light", display: "block" }}
+            disabled={buttonEnabled}
+            sx={{ my: 2, color: "secondary.light", display: "block" , maxWidth: '25vw'}}
             >
-              Submit
+              Create Account
           </Button>
         </form>
       </Container>

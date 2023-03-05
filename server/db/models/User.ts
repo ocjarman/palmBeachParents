@@ -23,17 +23,17 @@ export interface UserAttributes
   id?: string;
   username: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   fullName?: AbstractDataType;
-  accountType: string;
+  accountType?: string;
   phoneNum: string;
   email: string;
   birthday: Date;
   address: string;
   avatarUrl: string | null;
-  isAdmin: boolean;
-  companyName: string | null;
+  isAdmin?: boolean;
+  companyName?: string | null;
   events?: [];
   addEvent(event: EventAttributes): unknown;
 }
@@ -140,6 +140,7 @@ const User = db.define<UserAttributes>("user", {
   },
   isAdmin: {
     type: BOOLEAN,
+    allowNull: true,
     defaultValue: false,
   },
   companyName: {
