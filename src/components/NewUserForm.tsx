@@ -12,10 +12,13 @@ import Typography from "./CustomMUI/Typography";
 import { RootState } from "../store";
 import { setUser } from "../store/userSlice";
 import { setNewUser } from "../store/newUserSlice";
+import { useEffect } from "react";
 
 const NewUserForm = () => {
   const { newUser } = useSelector((state: RootState) => state.newUser);
   const [validity, setValidity] = useState({ username: false, email: false });
+  const [buttonEnabled, setButtonEnabled] = useState<boolean>(true);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,7 +34,6 @@ const NewUserForm = () => {
       try {
         event.preventDefault();
         const { data: created } = await axios.post("/api/user", newUser);
-        console.log({created})
         dispatch(setUser(created));
         dispatch(setNewUser({}));
         navigate("/");
@@ -47,6 +49,7 @@ const NewUserForm = () => {
       const response = await axios.post("/api/user/usernameAuth", {
         currentUsername,
       });
+      console.log({response})
       const usernameValid = response.status !== 200;
       setValidity({ ...validity, username: usernameValid });
     } catch (error) {
@@ -57,7 +60,7 @@ const NewUserForm = () => {
   const validateEmail = async (event: BaseSyntheticEvent) => {
     try {
       const currentEmail = event.target.value;
-      const response = await axios.post("/api/user/userEmailAuth", {
+      const response = await axios.post("/api/user/emailAuth", {
         currentEmail,
       });
       const emailValid = response.status !== 200;
@@ -66,6 +69,22 @@ const NewUserForm = () => {
       setValidity({ ...validity, email: true });
     }
   };
+
+  useEffect(() => {
+    if (!validity.username && !validity.email) {
+      console.log('passed username and email check')
+      if (newUser.username && newUser.password && newUser.firstName && newUser.lastName && newUser.email && newUser.phoneNum && newUser.birthday && newUser.address) {
+          setButtonEnabled(false)
+          console.log('button should show')
+        } else {
+          setButtonEnabled(true)
+        }
+    } else {
+      setButtonEnabled(true)
+    }
+  }, [newUser, buttonEnabled, validity])
+
+  
 
   return (
       <Container sx={{ display: "flex", flexDirection: "column", placeSelf: "center" ,  marginTop: '10%'}}>
@@ -82,7 +101,7 @@ const NewUserForm = () => {
                 aria-describedby="username-helper-text"
                 onChange={(event) => {
                   handleUserStateChange(event);
-                //   validateUsername(event);
+                  validateUsername(event);
                 }}
                 sx={{width: "15vw"}}
               />
@@ -125,7 +144,7 @@ const NewUserForm = () => {
             </FormControl>
           </Container>
           <Container sx={{display: 'flex', justifyContent: 'space-between', gap: 1}}>
-            <FormControl error={validity.email} required sx={{ }}>
+            <FormControl error={validity.email} required>
               <InputLabel htmlFor="email-input">E-mail</InputLabel>
               <Input
                 error={validity.email}
@@ -134,17 +153,17 @@ const NewUserForm = () => {
                 aria-describedby="email-helper-text"
                 onChange={(event) => {
                   handleUserStateChange(event);
-                //   validateEmail(event);
+                  validateEmail(event);
                 }}
                 sx={{width: "15vw"}}
               />
               <FormHelperText id="email-helper-text">
                 {validity.email
-                  ? "This email address has already been used."
+                  ? "Account with this email already exists."
                   : null}
               </FormHelperText>
             </FormControl>
-            <FormControl required sx={{ }}>
+            <FormControl required>
               <InputLabel htmlFor="phoneNum-input">
                 Phone Number
               </InputLabel>
@@ -159,7 +178,7 @@ const NewUserForm = () => {
                 Include area code.
               </FormHelperText>
             </FormControl>
-            <FormControl required sx={{ }}>
+            <FormControl required>
               <InputLabel shrink htmlFor="birthday-input">
                 Birthday
               </InputLabel>
@@ -192,6 +211,7 @@ const NewUserForm = () => {
             size="small"
             onClick={handleSubmit}
             variant="contained"
+            disabled={buttonEnabled}
             sx={{ my: 2, color: "secondary.light", display: "block" , maxWidth: '25vw'}}
             >
               Create Account
