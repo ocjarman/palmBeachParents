@@ -16,7 +16,7 @@ const Profile = () => {
       <p>Birthday: {user.birthday}</p>
       <p>Mailing Address: {user.address}</p>
       <p>Profile photo: {user.avatarUrl}</p>
-      <p>Company Name: {user.companyName}</p>
+      <p>Company Name: {user.companyName ? `${user.companyName}` : 'not listed'}</p>
     </Container>
   );
 };

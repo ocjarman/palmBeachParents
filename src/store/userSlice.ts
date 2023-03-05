@@ -36,7 +36,7 @@ const initialState: initialStateType = {
     accountType: '',
     avatarUrl: '',
     isAdmin: null,
-    companyName: '',
+    companyName: null,
   }
 };
 
@@ -62,7 +62,7 @@ export const userSlice = createSlice({
         accountType: '',
         avatarUrl: '',
         isAdmin: null,
-        companyName: '',
+        companyName: null,
       };
     },
   },
