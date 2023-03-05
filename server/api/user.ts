@@ -1,3 +1,4 @@
+import { UserAttributes } from "db/models/User";
 import express, { Request, Response, NextFunction } from "express";
 import { User } from "../db/index";
 const router = express.Router();
@@ -11,6 +12,36 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     const user = await (User as any).findByToken(token);
     console.log(user)
     res.send(user);
+  } catch (err) {
+    res.sendStatus(404);
+    next(err);
+  }
+});
+
+//api/user/
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+      const {
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+        phoneNum,
+        birthday,
+        address,
+      } = req.body;
+      const newUser: UserAttributes = await User.create({
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+        phoneNum,
+        address,
+        birthday,
+      });
+      res.send(newUser);
   } catch (err) {
     res.sendStatus(404);
     next(err);

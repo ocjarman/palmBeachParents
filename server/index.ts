@@ -7,6 +7,7 @@ const init = async () => {
         app.listen(port, () => console.log(`listening on port ${port}`));
         }
     catch (ex) {
+        console.log('cant connect to port')
         console.log(ex);
     }
 };
