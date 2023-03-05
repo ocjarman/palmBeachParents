@@ -13,16 +13,7 @@ interface NewUser {
     address: string | null;
   }
 }
-// interface NewUser {
-//   username: string | null;
-//   password: string | null;
-//   firstName: string | null;
-//   lastName: string | null;
-//   email: string | null;
-//   phoneNum: string | null;
-//   birthday: string | null;
-//   address: string | null;
-// }
+
 
 const initialState: NewUser = {
   newUser: {
