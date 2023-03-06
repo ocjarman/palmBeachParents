@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Events from './views/Events';
 import Resources from './views/Resources';
-import Profile from './views/Profile';
+import Profile from './views/Profile/Profile';
 import Account from './views/Account';
 import Dashboard from './views/Dashboard';
 import PageHero from './PageHero/PageHero';

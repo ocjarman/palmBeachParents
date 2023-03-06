@@ -136,7 +136,7 @@ const User = db.define<UserAttributes>("user", {
   avatarUrl: {
     type: STRING,
     allowNull: true,
-    defaultValue: "/public/logo.svg",
+    defaultValue: "/static/person.png",
   },
   isAdmin: {
     type: BOOLEAN,
