@@ -95,6 +95,24 @@ router.post("/emailAuth", async (req: Request, res: Response, next: NextFunction
   }
 });
 
+// update record on admin side
+router.put("/:id", async (req, res, next) => {
+  try {
+    const { id, username, firstName, lastName, phoneNum, email, birthday, address, avatarUrl, companyName  } = req.body;
+
+    // const userToUpdate = await User.findByPk(id);
+    // const updatedUser = await userToUpdate.update({
+    //   artist,
+    //   year,
+    //   albumName,
+    //   price,
+    // });
+    res.status(200).send(updatedRecord);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 
 export default router;

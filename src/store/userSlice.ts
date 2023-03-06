@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface UserType {
+
+export interface UserType {
   id: string;
   username: string;
   password: string | null;
@@ -19,10 +20,27 @@ interface UserType {
 
 interface initialStateType {
   user: UserType;
+  userToEdit: UserType;
 }
 
 const initialState: initialStateType = {
   user: {
+    id: '',
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    fullName: '',
+    email: '',
+    phoneNum: '',
+    birthday: '',
+    address: '',
+    accountType: '',
+    avatarUrl: '',
+    isAdmin: null,
+    companyName: null,
+  },
+  userToEdit: {
     id: '',
     username: '',
     password: '',
@@ -65,8 +83,11 @@ export const userSlice = createSlice({
         companyName: null,
       };
     },
+    setUserToEdit: (state, action) => {
+      state.userToEdit = action.payload
+    }
   },
 });
 
-export const { setUser, resetUser } = userSlice.actions;
+export const { setUser, resetUser, setUserToEdit } = userSlice.actions;
 export default userSlice.reducer;
