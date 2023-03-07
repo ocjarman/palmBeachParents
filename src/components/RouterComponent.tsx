@@ -5,7 +5,7 @@ import Events from './views/Events';
 import Resources from './views/Resources';
 import Profile from './views/Profile/Profile';
 import Account from './views/Account';
-import Dashboard from './views/Dashboard';
+import Dashboard from './views/Admin/Dashboard';
 import PageHero from './PageHero/PageHero';
 import Login from './Login';
 import NewUserForm from './NewUserForm';

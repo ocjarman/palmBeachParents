@@ -92,7 +92,6 @@ export const userSlice = createSlice({
       state.userToEdit = action.payload
     },
     setShowUpdateForm: (state, action) => {
-      console.log('helloooo')
       state.showUpdateForm = action.payload
     }
   },
