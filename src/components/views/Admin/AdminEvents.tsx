@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
 
-export default function Events() {
+export default function AdminEvents() {
 //   const events = useSelector((state) => state.events.events);
   const [searchEvent, setSearchEvent] = useState();
   const [searchFilter, setSearchFilter] = useState([]);
