@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface UserType {
+
+export interface UserType {
   id: string;
   username: string;
   password: string | null;
@@ -17,8 +18,20 @@ interface UserType {
   companyName: string | null;
 }
 
+interface UserToEdit {
+  firstName: string | null;
+  lastName: string | null;
+  phoneNum: string | null;
+  birthday: string | null;
+  address: string | null;
+  avatarUrl: string | null;
+  companyName: string | null;
+}
+
 interface initialStateType {
   user: UserType;
+  userToEdit: UserToEdit;
+  showUpdateForm: boolean;
 }
 
 const initialState: initialStateType = {
@@ -37,7 +50,17 @@ const initialState: initialStateType = {
     avatarUrl: '',
     isAdmin: null,
     companyName: null,
-  }
+  },
+  userToEdit: {
+    firstName: null,
+    lastName: null,
+    phoneNum: null,
+    birthday: null,
+    address: null,
+    avatarUrl: null,
+    companyName: null,
+  },
+  showUpdateForm: false,
 };
 
 export const userSlice = createSlice({
@@ -65,8 +88,15 @@ export const userSlice = createSlice({
         companyName: null,
       };
     },
+    setUserToEdit: (state, action) => {
+      state.userToEdit = action.payload
+    },
+    setShowUpdateForm: (state, action) => {
+      console.log('helloooo')
+      state.showUpdateForm = action.payload
+    }
   },
 });
 
-export const { setUser, resetUser } = userSlice.actions;
+export const { setUser, resetUser, setUserToEdit, setShowUpdateForm } = userSlice.actions;
 export default userSlice.reducer;
