@@ -20,13 +20,12 @@ const UpdateUserInfoForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const navAllProducts = () => navigate("/dashboard/products");
-
   const handleUserStateChange = (e: { target: any; }) => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
     dispatch(setUserToEdit({ ...userToEdit, [name]: value }));
+    console.log({userToEdit})
   };
 
   const handleUpdate = async (event: { preventDefault: () => void; }) => {
@@ -37,27 +36,25 @@ const UpdateUserInfoForm = () => {
       // data to send to backend
       const tokenData = {
         headers: {
-          authorization: token,
+          authorization: `Bearer ${token}`,
         },
       };
 
       const newData = {
-        username: userToEdit.username,
-        firstName: userToEdit.firstName,
-        lastName: userToEdit.lastName,
-        email: userToEdit.email,
-        phoneNum: userToEdit.phoneNum,
-        birthday: userToEdit.birthday,
-        address: userToEdit.address,
-        avatarUrl: userToEdit.avatarUrl,
-        companyName: userToEdit.companyName,
+        firstName: userToEdit.firstName || user.firstName,
+        lastName: userToEdit.lastName || user.lastName,
+        phoneNum: userToEdit.phoneNum || user.phoneNum,
+        birthday: userToEdit.birthday || user.birthday,
+        address: userToEdit.address || user.address,
+        avatarUrl: userToEdit.avatarUrl || user.avatarUrl,
+        companyName: userToEdit.companyName || user.companyName
       };
-      
-      await axios.put(`/api/user/${userToEdit.id}`, newData, tokenData);
-      const updatedUserInfo = await axios.get(`/api/user/${user.id}`);
 
-      dispatch(setUser(updatedUserInfo.data));
-      navAllProducts();
+      console.log({newData})
+      
+      const updatedUser = await axios.put(`/api/user/`, newData, tokenData);
+      dispatch(setUser(updatedUser.data));
+
     } catch (err) {
       console.log("error is here");
       console.log(err);
@@ -79,66 +76,38 @@ const UpdateUserInfoForm = () => {
       <Typography sx={{ placeSelf: "center" }} variant={"h5"}>
         Update User Information
       </Typography>
-      <Container
-        sx={{
-          display: "flex",
-          gap: "20px",
-          justifyContent: "center",
-          alignItems: "center",
-          placeSelf: "center",
-        }}
-      >
+     
         <form>
-          <FormControl>
-            <InputLabel htmlFor="username-input">Username</InputLabel>
-            <Input
-              name="username"
-              defaultValue={userToEdit.username}
-              sx={{ margin: "20px" }}
-            />
-          </FormControl>
-          <br></br>
           <FormControl>
             <InputLabel htmlFor="firstname-input">First Name</InputLabel>
             <Input
-              name="firstname"
+              name="firstName"
               defaultValue={user.firstName}
               sx={{ margin: "20px" }}
               onChange={handleUserStateChange}
             />
           </FormControl>
-          <br></br>
+         
           <FormControl>
             <InputLabel htmlFor="lastname-input">Artist Name</InputLabel>
             <Input
-              name="lastname"
+              name="lastName"
               defaultValue={user.lastName}
               sx={{ margin: "20px" }}
               onChange={handleUserStateChange}
             />
           </FormControl>
-          <br></br>
           <FormControl>
-            <InputLabel htmlFor="email-input">Price</InputLabel>
+            <InputLabel htmlFor="phone-input">Phone Number</InputLabel>
             <Input
-              name="email"
-              defaultValue={user.email}
-              sx={{ margin: "20px" }}
-              onChange={handleUserStateChange}
-            />
-          </FormControl>
-          <br></br>
-          <FormControl>
-            <InputLabel htmlFor="phone-input">Year</InputLabel>
-            <Input
-              name="phone"
+              name="phoneNum"
               defaultValue={user.phoneNum}
               sx={{ margin: "20px" }}
               onChange={handleUserStateChange}
             />
           </FormControl>
           <FormControl>
-            <InputLabel htmlFor="birthday-input">Birthday</InputLabel>
+            <InputLabel shrink htmlFor="birthday-input">Birthday: {user.birthday}</InputLabel>
             <Input
               name="birthday"
               defaultValue={user.birthday}
@@ -159,7 +128,7 @@ const UpdateUserInfoForm = () => {
           <FormControl>
             <InputLabel htmlFor="image-input">Image</InputLabel>
             <Input
-              name="image"
+              name="avatarUrl"
               defaultValue={user.avatarUrl}
               sx={{ margin: "20px" }}
               onChange={handleUserStateChange}
@@ -168,15 +137,14 @@ const UpdateUserInfoForm = () => {
           <FormControl>
             <InputLabel htmlFor="companyname-input">Company Name</InputLabel>
             <Input
-              name="companyname"
+              name="companyName"
               defaultValue={user.companyName}
               sx={{ margin: "20px" }}
               onChange={handleUserStateChange}
             />
           </FormControl>
-          <br></br>
         </form>
-      </Container>
+      
       <Container
         sx={{
           display: "flex",
@@ -195,7 +163,6 @@ const UpdateUserInfoForm = () => {
         >
           Cancel
         </Button> */}
-      
       </Container>
     </Container>
   );

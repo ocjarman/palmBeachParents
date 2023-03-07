@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Container } from "@mui/system";
 import Button from '../../CustomMUI/Button'
 import './profile.css'
+import UpdateUserInfoForm from "./UpdateUserInfoForm";
 
 const Profile = () => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -30,6 +31,7 @@ const Profile = () => {
             sx={{ my: 2, color: "secondary.light", display: "block" , maxWidth: '25vw'}}
             >Edit Personal Info</Button>
       </div>
+      <UpdateUserInfoForm/>
     </div>
   );
 };

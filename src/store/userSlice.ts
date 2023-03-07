@@ -18,9 +18,19 @@ export interface UserType {
   companyName: string | null;
 }
 
+interface UserToEdit {
+  firstName: string | null;
+  lastName: string | null;
+  phoneNum: string | null;
+  birthday: string | null;
+  address: string | null;
+  avatarUrl: string | null;
+  companyName: string | null;
+}
+
 interface initialStateType {
   user: UserType;
-  userToEdit: UserType;
+  userToEdit: UserToEdit;
 }
 
 const initialState: initialStateType = {
@@ -41,19 +51,12 @@ const initialState: initialStateType = {
     companyName: null,
   },
   userToEdit: {
-    id: '',
-    username: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    fullName: '',
-    email: '',
-    phoneNum: '',
-    birthday: '',
-    address: '',
-    accountType: '',
-    avatarUrl: '',
-    isAdmin: null,
+    firstName: null,
+    lastName: null,
+    phoneNum: null,
+    birthday: null,
+    address: null,
+    avatarUrl: null,
     companyName: null,
   }
 };
