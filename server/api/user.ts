@@ -56,9 +56,7 @@ router.post(
     try {
       const { currentUsername } = req.body;
       if (currentUsername) {
-        console.log({ currentUsername });
         let user = await User.findAll({ where: { username: currentUsername } });
-        console.log({ user });
         if (user.length === 0) {
           console.log("user doesnt exist");
           res.sendStatus(200);
@@ -80,9 +78,7 @@ router.post(
     try {
       const { currentEmail } = req.body;
       if (currentEmail) {
-        console.log({ currentEmail });
         let user = await User.findAll({ where: { email: currentEmail } });
-        console.log({ user });
         if (user.length === 0) {
           console.log("user doesnt exist");
           res.sendStatus(200);
@@ -114,7 +110,7 @@ router.put("/", async (req, res, next) => {
       avatarUrl,
       companyName,
     } = req.body;
-    console.log('body', req.body)
+
     const updatedUser = await user.update({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -124,7 +120,6 @@ router.put("/", async (req, res, next) => {
       avatarUrl: req.body.avatarUrl,
       companyName: req.body.companyName,
     });
-    console.log({updatedUser})
     res.status(200).send(updatedUser);
   } catch (err) {
     next(err);
