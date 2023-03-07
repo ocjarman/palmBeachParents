@@ -5,9 +5,13 @@ import { Container } from "@mui/system";
 import Button from '../../CustomMUI/Button'
 import './profile.css'
 import UpdateUserInfoForm from "./UpdateUserInfoForm";
+import { setShowUpdateForm } from "../../../store/userSlice";
+import { useDispatch } from "react-redux";
 
 const Profile = () => {
-  const { user } = useSelector((state: RootState) => state.user);
+  const  user = useSelector((state: RootState) => state.user.user);
+  const showUpdateForm  = useSelector((state: RootState) => state.user.showUpdateForm);
+  const dispatch = useDispatch()
 
   return (
     <div className="profilePage">
@@ -24,14 +28,15 @@ const Profile = () => {
         <p>Birthday: {user.birthday}</p>
         <p>Mailing Address: {user.address}</p>
         <p>Company Name: {user.companyName ? `${user.companyName}` : 'not listed'}</p>
-      <Button
+           <Button
             size="small"
-            // onClick={handleSubmit}
+            onClick={() => dispatch(setShowUpdateForm(true))}
             variant="contained"
             sx={{ my: 2, color: "secondary.light", display: "block" , maxWidth: '25vw'}}
-            >Edit Personal Info</Button>
+            >Edit Personal Info
+            </Button>
       </div>
-      <UpdateUserInfoForm/>
+      {showUpdateForm && <UpdateUserInfoForm/>}
     </div>
   );
 };

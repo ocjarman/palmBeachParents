@@ -31,6 +31,7 @@ interface UserToEdit {
 interface initialStateType {
   user: UserType;
   userToEdit: UserToEdit;
+  showUpdateForm: boolean;
 }
 
 const initialState: initialStateType = {
@@ -58,7 +59,8 @@ const initialState: initialStateType = {
     address: null,
     avatarUrl: null,
     companyName: null,
-  }
+  },
+  showUpdateForm: false,
 };
 
 export const userSlice = createSlice({
@@ -88,9 +90,13 @@ export const userSlice = createSlice({
     },
     setUserToEdit: (state, action) => {
       state.userToEdit = action.payload
+    },
+    setShowUpdateForm: (state, action) => {
+      console.log('helloooo')
+      state.showUpdateForm = action.payload
     }
   },
 });
 
-export const { setUser, resetUser, setUserToEdit } = userSlice.actions;
+export const { setUser, resetUser, setUserToEdit, setShowUpdateForm } = userSlice.actions;
 export default userSlice.reducer;
