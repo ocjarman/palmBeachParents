@@ -14,13 +14,15 @@ export interface EventAttributes
     InferCreationAttributes<EventAttributes>
   > {
   id?: string;
-  eventName: string;
-  eventAddress: string;
-  eventDate: Date;
-  eventTime: string;
-  contactName: string | null;
-  contactNumber: string | null;
-  contactEmail: string | null;
+  name: string;
+  address: string;
+  date: Date;
+  time: string;
+  description: string | null;
+  url: string | null;
+  hostName: string | null;
+  hostNumber: string | null;
+  hostEmail: string | null;
   cost: number | null;
   imageUrl: string | null;
   recurring: boolean | null;
@@ -34,43 +36,51 @@ const Event = db.define<EventAttributes>("event", {
       primaryKey: true,
       defaultValue: UUIDV4,
     },
-    eventName: {
+    name: {
       type: STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    eventAddress: {
+    address: {
       type: STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    eventDate: {
+    date: {
       type: DATE,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    eventTime: {
+    time: {
       type: STRING,
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
-    contactName: {
+    description: {
       type: STRING,
       allowNull: true,
     },
-    contactNumber: {
+    url: {
       type: STRING,
       allowNull: true,
     },
-    contactEmail: {
+    hostName: {
+      type: STRING,
+      allowNull: true,
+    },
+    hostNumber: {
+      type: STRING,
+      allowNull: true,
+    },
+    hostEmail: {
       type: STRING,
       allowNull: true,
       validate: {
@@ -85,7 +95,7 @@ const Event = db.define<EventAttributes>("event", {
     imageUrl: {
       type: STRING,
       allowNull: true,
-      defaultValue: "/public/logo.svg",
+      defaultValue: "/static/palmBeach.png",
     },
     recurring: {
       type: BOOLEAN,

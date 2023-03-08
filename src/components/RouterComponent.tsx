@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './Home';
-import Events from './views/Events';
+import Events from './views/Events/Events';
 import Resources from './views/Resources';
 import Profile from './views/Profile/Profile';
 import Account from './views/Account';

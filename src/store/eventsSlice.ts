@@ -1,17 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { EventType } from "../utils/interfaces";
 
 
-export interface EventType {
-  id: string;
-  contactEmail: string | null;
-  contactName: string | null;
-  cost: number | null;
-  eventAddress: string | null;
-  eventDate: string | null;
-  eventName: string | null;
-  imageUrl: string | null;
-  recurring: boolean | null;
-}
 
 interface initialStateType {
   events: EventType[]
