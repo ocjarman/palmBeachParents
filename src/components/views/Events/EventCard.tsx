@@ -9,7 +9,6 @@ import { EventType } from '../../../utils/interfaces';
 import { Link } from '@mui/material';
 
 export default function EventCard(event: EventType) {
-    console.log({event})
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
