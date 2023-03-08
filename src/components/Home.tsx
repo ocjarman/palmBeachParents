@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { resetUser } from "../store/userSlice";
 import { RootState } from "../store";
 import axios from "axios";
+import Typography from "./CustomMUI/Typography";
+import { Container } from "@mui/system";
 
 const Home = () => {
   const { user } = useSelector((state: RootState) => state.user);
@@ -27,12 +29,12 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <h1>Home</h1>
-      <div>
-        <p>Welcome {user.username}!!</p>
-      </div>
-    </div>
+    <Container sx={{display: 'flex', flexDirection: 'column', textAlign: 'center'}} maxWidth={false}>
+      <Typography sx={{ placeSelf: "center", margin: '3%' }} variant={"h2"}>Home</Typography>
+      <Container sx={{display: 'flex', flexWrap: 'wrap', gap: 3, alignContent: 'center', justifyContent: 'center'}} maxWidth={false}>
+       //HOME INFO HERE
+      </Container>
+    </Container>
   );
 };
 

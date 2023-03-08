@@ -9,9 +9,11 @@ import { Autocomplete, Button, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
+import { EventType } from "../../../utils/interfaces";
+import { RootState } from "../../../store";
 
 export default function AdminEvents() {
-//   const events = useSelector((state) => state.events.events);
+  const events = useSelector((state: RootState) => state.events.events);
   const [searchEvent, setSearchEvent] = useState();
   const [searchFilter, setSearchFilter] = useState([]);
   const dispatch = useDispatch();
@@ -28,27 +30,8 @@ export default function AdminEvents() {
 //     navEventEdit(Number(event.target.value));
 //   };
 
-//   const handleSearchEvent = (event: { target: { innerHTML: any; innerText: any; value: any; }; }) => {
-//     setSearchEvent(
-//       event.target.innerHTML || event.target.innerText || event.target.value
-//     );
-//   };
 
-//   useEffect(() => {
-//     setSearchFilter(
-//       events.filter((event) => {
-//         return searchEvent
-//           ? event.id === Number(searchEvent?.split(".")[0]) ||
-//               event.albumName
-//                 ?.toLowerCase()
-//                 ?.includes(searchEvent?.toLowerCase()) ||
-//               event.albumName?.includes(
-//                 searchEvent?.split(".")[1]?.toLowerCase()
-//               )
-//           : event.id !== Number(searchEvent?.split(".")[0]);
-//       })
-//     );
-//   }, [searchEvent, events]);
+
 
   return (
     <Container
@@ -99,7 +82,7 @@ export default function AdminEvents() {
           variant="contained"
         //   onClick={navEventAdd}
         >
-          Add product
+          Add Event
         </Button>
       </Container>
 
@@ -108,49 +91,39 @@ export default function AdminEvents() {
           <TableRow>
             <TableCell>Event #</TableCell>
             <TableCell>Event Name</TableCell>
-            <TableCell>Host</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
+            <TableCell>Host Name</TableCell>
+            <TableCell>Host Email</TableCell>
+            <TableCell>Host Phone</TableCell>
             <TableCell>Location</TableCell>
+            <TableCell>Description</TableCell>
             <TableCell>Date</TableCell>
             <TableCell>Time</TableCell>
             <TableCell>Cost</TableCell>
+            <TableCell>Category</TableCell>
+            <TableCell>Ages</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          
-            <TableRow key={5453}>
-              <TableCell>event name</TableCell>
-              <TableCell>event host</TableCell>
-              <TableCell>event email</TableCell>
-              <TableCell>event phone</TableCell>
-              <TableCell>event location</TableCell>
-              <TableCell>event date</TableCell>
-              <TableCell>event time</TableCell>
-              <TableCell>event cost</TableCell>
-              <TableCell>
-                <Button size="small">
-                  Edit
-                </Button>
-              </TableCell>
-            </TableRow>
-        
-          {/* {searchFilter.map((event) => (
+          {events.map((event: EventType) => (
             <TableRow key={event.id}>
-              <TableCell>{event.eventName}</TableCell>
-              <TableCell>{event.contactName}</TableCell>
-              <TableCell>{event.contactEmail}</TableCell>
-              <TableCell>{event.contactNumber}</TableCell>
-              <TableCell>{event.eventAddress}</TableCell>
-              <TableCell>{event.eventDate}</TableCell>
-              <TableCell>{event.eventTime}</TableCell>
+              <TableCell>{event.name}</TableCell>
+              <TableCell>{event.hostName}</TableCell>
+              <TableCell>{event.hostEmail}</TableCell>
+              <TableCell>{event.hostNumber}</TableCell>
+              <TableCell>{event.address}</TableCell>
+              <TableCell>{event.description}</TableCell>
+              {/* <TableCell>{event.date}</TableCell> */}
+              <TableCell>{event.time}</TableCell>
+              <TableCell>{event.cost}</TableCell>
+              {/* <TableCell>{event.category}</TableCell>
+              <TableCell>{event.ageGroups}</TableCell> */}
               <TableCell>
-                <Button size="small" value={event.id} onClick={displayEdit}>
+                <Button size="small" value={event.id}>
                   Edit
                 </Button>
               </TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
       </Table>
     </Container>
