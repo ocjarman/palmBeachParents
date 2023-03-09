@@ -16,9 +16,11 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 // api/events
 router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // let events = await Event.findAll()
+    const { id, name, date, hostName, hostEmail, hostPhone, address, description, time, price, category, age } = req.body;
+    await Event.create({id, name, date, hostName, hostEmail, hostPhone, address, description, time, price, category, age})
+    let events = await Event.findAll()
     // console.log(events)
-    // res.send(events);
+    res.send(events);
   } catch (err) {
     res.sendStatus(404);
     next(err);

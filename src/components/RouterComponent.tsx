@@ -11,6 +11,7 @@ import Login from './Login';
 import NewUserForm from './NewUserForm';
 import AdminEvents from './views/Admin/AdminEvents';
 import UsersAdminView from './views/Admin/UserAdminView';
+import NewEventForm from './views/Admin/NewEventForm';
 
 const RouterComponent = () => {
     return (
@@ -25,6 +26,7 @@ const RouterComponent = () => {
             <Route path='/account' element={<Account />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/dashboard/events' element={<AdminEvents />} />
+            <Route path='/dashboard/events/add' element={<NewEventForm />} />
             <Route path='/dashboard/users' element={<UsersAdminView />} />
 
         </Routes>

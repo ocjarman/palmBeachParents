@@ -3,23 +3,24 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Container, Typography, TextField, Paper } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../../../store";
+import { setNewEvent } from "../../../store/eventsSlice";
 
 const NewEventForm = () => {
-//   const newRecordData = useSelector((state) => state.records.newRecordData);
-//   const genres = useSelector((state) => state.genres.genres);
+  const newEvent = useSelector((state: RootState) => state.events.newEvent);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleNewRecord = (e: { target: any; }) => {
+  const handleNewEvent = (e: { target: any; }) => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
-    // dispatch(setNewRecordData({ ...newRecordData, [name]: value }));
+    dispatch(setNewEvent({ ...newEvent, [name]: value }));
   };
 
-  const navAllProducts = () => navigate("/dashboard/products");
+  const navAllEvents = () => navigate("/dashboard/events");
 
-  const handleSubmitNewRecord = async (event: { preventDefault: () => void; }) => {
+  const handleSubmitNewEvent = async (event: { preventDefault: () => void; }) => {
     try {
       event.preventDefault();
       // get token of logged in user
@@ -30,18 +31,18 @@ const NewEventForm = () => {
           authorization: token,
         },
       };
-    //   const newRecord = {
-    //     albumName: newRecordData.albumName,
-    //     artist: newRecordData.artist,
-    //     price: Number(newRecordData.price),
-    //     year: Number(newRecordData.year),
-    //     genre: newRecordData.genre,
+    //   const newEventData = {
+    //     albumName: newEvent.albumName,
+    //     artist: newEvent.artist,
+    //     price: newEvent.price,
+    //     year: newEvent.year,
+    //     genre: newEvent.genre,
     //   };
 
-    //   await axios.post(`/api/records/`, newRecord, tokenData);
-    //   const allRecords = await axios.get(`/api/records/`, tokenData);
-    //   dispatch(setRecords(allRecords.data));
-    //   navAllProducts();
+    //   await axios.post(`/api/events/`, newEvent, tokenData);
+    //   const allEvents = await axios.get(`/api/events/`, tokenData);
+    //   dispatch(setEvents(allEvents.data));
+      // navAllEvents();
     } catch (err) {
       console.log(err);
     }
@@ -59,7 +60,7 @@ const NewEventForm = () => {
         }}
       >
         <Typography sx={{ placeSelf: "center" }} variant={"h5"}>
-          Add New Product
+          Add New Event
         </Typography>
 
         <Container
@@ -88,7 +89,7 @@ const NewEventForm = () => {
               name="artist"
               label="Artist Name"
               variant="outlined"
-              onChange={handleNewRecord}
+              onChange={handleNewEvent}
             />
             <TextField
               required
@@ -96,7 +97,7 @@ const NewEventForm = () => {
               name="albumName"
               label="Album Name"
               variant="outlined"
-              onChange={handleNewRecord}
+              onChange={handleNewEvent}
             />
             <TextField
               required
@@ -104,7 +105,7 @@ const NewEventForm = () => {
               name="price"
               label="Price"
               variant="outlined"
-              onChange={handleNewRecord}
+              onChange={handleNewEvent}
             />
             <TextField
               id="select-genre"
@@ -116,14 +117,8 @@ const NewEventForm = () => {
               name="genre"
               helperText="Select a genre"
               variant="outlined"
-              onChange={handleNewRecord}
+              onChange={handleNewEvent}
             >
-              {/* cant figure out why still getting key prop error here */}
-              {/* {genres.map((genre) => (
-                <option value={genre.name} key={genre.id}>
-                  {genre.name}
-                </option>
-              ))} */}
             </TextField>
             <TextField
               required
@@ -131,7 +126,7 @@ const NewEventForm = () => {
               name="year"
               label="Year"
               variant="outlined"
-              onChange={handleNewRecord}
+              onChange={handleNewEvent}
             />
           </form>
         </Container>
@@ -144,13 +139,12 @@ const NewEventForm = () => {
           }}
         >
           <Button
-            href={"/dashboard/products"}
             variant="contained"
-            onClick={handleSubmitNewRecord}
+            onClick={handleSubmitNewEvent}
           >
-            Submit
+            Add Event
           </Button>
-          <Button variant="contained" href={"/dashboard/products"}>
+          <Button variant="contained" onClick={navAllEvents}>
             Cancel
           </Button>
         </Container>

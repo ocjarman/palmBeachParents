@@ -10,6 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import Button from "../../CustomMUI/Button";
+import { useNavigate } from "react-router-dom";
 interface Column {
   id:
     | "edit"
@@ -24,7 +25,7 @@ interface Column {
     | "time"
     | "price"
     | "category"
-    | "age"
+    | "age";
   label: string;
 }
 
@@ -35,21 +36,19 @@ const columns: Column[] = [
   { id: "hostName", label: "Host Name" },
   { id: "hostEmail", label: "Host Email" },
   { id: "hostPhone", label: "Host Phone" },
-  { id: "location", label: "Location"  },
+  { id: "location", label: "Location" },
   { id: "description", label: "Description" },
   { id: "time", label: "Time" },
-  { id: "price", label: "Price"  },
+  { id: "price", label: "Price" },
   { id: "category", label: "Category" },
   { id: "age", label: "Age" },
 ];
 
-
-
 export default function AdminEvents() {
-  const events = useSelector((state: RootState) => state.events.events)
+  const events = useSelector((state: RootState) => state.events.events);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  const navigate = useNavigate();
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -61,37 +60,30 @@ export default function AdminEvents() {
     setPage(0);
   };
 
-  const addEvent = () => {
-    console.log('new event!')
-  }
-
   return (
     <Paper sx={{ width: "100%" }}>
-      <TableContainer sx={{ height: '85%', overflowX: 'scroll' }}>
-        <Table stickyHeader aria-label="sticky table" >
+      <TableContainer sx={{ height: "85%", overflowX: "scroll" }}>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell align="left" colSpan={11}>
                 Event Details
               </TableCell>
               <TableCell align="right" colSpan={11}>
-              <Button
-          color="secondary"
-          variant="contained"
-          size="small"
-          component="button"
-          onClick={addEvent}
-        >
-          Add Event</Button>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  size="small"
+                  component="button"
+                  onClick={() => navigate("/dashboard/events/add")}
+                >
+                  Add Event
+                </Button>
               </TableCell>
             </TableRow>
-            <TableRow >
+            <TableRow>
               {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  width={10}
-                  sx={{top: 57}}
-                >
+                <TableCell key={column.id} width={10} sx={{ top: 57 }}>
                   {column.label}
                 </TableCell>
               ))}
@@ -103,44 +95,28 @@ export default function AdminEvents() {
               .map((event) => {
                 return (
                   <TableRow hover tabIndex={-1} key={event.id}>
-                        <TableCell sx={{width: '10px'}}>
-                           <Button size="small" value={event.id}>
-                             Edit
-                           </Button>
-                         </TableCell>
-                        <TableCell>
-                          {event.id}
-                        </TableCell>
-                        <TableCell width={150}>
-                          {event.name}
-                        </TableCell>
-                        <TableCell>
-                          {event.hostName}
-                        </TableCell>
-                        <TableCell>
-                          {event.hostEmail}
-                        </TableCell>
-                        <TableCell>
-                          {event.hostPhone}
-                        </TableCell>
-                        <TableCell>
-                          {event.address}
-                        </TableCell>
-                        <TableCell>
-                          {event.description}
-                        </TableCell>
-                        <TableCell>
-                          {event.time}
-                        </TableCell>
-                        <TableCell>
-                          {event.price ? event.price : 'not listed'}
-                        </TableCell>
-                        <TableCell>
-                          {event.category ? event.category : 'not listed'}
-                        </TableCell>
-                        <TableCell sx={{width: '5%'}}>
-                          {event.age ? event.age : 'not listed'}
-                        </TableCell>
+                    <TableCell sx={{ width: "10px" }}>
+                      <Button size="small" value={event.id}>
+                        Edit
+                      </Button>
+                    </TableCell>
+                    <TableCell>{event.id}</TableCell>
+                    <TableCell width={150}>{event.name}</TableCell>
+                    <TableCell>{event.hostName}</TableCell>
+                    <TableCell>{event.hostEmail}</TableCell>
+                    <TableCell>{event.hostPhone}</TableCell>
+                    <TableCell>{event.address}</TableCell>
+                    <TableCell>{event.description}</TableCell>
+                    <TableCell>{event.time}</TableCell>
+                    <TableCell>
+                      {event.price ? event.price : "not listed"}
+                    </TableCell>
+                    <TableCell>
+                      {event.category ? event.category : "not listed"}
+                    </TableCell>
+                    <TableCell sx={{ width: "5%" }}>
+                      {event.age ? event.age : "not listed"}
+                    </TableCell>
                   </TableRow>
                 );
               })}
@@ -158,4 +134,4 @@ export default function AdminEvents() {
       />
     </Paper>
   );
-            }
+}
