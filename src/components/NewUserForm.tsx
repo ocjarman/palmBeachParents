@@ -49,7 +49,6 @@ const NewUserForm = () => {
       const response = await axios.post("/api/user/usernameAuth", {
         currentUsername,
       });
-      console.log({response})
       const usernameValid = response.status !== 200;
       setValidity({ ...validity, username: usernameValid });
     } catch (error) {

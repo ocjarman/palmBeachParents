@@ -14,10 +14,10 @@ export interface EventAttributes
     InferCreationAttributes<EventAttributes>
   > {
   id?: number;
-  name: string;
-  address: string;
-  date: Date;
-  time: string;
+  name: string | null;
+  address: string | null;
+  date: Date | null;
+  time: string | null;
   description: string | null;
   url: string | null;
   hostName: string | null;
@@ -40,28 +40,28 @@ const Event = db.define<EventAttributes>("event", {
     },
     name: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
     },
     address: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
     },
     date: {
       type: DATE,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
     },
     time: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
@@ -107,12 +107,10 @@ const Event = db.define<EventAttributes>("event", {
     category: {
       type: STRING,
       allowNull: true,
-      defaultValue: false,
     },
     age: {
       type: STRING,
       allowNull: true,
-      defaultValue: false,
     },
   });
 
