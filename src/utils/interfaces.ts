@@ -29,6 +29,8 @@ interface UserType {
     cost: number | null;
     imageUrl: string | null;
     recurring: boolean | null;
+    category: string | null;
+    ageGroups: string | null;
     users: UserType[]
   }
 

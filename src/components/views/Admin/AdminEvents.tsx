@@ -22,27 +22,25 @@ interface Column {
     | "description"
     | "date"
     | "time"
-    | "cost"
+    | "price"
     | "category"
     | "ageGroups"
   label: string;
-  minWidth?: number;
-  maxWidth?: number;
 }
 
 const columns: Column[] = [
-  { id: "edit", label: "Edit Details", minWidth: 170, maxWidth: 100 },
-  { id: "id", label: "Event Id", minWidth: 170, maxWidth: 100 },
-  { id: "name", label: "Name", minWidth: 170, maxWidth: 100 },
-  { id: "hostName", label: "Host Name", minWidth: 100, maxWidth: 100 },
-  { id: "hostEmail", label: "Host Email", minWidth: 100, maxWidth: 100 },
-  { id: "hostPhone", label: "Host Phone", minWidth: 100, maxWidth: 100 },
-  { id: "location", label: "Location", minWidth: 170, maxWidth: 100 },
-  { id: "description", label: "Description", minWidth: 170, maxWidth: 100 },
-  { id: "time", label: "time", minWidth: 170, maxWidth: 100 },
-  { id: "cost", label: "cost", minWidth: 170, maxWidth: 100 },
-  { id: "category", label: "category", minWidth: 170, maxWidth: 100 },
-  { id: "ageGroups", label: "ageGroups", minWidth: 170, maxWidth: 100 },
+  { id: "edit", label: "Edit Details" },
+  { id: "id", label: "Event Id" },
+  { id: "name", label: "Name" },
+  { id: "hostName", label: "Host Name" },
+  { id: "hostEmail", label: "Host Email" },
+  { id: "hostPhone", label: "Host Phone" },
+  { id: "location", label: "Location"  },
+  { id: "description", label: "Description" },
+  { id: "time", label: "Time" },
+  { id: "price", label: "Price"  },
+  { id: "category", label: "Category" },
+  { id: "ageGroups", label: "Age" },
 ];
 
 
@@ -65,8 +63,8 @@ export default function AdminEvents() {
 
   return (
     <Paper sx={{ width: "100%" }}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
+      <TableContainer sx={{ height: '100vh', overflowX: 'scroll' }}>
+        <Table stickyHeader aria-label="sticky table" sx={{ width: '90vw' }}>
           <TableHead >
             <TableRow>
               <TableCell align="left" colSpan={11}>
@@ -77,7 +75,8 @@ export default function AdminEvents() {
               {columns.map((column) => (
                 <TableCell
                   key={column.id}
-                  sx={{ top: 57, minWidth: column.minWidth }}
+                  width={10}
+                  sx={{ top: 10}}
                 >
                   {column.label}
                 </TableCell>
@@ -89,44 +88,44 @@ export default function AdminEvents() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((event) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={event.id}>
-                        <TableCell width={100}>
+                  <TableRow hover tabIndex={-1} key={event.id}>
+                        <TableCell sx={{width: '10px'}}>
                            <Button size="small" value={event.id}>
                              Edit
                            </Button>
                          </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.id}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell width={150}>
                           {event.name}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.hostName}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.hostEmail}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.hostNumber}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.address}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.description}
                         </TableCell>
-                        <TableCell width={100}>
+                        <TableCell>
                           {event.time}
                         </TableCell>
-                        <TableCell width={100}>
-                          {event.cost}
+                        <TableCell>
+                          {event.cost ? event.cost : 'not listed'}
                         </TableCell>
-                        <TableCell width={100}>
-                          {/* {event.category} */}
+                        <TableCell>
+                          {event.category ? event.category : 'not listed'}
                         </TableCell>
                         <TableCell sx={{width: '5%'}}>
-                          {/* {event.ageGroups} */}
+                          {event.ageGroups ? event.ageGroups : 'not listed'}
                         </TableCell>
                   </TableRow>
                 );
