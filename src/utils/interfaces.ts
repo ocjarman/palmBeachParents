@@ -24,13 +24,13 @@ interface UserType {
     description: string | null;
     url: string | null;
     hostName: string | null;
-    hostNumber: string | null;
+    hostPhone: string | null;
     hostEmail: string | null;
-    cost: number | null;
+    price: number | null;
     imageUrl: string | null;
     recurring: boolean | null;
     category: string | null;
-    ageGroups: string | null;
+    age: string | null;
     users: UserType[]
   }
 

@@ -21,11 +21,13 @@ export interface EventAttributes
   description: string | null;
   url: string | null;
   hostName: string | null;
-  hostNumber: string | null;
+  hostPhone: string | null;
   hostEmail: string | null;
-  cost: number | null;
+  price: number | null;
   imageUrl: string | null;
   recurring: boolean | null;
+  category: string | null;
+  age: string | null;
   users?: [];
   addUser(user: UserAttributes): unknown;
 }
@@ -76,7 +78,7 @@ const Event = db.define<EventAttributes>("event", {
       type: STRING,
       allowNull: true,
     },
-    hostNumber: {
+    hostPhone: {
       type: STRING,
       allowNull: true,
     },
@@ -88,7 +90,7 @@ const Event = db.define<EventAttributes>("event", {
         isEmail: true,
       },
     },
-    cost: {
+    price: {
       type: INTEGER,
       allowNull: true,
     },
@@ -99,6 +101,16 @@ const Event = db.define<EventAttributes>("event", {
     },
     recurring: {
       type: BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
+    category: {
+      type: STRING,
+      allowNull: true,
+      defaultValue: false,
+    },
+    age: {
+      type: STRING,
       allowNull: true,
       defaultValue: false,
     },

@@ -24,7 +24,7 @@ interface Column {
     | "time"
     | "price"
     | "category"
-    | "ageGroups"
+    | "age"
   label: string;
 }
 
@@ -40,7 +40,7 @@ const columns: Column[] = [
   { id: "time", label: "Time" },
   { id: "price", label: "Price"  },
   { id: "category", label: "Category" },
-  { id: "ageGroups", label: "Age" },
+  { id: "age", label: "Age" },
 ];
 
 
@@ -63,7 +63,7 @@ export default function AdminEvents() {
 
   return (
     <Paper sx={{ width: "100%" }}>
-      <TableContainer sx={{ height: '100%', overflowX: 'scroll' }}>
+      <TableContainer sx={{ height: '85%', overflowX: 'scroll' }}>
         <Table stickyHeader aria-label="sticky table" sx={{ width: '100%' }}>
           <TableHead sx={{ width: '100%' }}>
             <TableRow>
@@ -107,7 +107,7 @@ export default function AdminEvents() {
                           {event.hostEmail}
                         </TableCell>
                         <TableCell>
-                          {event.hostNumber}
+                          {event.hostPhone}
                         </TableCell>
                         <TableCell>
                           {event.address}
@@ -119,13 +119,13 @@ export default function AdminEvents() {
                           {event.time}
                         </TableCell>
                         <TableCell>
-                          {event.cost ? event.cost : 'not listed'}
+                          {event.price ? event.price : 'not listed'}
                         </TableCell>
                         <TableCell>
                           {event.category ? event.category : 'not listed'}
                         </TableCell>
                         <TableCell sx={{width: '5%'}}>
-                          {event.ageGroups ? event.ageGroups : 'not listed'}
+                          {event.age ? event.age : 'not listed'}
                         </TableCell>
                   </TableRow>
                 );
