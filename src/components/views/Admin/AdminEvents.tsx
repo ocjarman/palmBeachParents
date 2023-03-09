@@ -63,11 +63,11 @@ export default function AdminEvents() {
 
   return (
     <Paper sx={{ width: "100%" }}>
-      <TableContainer sx={{ height: '100vh', overflowX: 'scroll' }}>
-        <Table stickyHeader aria-label="sticky table" sx={{ width: '90vw' }}>
-          <TableHead >
+      <TableContainer sx={{ height: '100%', overflowX: 'scroll' }}>
+        <Table stickyHeader aria-label="sticky table" sx={{ width: '100%' }}>
+          <TableHead sx={{ width: '100%' }}>
             <TableRow>
-              <TableCell align="left" colSpan={11}>
+              <TableCell align="center" colSpan={12}>
                 Event Details
               </TableCell>
             </TableRow>
@@ -76,7 +76,7 @@ export default function AdminEvents() {
                 <TableCell
                   key={column.id}
                   width={10}
-                  sx={{ top: 10}}
+                  sx={{ top: 57}}
                 >
                   {column.label}
                 </TableCell>
