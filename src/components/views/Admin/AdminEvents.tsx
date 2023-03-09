@@ -9,7 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { Button } from "@mui/material";
+import Button from "../../CustomMUI/Button";
 interface Column {
   id:
     | "edit"
@@ -61,14 +61,28 @@ export default function AdminEvents() {
     setPage(0);
   };
 
+  const addEvent = () => {
+    console.log('new event!')
+  }
+
   return (
     <Paper sx={{ width: "100%" }}>
       <TableContainer sx={{ height: '85%', overflowX: 'scroll' }}>
-        <Table stickyHeader aria-label="sticky table" sx={{ width: '100%' }}>
-          <TableHead sx={{ width: '100%' }}>
+        <Table stickyHeader aria-label="sticky table" >
+          <TableHead>
             <TableRow>
-              <TableCell align="center" colSpan={12}>
+              <TableCell align="left" colSpan={11}>
                 Event Details
+              </TableCell>
+              <TableCell align="right" colSpan={11}>
+              <Button
+          color="secondary"
+          variant="contained"
+          size="small"
+          component="button"
+          onClick={addEvent}
+        >
+          Add Event</Button>
               </TableCell>
             </TableRow>
             <TableRow >
@@ -76,7 +90,7 @@ export default function AdminEvents() {
                 <TableCell
                   key={column.id}
                   width={10}
-                  sx={{ top: 57}}
+                  sx={{top: 57}}
                 >
                   {column.label}
                 </TableCell>
@@ -144,111 +158,4 @@ export default function AdminEvents() {
       />
     </Paper>
   );
-}
-
-// import React, { useEffect, useState } from "react";
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableCell from "@mui/material/TableCell";
-// import TableHead from "@mui/material/TableHead";
-// import TableRow from "@mui/material/TableRow";
-// import { useDispatch, useSelector } from "react-redux";
-// import TextField from "@mui/material/TextField";
-// import { useNavigate } from "react-router-dom";
-// import Container from "@mui/material/Container";
-// import { EventType } from "../../../utils/interfaces";
-// import { RootState } from "../../../store";
-// import Typography from "../../CustomMUI/Typography";
-// import Button from '../../CustomMUI/Button'
-
-// export default function AdminEvents() {
-//   const events = useSelector((state: RootState) => state.events.events);
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-// //   const navEventEdit = (eventId) => navigate(`${eventId}`);
-// //   const navEventAdd = () => navigate(`add`);
-
-// //   const displayEdit = (event) => {
-// //     const filteredEvent = events.filter(
-// //       (event) => event.id === Number(event.target.value)
-// //     );
-// //     dispatch(setEventToEdit(filteredEvent));
-// //     navEventEdit(Number(event.target.value));
-// //   };
-
-//   return (
-//     <Container
-//       style={{
-//         padding: "3%",
-//         backgroundColor: "white",
-//         justifyContent: "center",
-//         textAlign: "center",
-//       }}
-//     >
-//       <Typography variant="h5" component="h5">
-//         Events
-//       </Typography>
-//       <Container
-//         style={{
-//           display: "flex",
-//           justifyContent: "space-evenly",
-//           gap: "20vw",
-//           padding: '3%'
-//         }}
-//       >
-//         <Button
-//          color="secondary"
-//          variant="contained"
-//          size="large"
-//          component="a"
-//         //  onClick={() => doAddEventStuff}
-//          sx={{ maxWidth: 200, margin: '1%' }}
-//         >
-//           Add Event
-//         </Button>
-//       </Container>
-
-//       <Table size="small" sx={{width: "5%"}}>
-//         <TableHead>
-//           <TableRow>
-//             <TableCell sx={{width: '25%'}}>Event #</TableCell>
-//             <TableCell sx={{width: '25%'}}>Event Name</TableCell>
-//             <TableCell sx={{width: '25%'}}>Host Name</TableCell>
-//             <TableCell sx={{width: '25%'}}>Host Email</TableCell>
-//             <TableCell sx={{width: '25%'}}>Host Phone</TableCell>
-//             <TableCell sx={{width: '25%'}}>Location</TableCell>
-//             <TableCell sx={{width: '25%'}}>Description</TableCell>
-//             <TableCell sx={{width: '25%'}}>Date</TableCell>
-//             <TableCell sx={{width: '25%'}}>Time</TableCell>
-//             <TableCell sx={{width: '25%'}}>Cost</TableCell>
-//             <TableCell sx={{width: '25%'}}>Category</TableCell>
-//             <TableCell sx={{width: '25%'}}>Ages</TableCell>
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {events.map((event: EventType) => (
-//             <TableRow key={event.id}>
-//               <TableCell>{event.name}</TableCell>
-//               <TableCell>{event.hostName}</TableCell>
-//               <TableCell>{event.hostEmail}</TableCell>
-//               <TableCell>{event.hostNumber}</TableCell>
-//               <TableCell>{event.address}</TableCell>
-//               <TableCell>{event.description}</TableCell>
-//               {/* <TableCell>{event.date}</TableCell> */}
-//               <TableCell>{event.time}</TableCell>
-//               <TableCell>{event.cost}</TableCell>
-//               {/* <TableCell>{event.category}</TableCell>
-//               <TableCell>{event.ageGroups}</TableCell> */}
-//               <TableCell>
-//                 <Button size="small" value={event.id}>
-//                   Edit
-//                 </Button>
-//               </TableCell>
-//             </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//     </Container>
-//   );
-// }
+            }

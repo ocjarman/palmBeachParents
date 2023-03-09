@@ -13,7 +13,7 @@ export interface EventAttributes
     InferAttributes<EventAttributes>,
     InferCreationAttributes<EventAttributes>
   > {
-  id?: string;
+  id?: number;
   name: string;
   address: string;
   date: Date;
@@ -34,9 +34,9 @@ export interface EventAttributes
 
 const Event = db.define<EventAttributes>("event", {
     id: {
-      type: UUID,
+      type: INTEGER,
+      autoIncrement: true,
       primaryKey: true,
-      defaultValue: UUIDV4,
     },
     name: {
       type: STRING,

@@ -58,7 +58,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex", border: '5px solid red' }}>
+      <Box sx={{ display: "flex"}}>
         <Drawer
           variant="permanent"
           open={open}
