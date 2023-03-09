@@ -8,6 +8,8 @@ import ResponsiveAppBar from './Navbar/ResponsiveAppBar';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme';
 import Footer from './Footer/Footer'
+import GetEvents from '../utils/Custom Hooks/GetEvents';
+
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
@@ -28,6 +30,8 @@ const App = () => {
         loginWithToken();
     }, []);
 
+// custom hooks
+ GetEvents()
 
     return (
         <ThemeProvider theme={theme}>
