@@ -7,12 +7,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import Button from "../../CustomMUI/Button";
 import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import Typography from "../../CustomMUI/Typography";
+import { setEventToEdit } from "../../../store/eventsSlice";
 
 interface Column {
   id:
@@ -52,6 +53,7 @@ export default function AdminEvents() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
   };
@@ -63,11 +65,18 @@ export default function AdminEvents() {
     setPage(0);
   };
 
+  const handleEditState = (e: { target: { value: string | undefined; }; }) => {
+    let eventToEdit = events.find((event) => Number(event.id) === Number(e.target.value))
+    console.log({eventToEdit})
+    dispatch(setEventToEdit(eventToEdit))
+    navigate('/dashboard/events/edit')
+  }
+
   return (
     <Paper sx={{ width: "100%" }}>
       <Container
       style={{
-        padding: "3%",
+        paddingTop: "2%",
         justifyContent: "space-between",
         textAlign: "center",
         display: 'flex',
@@ -75,8 +84,8 @@ export default function AdminEvents() {
       }}
     >
 
-      <Typography variant="h5" component="body">
-        Events
+      <Typography variant="h4" component="h4" sx={{placeSelf: 'center'}}>
+        All Events
       </Typography>
   
 
@@ -108,7 +117,7 @@ export default function AdminEvents() {
                 return (
                   <TableRow hover tabIndex={-1} key={event.id}>
                     <TableCell sx={{ width: "10px" }}>
-                      <Button size="small" value={event.id}>
+                      <Button size="small" value={event.id} onClick={handleEditState}>
                         Edit
                       </Button>
                     </TableCell>

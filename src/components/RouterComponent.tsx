@@ -12,7 +12,7 @@ import NewUserForm from './NewUserForm';
 import AdminEvents from './views/Admin/AdminEvents';
 import UsersAdminView from './views/Admin/UserAdminView';
 import NewEventForm from './views/Admin/NewEventForm';
-
+import EditEventForm from './views/Admin/EditEventForm';
 const RouterComponent = () => {
     return (
         <Routes>
@@ -27,6 +27,7 @@ const RouterComponent = () => {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/dashboard/events' element={<AdminEvents />} />
             <Route path='/dashboard/events/add' element={<NewEventForm />} />
+            <Route path='/dashboard/events/edit' element={<EditEventForm />} />
             <Route path='/dashboard/users' element={<UsersAdminView />} />
 
         </Routes>

@@ -41,7 +41,7 @@ const NewEventForm = () => {
     }
   };
 
-  const categories = [
+ const categories = [
     {
       value: "outdoor activity",
       label: "outdoor activity",
