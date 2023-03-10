@@ -13,53 +13,55 @@ export interface EventAttributes
     InferAttributes<EventAttributes>,
     InferCreationAttributes<EventAttributes>
   > {
-  id?: string;
-  name: string;
-  address: string;
-  date: Date;
-  time: string;
+  id?: number;
+  name: string | null;
+  address: string | null;
+  date: Date | null;
+  time: string | null;
   description: string | null;
   url: string | null;
   hostName: string | null;
-  hostNumber: string | null;
+  hostPhone: string | null;
   hostEmail: string | null;
-  cost: number | null;
+  price: number | null;
   imageUrl: string | null;
   recurring: boolean | null;
+  category: string | null;
+  age: string | null;
   users?: [];
   addUser(user: UserAttributes): unknown;
 }
 
 const Event = db.define<EventAttributes>("event", {
     id: {
-      type: UUID,
+      type: INTEGER,
+      autoIncrement: true,
       primaryKey: true,
-      defaultValue: UUIDV4,
     },
     name: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
     },
     address: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
     },
     date: {
       type: DATE,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
     },
     time: {
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
@@ -76,7 +78,7 @@ const Event = db.define<EventAttributes>("event", {
       type: STRING,
       allowNull: true,
     },
-    hostNumber: {
+    hostPhone: {
       type: STRING,
       allowNull: true,
     },
@@ -88,7 +90,7 @@ const Event = db.define<EventAttributes>("event", {
         isEmail: true,
       },
     },
-    cost: {
+    price: {
       type: INTEGER,
       allowNull: true,
     },
@@ -101,6 +103,14 @@ const Event = db.define<EventAttributes>("event", {
       type: BOOLEAN,
       allowNull: true,
       defaultValue: false,
+    },
+    category: {
+      type: STRING,
+      allowNull: true,
+    },
+    age: {
+      type: STRING,
+      allowNull: true,
     },
   });
 

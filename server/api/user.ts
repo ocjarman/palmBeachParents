@@ -94,9 +94,8 @@ router.post(
   }
 );
 
-// update record on admin side
+// update user
 router.put("/", async (req, res, next) => {
-  console.log("hello");
   try {
     const header = req.headers.authorization;
     const token = header && header.split(" ")[1];

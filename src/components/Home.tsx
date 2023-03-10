@@ -25,7 +25,6 @@ const Home = () => {
         Authorization: `Bearer ${token}`
       }
     })
-    console.log("RES", response)
   }
 
   return (
