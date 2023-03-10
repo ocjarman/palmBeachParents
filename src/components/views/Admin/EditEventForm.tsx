@@ -34,12 +34,10 @@ const EditEventForm = () => {
   const navAllEvents = () => navigate("/dashboard/events");
 
   const handleEventStateChange = (e: { target: any }) => {
-    console.log("hello");
     const target = e.target;
     const value = target.value;
     const name = target.name;
     dispatch(setUpdatedEventInfo({ ...updatedEventInfo, [name]: value }));
-    console.log({ updatedEventInfo });
   };
 
   // const handleDeleteEvent = async (event: { preventDefault: () => void; }) => {
@@ -121,7 +119,6 @@ const EditEventForm = () => {
         dispatch(setEvents(allUpdatedEvents.data));
       navAllEvents();
     } catch (err) {
-      console.log("error is here");
       console.log(err);
     }
   };

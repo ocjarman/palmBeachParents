@@ -64,24 +64,25 @@ router.post(
 router.put("/", async (req, res, next) => {
   try {
     const { id, name, date, url, imageUrl, recurring, hostName, hostEmail, hostPhone, address, description, time, price, category, age } = req.body;
-    console.log(req.body.id)
-    const event = await Event.findByPk(req.body.id)
-    const updatedEvent: EventAttributes = await event.update({
-      name: req.body.name,
-      date: req.body.date,
-      url: req.body.url,
-      imageUrl: req.body.imageUrl, 
-      recurring: req.body.recurring,
-      hostName: req.body.hostName,
-      hostEmail: req.body.hostEmail, 
-      hostPhone: req.body.hostPhone,
-      address: req.body.address,
-      description: req.body.description,
-      time: req.body.time,
-      price: req.body.price,
-      category: req.body.category,
-      age : req.body.age,
-    });
+    console.log(req.body?.id)
+      const event = await Event.findByPk(req.body.id)
+       await event?.update({
+        name: req.body.name,
+        date: req.body.date,
+        url: req.body.url,
+        imageUrl: req.body.imageUrl, 
+        recurring: req.body.recurring,
+        hostName: req.body.hostName,
+        hostEmail: req.body.hostEmail, 
+        hostPhone: req.body.hostPhone,
+        address: req.body.address,
+        description: req.body.description,
+        time: req.body.time,
+        price: req.body.price,
+        category: req.body.category,
+        age : req.body.age,
+      });
+    
 
     const allEvents = await Event.findAll()
     res.status(200).send(allEvents);
