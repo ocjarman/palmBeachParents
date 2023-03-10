@@ -29,20 +29,6 @@ export default function UsersAdminView() {
     );
   };
 
-//   useEffect(() => {
-//     setSearchFilter(
-//       users.filter((user) => {
-//         return searchUser
-//           ? user.username?.trim()?.toLowerCase()?.includes(searchUser?.trim()?.toLowerCase()) ||
-//               user.userName?.trim()?.includes(
-//                 searchUser?.trim()?.split("|")[0]?.toLowerCase()
-//               ) ||
-//               user.email?.toLowerCase()?.includes(searchUser?.trim()?.toLowerCase()) ||
-//               user.email?.includes(searchUser?.split("|")[1]?.trim()?.toLowerCase())
-//           : user.username !== searchUser;
-//       })
-//     );
-//   }, [searchUser, users]);
 
   const getUsers = async () => {
     try {
@@ -77,7 +63,7 @@ export default function UsersAdminView() {
       <Typography variant="h5" component="h5">
         Users
       </Typography>
-      {/* <Title>Users</Title> */}
+  
       <Container
         style={{
           display: "flex",
@@ -86,27 +72,6 @@ export default function UsersAdminView() {
           padding: '3%'
         }}
       >
-        {/* <Autocomplete
-          fullWidth
-          freeSolo
-          id="product-search"
-          disableClearable
-          onChange={handleSearchUser}
-          options={users.map((option) => {
-            return `${option.username} | ${option.email}`;
-          })}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search"
-              onChange={handleSearchUser}
-              InputProps={{
-                ...params.InputProps,
-                type: "search",
-              }}
-            />
-          )}
-        /> */}
         <Button
           variant="contained"
           style={{ width: "400px", backgroundColor: "black", color: "white" }}

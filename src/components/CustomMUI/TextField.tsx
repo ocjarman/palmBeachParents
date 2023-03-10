@@ -45,6 +45,7 @@ const styles = ({ theme }: { theme: Theme }) => ({
     fontSize: 14,
     padding: theme.spacing(1),
     width: `calc(100% - ${theme.spacing(2)})`,
+    margin: '10%',
   },
   [`& .${inputStyleMappingClasses.medium}`]: {
     fontSize: 16,
@@ -85,7 +86,7 @@ function TextField(props: OnePirateTextFieldProps) {
     InputProps = {},
     InputLabelProps,
     noBorder,
-    size = 'medium',
+    size = 'small',
     SelectProps,
     ...other
   } = props;
@@ -103,9 +104,9 @@ function TextField(props: OnePirateTextFieldProps) {
           input: clsx(
             classes.input,
             inputStyleMappingClasses[size],
-            {
-              [classes.inputBorder]: !noBorder,
-            },
+            // {
+            //   [classes.inputBorder]: !noBorder,
+            // },
             InputPropsClassesInput,
           ),
           ...InputPropsClassesOther,

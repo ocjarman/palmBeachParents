@@ -73,27 +73,6 @@ export default function Users() {
           padding: '3%'
         }}
       >
-        {/* <Autocomplete
-          fullWidth
-          freeSolo
-          id="product-search"
-          disableClearable
-          onChange={handleSearchRecord}
-          options={records.map((option) => {
-            return `${option.id}. ${option.albumName}`;
-          })}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search"
-              onChange={handleSearchRecord}
-              InputProps={{
-                ...params.InputProps,
-                type: "search",
-              }}
-            />
-          )}
-        /> */}
         <Button
           style={{ width: "400px", backgroundColor: "black", color: "white" }}
           fullWidth

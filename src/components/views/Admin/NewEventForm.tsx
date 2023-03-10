@@ -6,10 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../store";
 import { setEvents, setNewEvent } from "../../../store/eventsSlice";
 import MenuItem from "@mui/material/MenuItem";
-import { Input, FormControl, InputLabel } from "@mui/material";
+import { Input, FormControl, InputLabel, TextField } from "@mui/material";
 import Button from "../../CustomMUI/Button";
 import Typography from "../../CustomMUI/Typography";
-import TextField from "../../CustomMUI/TextField";
 
 const NewEventForm = () => {
   const newEvent = useSelector((state: RootState) => state.events.newEvent);
@@ -71,8 +70,8 @@ const NewEventForm = () => {
         display: "flex",
         flexDirection: "column",
         placeSelf: "center",
-        gap: "20px",
         padding: "20px",
+        border: "1px solid gray",
       }}
     >
       <Typography sx={{ placeSelf: "center" }} variant={"h5"}>
@@ -89,8 +88,10 @@ const NewEventForm = () => {
       >
         <Container
           sx={{
-            margin: '1%',
-            gap: "20px",
+            margin: "1%",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
           <TextField
@@ -99,6 +100,7 @@ const NewEventForm = () => {
             name="name"
             label="Event Title"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
           />
           <TextField
             required
@@ -106,75 +108,17 @@ const NewEventForm = () => {
             name="address"
             label="Event Address"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
           />
-          <FormControl required>
-            <InputLabel shrink htmlFor="birthday-input">
-              Date
-            </InputLabel>
-            <Input
-              type="date"
-              name="date"
-              id="date-input"
-              aria-describedby="date-helper-text"
-              onChange={handleNewEvent}
-            />
-          </FormControl>
+
           <TextField
             required
             id="time"
             name="time"
             label="Time"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
           />
-        </Container>
-         <Container
-          sx={{
-            margin: '1%',
-            gap: "20px",
-          }}
-        >
-          <TextField
-            required
-            id="description"
-            name="description"
-            label="description"
-            onChange={handleNewEvent}
-          />
-          <TextField
-            required
-            id="url"
-            name="url"
-            label="Link to Event"
-            onChange={handleNewEvent}
-          />
-          <TextField
-            required
-            id="hostName"
-            name="hostName"
-            label="Host Name Or Company"
-            onChange={handleNewEvent}
-          />
-          <TextField
-            required
-            id="hostPhone"
-            name="hostPhone"
-            label="Host Phone"
-            onChange={handleNewEvent}
-          />
-          <TextField
-            required
-            id="hostEmail"
-            name="hostEmail"
-            label="Host Email"
-            onChange={handleNewEvent}
-          />
-        </Container>
-         <Container
-          sx={{
-            margin: '1%',
-            gap: "20px",
-          }}
-        >
           <TextField
             required
             id="price"
@@ -182,24 +126,89 @@ const NewEventForm = () => {
             label="Price"
             type="number"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
           />
+          <TextField
+            required
+            id="age"
+            name="age"
+            label="Ages"
+            onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
+          />
+        </Container>
+        <Container
+          sx={{
+            margin: "1%",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <TextField
+            required
+            id="description"
+            name="description"
+            label="Description"
+            onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
+          />
+          <TextField
+            required
+            id="url"
+            name="url"
+            label="Link to Event"
+            onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
+          />
+          <TextField
+            required
+            id="hostName"
+            name="hostName"
+            label="Host Name Or Company"
+            onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
+          />
+          <TextField
+            required
+            id="hostPhone"
+            name="hostPhone"
+            label="Host Phone"
+            onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
+          />
+          <TextField
+            required
+            id="hostEmail"
+            name="hostEmail"
+            label="Host Email"
+            onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
+          />
+        </Container>
+        <Container
+          sx={{
+            margin: "1%",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
           <TextField
             required
             id="imageUrl"
             name="imageUrl"
             label="Image Url"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%" }}
           />
           <TextField
             id="select-recurring"
             select
             label="Recurring Event"
-            // SelectProps={{
-            //   native: true,
-            // }}
             name="recurring"
-            helperText="Is this a recurring event?"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%", width: "80%" }}
             defaultValue=""
           >
             <MenuItem value={"yes"}>Yes</MenuItem>
@@ -210,12 +219,9 @@ const NewEventForm = () => {
             select
             label="Category"
             defaultValue=""
-            // SelectProps={{
-            //   native: true,
-            // }}
-            helperText="What type of event is this?"
             name="category"
             onChange={handleNewEvent}
+            sx={{ marginBottom: "5%", width: "80%" }}
           >
             {categories.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -223,22 +229,33 @@ const NewEventForm = () => {
               </MenuItem>
             ))}
           </TextField>
-
-          <TextField
-            required
-            id="age"
-            name="age"
-            label="Ages"
-            onChange={handleNewEvent}
-          />
+          <FormControl required>
+            <InputLabel shrink htmlFor="birthday-input">
+              Date
+            </InputLabel>
+            <Input
+              type="date"
+              name="date"
+              id="date-input"
+              aria-describedby="date-helper-text"
+              onChange={handleNewEvent}
+              sx={{
+                marginBottom: "5%",
+                border: "1px solid lightGray",
+                borderRadius: 1,
+                padding: "5%",
+                width: "200px",
+              }}
+            />
+          </FormControl>
         </Container>
       </form>
       <Container
         sx={{
           display: "flex",
-          gap: "20px",
           justifyContent: "center",
           alignItems: "center",
+          gap: "5%",
         }}
       >
         <Button

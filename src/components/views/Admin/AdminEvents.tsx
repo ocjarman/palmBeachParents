@@ -11,6 +11,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import Button from "../../CustomMUI/Button";
 import { useNavigate } from "react-router-dom";
+import { Container } from "@mui/material";
+import Typography from "../../CustomMUI/Typography";
+
 interface Column {
   id:
     | "edit"
@@ -62,28 +65,37 @@ export default function AdminEvents() {
 
   return (
     <Paper sx={{ width: "100%" }}>
+      <Container
+      style={{
+        padding: "3%",
+        justifyContent: "space-between",
+        textAlign: "center",
+        display: 'flex',
+        alignContent: 'center'
+      }}
+    >
+
+      <Typography variant="h5" component="body">
+        Events
+      </Typography>
+  
+
+        <Button
+          variant="contained"
+          style={{ width: "auto", backgroundColor: "black", color: "white"}}
+          onClick={() => navigate("/dashboard/events/add")}
+          >
+          Add Event
+        </Button>
+
+      </Container>
+
       <TableContainer sx={{ height: "85%", overflowX: "scroll" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              <TableCell align="left" colSpan={11}>
-                Event Details
-              </TableCell>
-              <TableCell align="right" colSpan={11}>
-                <Button
-                  color="secondary"
-                  variant="contained"
-                  size="small"
-                  component="button"
-                  onClick={() => navigate("/dashboard/events/add")}
-                >
-                  Add Event
-                </Button>
-              </TableCell>
-            </TableRow>
-            <TableRow>
               {columns.map((column) => (
-                <TableCell key={column.id} width={10} sx={{ top: 57 }}>
+                <TableCell key={column.id} width={10}>
                   {column.label}
                 </TableCell>
               ))}
