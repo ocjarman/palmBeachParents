@@ -1,6 +1,4 @@
 import * as React from "react";
-
-import Link from "@mui/material/Link";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,9 +7,11 @@ import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
+import { RootState } from "../../../store";
+import { UserType } from "../../../utils/interfaces";
 
-export default function Orders() {
-//   const orders = useSelector((state) => state.orders.adminAllOrders);
+export default function UsersTable() {
+  const users = useSelector((state: RootState) => state.allUsers.users);
 
   return (
     <Container
@@ -25,30 +25,30 @@ export default function Orders() {
       }}
     >
       <Typography variant="h5" component="h5">
-        Recent Orders
+        PBP Users
       </Typography>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Account Type</TableCell>
+            <TableCell>Phone</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Address</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {orders.map((order) => (
-            <TableRow key={order.id}>
-              <TableCell>{order.datePlaced.slice(0, 10)}</TableCell>
+          {users.map((user: UserType) => (
+            <TableRow key={user.id}>
               <TableCell>
-                {order.user.firstName} {order.user.lastName}
+                {user.firstName} {user.lastName}
               </TableCell>
-              <TableCell>{order.shippingAddress}</TableCell>
-              <TableCell>{order.status}</TableCell>
-              <TableCell align="right">{order.totalCost}</TableCell>
+              <TableCell>{user.accountType}</TableCell>
+              <TableCell>{user.phoneNum}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.address}</TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
       </Table>
     </Container>

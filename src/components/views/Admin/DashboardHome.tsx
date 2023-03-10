@@ -2,11 +2,11 @@ import { Container, Grid, Paper } from "@mui/material";
 import React from "react";
 import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import EventsTable from "./EventsTable";
 
 const DashboardHome = () => {
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4}}>
       <Grid container spacing={3}>
         {/* Chart */}
         <Grid item xs={12} md={8} lg={9}>
@@ -39,7 +39,7 @@ const DashboardHome = () => {
         {/* Recent Orders */}
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <Orders />
+            <EventsTable />
           </Paper>
         </Grid>
       </Grid>

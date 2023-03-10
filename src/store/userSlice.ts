@@ -32,6 +32,7 @@ interface initialStateType {
   user: UserType;
   userToEdit: UserToEdit;
   showUpdateForm: boolean;
+  isLoggedIn: boolean;
 }
 
 const initialState: initialStateType = {
@@ -61,6 +62,7 @@ const initialState: initialStateType = {
     companyName: null,
   },
   showUpdateForm: false,
+  isLoggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -93,9 +95,12 @@ export const userSlice = createSlice({
     },
     setShowUpdateForm: (state, action) => {
       state.showUpdateForm = action.payload
-    }
+    },
+    setIsLoggedIn: (state, action) => {
+      state.isLoggedIn = action.payload
+    },
   },
 });
 
-export const { setUser, resetUser, setUserToEdit, setShowUpdateForm } = userSlice.actions;
+export const { setUser, resetUser, setUserToEdit, setShowUpdateForm, setIsLoggedIn } = userSlice.actions;
 export default userSlice.reducer;

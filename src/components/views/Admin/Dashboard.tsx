@@ -17,6 +17,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useNavigate } from "react-router-dom";
+import DashboardHome from "./DashboardHome";
 const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, {
@@ -58,7 +59,7 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex"}}>
+      <Box sx={{ display: "flex", position: 'absolute'}}>
         <Drawer
           variant="permanent"
           open={open}
@@ -113,7 +114,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Outlet />
+          <DashboardHome />
         </Box>
       </Box>
     </ThemeProvider>

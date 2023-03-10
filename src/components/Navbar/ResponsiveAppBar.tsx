@@ -11,13 +11,13 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { resetUser } from "../../store/userSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
+import { resetUser, setIsLoggedIn } from "../../store/userSlice";
 
 function ResponsiveAppBar() {
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user, isLoggedIn } = useSelector((state: RootState) => state.user);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -45,10 +45,11 @@ function ResponsiveAppBar() {
   const logout = () => {
     window.localStorage.removeItem("token");
     dispatch(resetUser());
-    navigate('/')
+    dispatch(setIsLoggedIn(false))
+    navigate("/");
   };
 
-  const loggedIn = user.id !== "" && user.id !== null;
+  const userIsAdmin = user.accountType === "admin";
 
   return (
     <AppBar position="static" sx={{ bgcolor: "secondary.light" }}>
@@ -101,6 +102,7 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
+              {isLoggedIn && 
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography
                   textAlign="center"
@@ -109,6 +111,7 @@ function ResponsiveAppBar() {
                   {"Home"}
                 </Typography>
               </MenuItem>
+              }
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography
                   textAlign="center"
@@ -146,12 +149,13 @@ function ResponsiveAppBar() {
             PBP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          {isLoggedIn && 
             <Button
               onClick={() => navigate("/home")}
               sx={{ my: 2, color: "primary.dark", display: "block" }}
             >
               Home
-            </Button>
+            </Button>}
             <Button
               onClick={() => navigate("/events")}
               sx={{ my: 2, color: "primary.dark", display: "block" }}
@@ -166,7 +170,7 @@ function ResponsiveAppBar() {
             </Button>
           </Box>
 
-          {loggedIn && (
+          {user.id !== null && user.id !== '' && (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -211,17 +215,19 @@ function ResponsiveAppBar() {
                     {"Account"}
                   </Typography>
                 </MenuItem>
-                <MenuItem>
-                  <Typography
-                    textAlign="center"
-                    onClick={() => {
-                      navigate("/dashboard");
-                      handleCloseUserMenu();
-                    }}
-                  >
-                    {"Dashboard"}
-                  </Typography>
-                </MenuItem>
+                {userIsAdmin && (
+                  <MenuItem>
+                    <Typography
+                      textAlign="center"
+                      onClick={() => {
+                        navigate("/dashboard");
+                        handleCloseUserMenu();
+                      }}
+                    >
+                      {"Dashboard"}
+                    </Typography>
+                  </MenuItem>
+                )}
                 <MenuItem>
                   <Typography
                     textAlign="center"
