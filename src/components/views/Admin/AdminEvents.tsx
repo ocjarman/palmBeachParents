@@ -75,7 +75,7 @@ export default function AdminEvents() {
       }}
     >
 
-      <Typography variant="h5" component="body">
+      <Typography variant="h5" component="h5">
         Events
       </Typography>
   
