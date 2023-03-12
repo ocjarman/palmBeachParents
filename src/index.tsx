@@ -5,7 +5,6 @@ import store from './store';
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 import App from './components/App';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import { Home } from '@mui/icons-material';
 import Login from './components/Login';
 import NewUserForm from './components/NewUserForm';
 import Events from './components/views/Events/Events';
@@ -17,10 +16,9 @@ import DashboardHome from './components/views/Admin/DashboardHome';
 import AdminEvents from './components/views/Admin/AdminEvents';
 import UsersAdminView from './components/views/Admin/UserAdminView';
 import NewEventForm from './components/views/Admin/NewEventForm';
-import EditEventForm from './components/views/Admin/EditEventForm';
 import PageHero from './components/PageHero/PageHero';
 import Account from './components/views/Account';
-
+import Home from './components/Home';
 
 const userTokenTestTrue = async () => {
   try {
@@ -116,7 +114,6 @@ const router = createBrowserRouter([
           // },
         ],
       },
-
     ],
   },
 ]);
