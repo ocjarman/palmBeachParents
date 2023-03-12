@@ -11,7 +11,7 @@ import { RootState } from "../../../store";
 import { UserType } from "../../../utils/interfaces";
 
 export default function UsersTable() {
-  const users = useSelector((state: RootState) => state.allUsers.users);
+  const allUsers = useSelector((state: RootState) => state.allUsers.users);
 
   return (
     <Container
@@ -38,7 +38,7 @@ export default function UsersTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {users.map((user: UserType) => (
+          {allUsers.map((user: UserType) => (
             <TableRow key={user.id}>
               <TableCell>
                 {user.firstName} {user.lastName}

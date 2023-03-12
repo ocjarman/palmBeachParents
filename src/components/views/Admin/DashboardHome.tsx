@@ -1,6 +1,6 @@
 import { Container, Grid, Paper } from "@mui/material";
 import React from "react";
-import Chart from "./Chart";
+import Chart from "./UsersTable";
 import Deposits from "./Deposits";
 import EventsTable from "./EventsTable";
 
