@@ -15,6 +15,7 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     }
 });
 
+
 /* Authenticate User */
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -38,3 +39,19 @@ router.get('/authTest', authenticateUser, (req: Request, res: Response, next: Ne
 })
 
 export default router;
+
+/* user admin check */
+router.get('/adminTest', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const userInfo = req.body.user
+        if (userInfo.isAdmin) {
+            res.status(200).send(userInfo);
+        } else {
+            res.sendStatus(404)
+        }
+    }
+    catch (error) {
+        next(error);
+        console.log('error on login')
+    }
+});
