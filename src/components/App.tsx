@@ -9,6 +9,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme';
 import Footer from './Footer/Footer'
 import GetEvents from '../utils/Custom Hooks/GetEvents';
+import { Outlet } from 'react-router-dom';
+import PageHero from './PageHero/PageHero';
 
 const App = () => {
     const { user } = useSelector((state: RootState) => state.user);
@@ -39,7 +41,8 @@ const App = () => {
                 {/* NAV BAR */}
                 <ResponsiveAppBar/>
                 {/* ROUTER COMPONENT */}
-                <RouterComponent/>
+                {/* <RouterComponent/> */}
+                <Outlet/>
                 {/* FOOTER */}
                 {/* <Footer/> */}
             </div>

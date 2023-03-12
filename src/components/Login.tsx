@@ -32,6 +32,8 @@ const Login = () => {
         },
       });
       dispatch(setUser(response.data));
+      navigate("/");
+      window.location.reload();
     } else {
       console.log("no token");
     }
@@ -47,7 +49,6 @@ const Login = () => {
       console.log(token);
       window.localStorage.setItem("token", token);
       loginWithToken();
-      navigate("/home");
     } catch {
       console.log("user not authenticated");
     }

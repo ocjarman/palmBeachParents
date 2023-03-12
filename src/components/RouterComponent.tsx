@@ -28,7 +28,6 @@ const RouterComponent = () => {
             <Route path='/dashboard/events' element={<AdminEvents />} />
             <Route path='/dashboard/events/add' element={<NewEventForm />} />
             <Route path='/dashboard/users' element={<UsersAdminView />} />
-
         </Routes>
     );
 };
