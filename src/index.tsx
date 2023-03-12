@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import store from './store';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 import App from './components/App';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { Home } from '@mui/icons-material';
@@ -21,6 +21,30 @@ import EditEventForm from './components/views/Admin/EditEventForm';
 import PageHero from './components/PageHero/PageHero';
 import Account from './components/views/Account';
 
+
+const userTokenTestTrue = async () => {
+  try {
+    const token = window.localStorage.getItem("token");
+    if (token) throw redirect("/home");
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+const userTokenTestFalse = async () => {
+  try {
+    const token = window.localStorage.getItem("token");
+    if (token === null) {
+      throw redirect("/");
+    }
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,64 +54,52 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <PageHero />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "home",
         element: <Home />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "login",
         element: <Login />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "newUser",
         element: <NewUserForm />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "events",
         element: <Events />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "resources",
         element: <Resources />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "profile",
         element: <Profile />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "account",
         element: <Account />,
-        errorElement: <ErrorBoundary />,
       },
       {
         path: "dashboard",
         element: <Dashboard />,
-        errorElement: <ErrorBoundary />,
         loader: authTest,
         children: [
           {
             path: "",
             element: <DashboardHome />,
-            errorElement: <ErrorBoundary />,
-          },
+              },
           {
             path: "events",
             element: <AdminEvents />,
-            errorElement: <ErrorBoundary />,
-          },
+              },
           {
             path: "users",
             element: <UsersAdminView />,
-            errorElement: <ErrorBoundary />,
-          },
+              },
           // {
           //   path: "users/:id",
           //   element: <UserAdminEdit />,
@@ -96,8 +108,7 @@ const router = createBrowserRouter([
           {
             path: "events/add",
             element: <NewEventForm />,
-            errorElement: <ErrorBoundary />,
-          },
+              },
           // {
           //   path: "events/:id",
           //   element: <EditEventForm />,

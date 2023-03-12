@@ -48,6 +48,7 @@ function ResponsiveAppBar() {
     navigate('/')
   };
 
+  const loggedIn = user.id !=='' && user.id !== null
 
   return (
     <AppBar position="static" sx={{ bgcolor: "secondary.light" }}>
@@ -164,7 +165,7 @@ function ResponsiveAppBar() {
               Resources
             </Button>
           </Box>
-
+            {loggedIn && 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -233,6 +234,7 @@ function ResponsiveAppBar() {
                 </MenuItem>
               </Menu>
             </Box>
+            }
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../store/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -10,8 +10,10 @@ import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import './login.css'
 import Box from "@mui/material/Box"
+import { RootState } from "../store";
 
 const Login = () => {
+  const user = useSelector((state: RootState) => state.user.user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -53,6 +55,7 @@ const Login = () => {
       console.log("user not authenticated");
     }
   };
+
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20%'}}>
