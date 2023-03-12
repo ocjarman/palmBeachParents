@@ -19,6 +19,7 @@ import NewEventForm from './components/views/Admin/NewEventForm';
 import PageHero from './components/PageHero/PageHero';
 import Account from './components/views/Account';
 import Home from './components/Home';
+import adminTest from './utils/adminTest';
 
 const userTokenTestTrue = async () => {
   try {
@@ -68,23 +69,28 @@ const router = createBrowserRouter([
       {
         path: "events",
         element: <Events />,
+        loader: authTest,
       },
       {
         path: "resources",
         element: <Resources />,
+        loader: authTest,
       },
       {
         path: "profile",
         element: <Profile />,
+        loader: authTest,
       },
       {
         path: "account",
         element: <Account />,
+        loader: authTest,
       },
       {
         path: "dashboard",
         element: <Dashboard />,
-        loader: authTest,
+        loader: adminTest,
+        errorElement: <ErrorBoundary />,
         children: [
           {
             path: "",
