@@ -2,7 +2,7 @@
 ## Parenting Resources in South Florida Area
 
 ## Technical Goals
-- Solo CRUD app written entirely in TypeScript
+- Solo app written in TypeScript front to back
 
 ## Tech stack:
 
@@ -23,8 +23,3 @@ Provide the following:
 - Hub for family events in South Florida area
 - Reviews for local services for families (i.e., pediatricians, schools, etc.)
 - Connect families through parenting groups - (i.e., new mothers, new fathers, music classes, youth sports)
-
-
-
-
-
