@@ -2,21 +2,20 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 export interface UserType {
-  id: string;
-  username: string;
-  password: string | null;
-  fullName: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  email: string | null;
-  phoneNum: string | null;
-  birthday: string | null;
-  address: string | null;
-  accountType: string | null;
-  avatarUrl: string | null;
-  isAdmin: boolean | null;
-  companyName: string | null;
-}
+    id?: string;
+    username: string;
+    password: string;
+    firstName?: string;
+    lastName?: string;
+    accountType?: string;
+    phoneNum: string;
+    email: string;
+    birthday: Date;
+    address: string;
+    avatarUrl: string | null;
+    isAdmin?: boolean;
+    companyName?: string | null;
+    }
 
 interface initialStateType {
 allUsers: UserType[] | [];

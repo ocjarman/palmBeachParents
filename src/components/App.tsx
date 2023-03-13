@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import GetEvents from "../utils/Custom Hooks/GetEvents";
 import { Outlet } from "react-router-dom";
+import AdminGetUsers from "../utils/Custom Hooks/AdminGetUsers";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const App = () => {
 
   // custom hooks
   GetEvents();
+  AdminGetUsers();
 
   return (
     <ThemeProvider theme={theme}>

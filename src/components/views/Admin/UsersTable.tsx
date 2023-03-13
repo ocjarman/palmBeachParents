@@ -11,14 +11,11 @@ import { RootState } from "../../../store";
 import { UserType } from "../../../utils/interfaces";
 
 export default function UsersTable() {
-  const allUsers = useSelector((state: RootState) => state.allUsers.users);
+  const allUsers = useSelector((state: RootState) => state.allUsers.allUsers);
 
   return (
     <Container
       style={{
-        padding: "3%",
-        backgroundColor: "white",
-        borderRadius: "5px",
         justifyContent: "center",
         textAlign: "center",
         gap: "20vw",
