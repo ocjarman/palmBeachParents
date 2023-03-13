@@ -20,6 +20,7 @@ import PageHero from './components/PageHero/PageHero';
 import Account from './components/views/Account';
 import Home from './components/Home';
 import adminTest from './utils/adminTest';
+import EditEventForm from './components/views/Admin/EditEventForm';
 
 const userTokenTestTrue = async () => {
   try {
@@ -99,7 +100,15 @@ const router = createBrowserRouter([
           {
             path: "events",
             element: <AdminEvents />,
-              },
+          },
+          {
+            path: "editEvent",
+            element: <EditEventForm/>
+          },
+          {
+            path: "addEvent",
+            element: <NewEventForm/>
+          },
           {
             path: "users",
             element: <UsersAdminView />,
@@ -110,7 +119,7 @@ const router = createBrowserRouter([
           //   errorElement: <ErrorBoundary />,
           // },
           {
-            path: "events/add",
+            path: "events/addEvent",
             element: <NewEventForm />,
               },
           // {

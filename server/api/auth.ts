@@ -38,8 +38,6 @@ router.get('/authTest', authenticateUser, (req: Request, res: Response, next: Ne
     res.status(200).send(userInfo);
 })
 
-export default router;
-
 /* user admin check */
 router.get('/adminTest', authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -55,3 +53,4 @@ router.get('/adminTest', authenticateUser, async (req: Request, res: Response, n
         console.log('error on login')
     }
 });
+export default router;

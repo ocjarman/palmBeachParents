@@ -1,8 +1,8 @@
 import { Container, Grid, Paper } from "@mui/material";
 import React from "react";
-import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import EventsTable from "./EventsTable";
+import UsersTable from "./UsersTable";
 
 const DashboardHome = () => {
   return (
@@ -16,9 +16,10 @@ const DashboardHome = () => {
               display: "flex",
               flexDirection: "column",
               height: 240,
+              overflow: "scroll"
             }}
           >
-            <Chart />
+            <UsersTable/>
           </Paper>
         </Grid>
         {/* Recent Deposits */}
@@ -36,10 +37,9 @@ const DashboardHome = () => {
             <Deposits />
           </Paper>
         </Grid>
-        {/* Recent Orders */}
         <Grid item xs={12}>
           <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-            <Orders />
+            <EventsTable />
           </Paper>
         </Grid>
       </Grid>

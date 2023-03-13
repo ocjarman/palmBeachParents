@@ -210,7 +210,8 @@ function ResponsiveAppBar() {
                     {"Account"}
                   </Typography>
                 </MenuItem>
-                <MenuItem>
+                
+                {user.isAdmin && (<MenuItem>
                   <Typography
                     textAlign="center"
                     onClick={() => {
@@ -220,7 +221,8 @@ function ResponsiveAppBar() {
                   >
                     {"Dashboard"}
                   </Typography>
-                </MenuItem>
+                </MenuItem>)}
+
                 <MenuItem>
                   <Typography
                     textAlign="center"

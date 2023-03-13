@@ -36,6 +36,7 @@ const Login = () => {
       window.location.reload();
     } else {
       console.log("no token");
+      navigate('/');
     }
   };
 

@@ -7,24 +7,25 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import Button from "../../CustomMUI/Button";
 import { useNavigate } from "react-router-dom";
 import { Container } from "@mui/material";
 import Typography from "../../CustomMUI/Typography";
+import { setEventToEdit } from "../../../store/eventsSlice";
 
 interface Column {
   id:
     | "edit"
     | "id"
     | "name"
+    | "date"
     | "hostName"
     | "hostEmail"
     | "hostPhone"
     | "location"
     | "description"
-    | "date"
     | "time"
     | "price"
     | "category"
@@ -36,6 +37,7 @@ const columns: Column[] = [
   { id: "edit", label: "Edit Details" },
   { id: "id", label: "Event Id" },
   { id: "name", label: "Name" },
+  { id: "date", label: "Date" },
   { id: "hostName", label: "Host Name" },
   { id: "hostEmail", label: "Host Email" },
   { id: "hostPhone", label: "Host Phone" },
@@ -56,6 +58,8 @@ export default function AdminEvents() {
     setPage(newPage);
   };
 
+  const dispatch = useDispatch();
+
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -63,31 +67,37 @@ export default function AdminEvents() {
     setPage(0);
   };
 
+  const handleEditState = (e: { target: { value: string | undefined } }) => {
+    let eventToEdit = events.find(
+      (event) => Number(event.id) === Number(e.target.value)
+    );
+    console.log({ eventToEdit });
+    dispatch(setEventToEdit(eventToEdit));
+    navigate("/dashboard/editEvent");
+  };
+
   return (
     <Paper sx={{ width: "100%" }}>
       <Container
-      style={{
-        padding: "3%",
-        justifyContent: "space-between",
-        textAlign: "center",
-        display: 'flex',
-        alignContent: 'center'
-      }}
-    >
-
-      <Typography variant="h5" component="h5">
-        Events
-      </Typography>
-  
+        style={{
+          paddingTop: "2%",
+          justifyContent: "space-between",
+          textAlign: "center",
+          display: "flex",
+          alignContent: "center",
+        }}
+      >
+        <Typography variant="h4" component="h4" sx={{ placeSelf: "center" }}>
+          All Events
+        </Typography>
 
         <Button
           variant="contained"
-          style={{ width: "auto", backgroundColor: "black", color: "white"}}
-          onClick={() => navigate("/dashboard/events/add")}
-          >
+          style={{ width: "auto", backgroundColor: "black", color: "white" }}
+          onClick={() => navigate("/dashboard/addEvent")}
+        >
           Add Event
         </Button>
-
       </Container>
 
       <TableContainer sx={{ height: "85%", overflowX: "scroll" }}>
@@ -108,12 +118,17 @@ export default function AdminEvents() {
                 return (
                   <TableRow hover tabIndex={-1} key={event.id}>
                     <TableCell sx={{ width: "10px" }}>
-                      <Button size="small" value={event.id}>
+                      <Button
+                        size="small"
+                        value={event.id}
+                        onClick={handleEditState}
+                      >
                         Edit
                       </Button>
                     </TableCell>
                     <TableCell>{event.id}</TableCell>
                     <TableCell width={150}>{event.name}</TableCell>
+                    <TableCell width={150}>{event.date?.toString().slice(0, 10)}</TableCell>
                     <TableCell>{event.hostName}</TableCell>
                     <TableCell>{event.hostEmail}</TableCell>
                     <TableCell>{event.hostPhone}</TableCell>
