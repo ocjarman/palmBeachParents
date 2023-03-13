@@ -28,7 +28,7 @@ export interface EventAttributes
   recurring: boolean | null;
   category: string | null;
   age: string | null;
-  users?: [];
+  users?: [] | null;
   addUser(user: UserAttributes): unknown;
 }
 

@@ -31,7 +31,7 @@ interface UserType {
     recurring: boolean | null;
     category: string | null;
     age: string | null;
-    users: UserType[]
+    users: UserType[] | null;
   }
 
   export {UserType, EventType}

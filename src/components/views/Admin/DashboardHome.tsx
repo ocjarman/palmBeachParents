@@ -1,8 +1,7 @@
 import { Container, Grid, Paper } from "@mui/material";
 import React from "react";
-import Chart from "./Chart";
 import Deposits from "./Deposits";
-import Orders from "./Orders";
+import Orders from "./EventsTable";
 
 const DashboardHome = () => {
   return (
@@ -18,7 +17,6 @@ const DashboardHome = () => {
               height: 240,
             }}
           >
-            <Chart />
           </Paper>
         </Grid>
         {/* Recent Deposits */}

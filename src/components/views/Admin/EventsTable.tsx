@@ -9,9 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
+import { RootState } from "../../../store";
+import { EventType } from "../../../utils/interfaces";
 
-export default function Orders() {
-//   const orders = useSelector((state) => state.orders.adminAllOrders);
+export default function EventsTable() {
+  const events = useSelector((state: RootState) => state.events.events);
 
   return (
     <Container
@@ -25,7 +27,7 @@ export default function Orders() {
       }}
     >
       <Typography variant="h5" component="h5">
-        Recent Orders
+        Events
       </Typography>
       <Table size="small">
         <TableHead>
@@ -38,17 +40,17 @@ export default function Orders() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {orders.map((order) => (
-            <TableRow key={order.id}>
-              <TableCell>{order.datePlaced.slice(0, 10)}</TableCell>
+          {events.map((event: EventType) => (
+            <TableRow key={event.id}>
+              <TableCell>{event.address}</TableCell>
               <TableCell>
-                {order.user.firstName} {order.user.lastName}
+                {event.name}
               </TableCell>
-              <TableCell>{order.shippingAddress}</TableCell>
-              <TableCell>{order.status}</TableCell>
-              <TableCell align="right">{order.totalCost}</TableCell>
+              <TableCell>{event.hostName}</TableCell>
+              <TableCell>{event.time}</TableCell>
+              <TableCell>{event.price}</TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
       </Table>
     </Container>
