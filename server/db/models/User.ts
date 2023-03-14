@@ -29,7 +29,7 @@ export interface UserAttributes
   accountType?: string;
   phoneNum: string;
   email: string;
-  birthday: Date;
+  birthday: Date | null;
   address: string;
   avatarUrl: string | null;
   isAdmin?: boolean;
@@ -122,7 +122,6 @@ const User = db.define<UserAttributes>("user", {
     type: DATE,
     allowNull: true,
     validate: {
-      notEmpty: true,
       isDate: true,
     },
   },

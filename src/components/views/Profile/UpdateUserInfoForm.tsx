@@ -103,7 +103,7 @@ const UpdateUserInfoForm = () => {
         </FormControl>
         <FormControl>
           <InputLabel shrink htmlFor="birthday-input">
-            Birthday: {user.birthday}
+            Birthday:
           </InputLabel>
           <Input
             name="birthday"

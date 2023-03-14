@@ -47,7 +47,9 @@ const Profile = () => {
               E-mail Address: {user.email}
             </Typography>
             <Typography className="profileHeader" variant={"body1"}>
+              <>
               Birthday: {user.birthday}
+              </>
             </Typography>
             <Typography className="profileHeader" variant={"body1"}>
               Mailing Address: {user.address}

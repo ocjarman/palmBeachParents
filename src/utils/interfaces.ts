@@ -8,7 +8,7 @@ interface UserType {
   accountType?: string;
   phoneNum: string;
   email: string;
-  birthday: Date;
+  birthday: Date | null;
   address: string;
   avatarUrl: string | null;
   isAdmin?: boolean;

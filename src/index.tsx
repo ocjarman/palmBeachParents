@@ -14,7 +14,7 @@ import Dashboard from './components/views/Admin/Dashboard';
 import authTest from './utils/authTest';
 import DashboardHome from './components/views/Admin/DashboardHome';
 import AdminEvents from './components/views/Admin/AdminEvents';
-import UsersAdminView from './components/views/Admin/UserAdminView';
+import AdminUsers from './components/views/Admin/AdminUsers';
 import NewEventForm from './components/views/Admin/NewEventForm';
 import PageHero from './components/PageHero/PageHero';
 import Account from './components/views/Account';
@@ -111,7 +111,7 @@ const router = createBrowserRouter([
           },
           {
             path: "users",
-            element: <UsersAdminView />,
+            element: <AdminUsers />,
               },
           // {
           //   path: "users/:id",
