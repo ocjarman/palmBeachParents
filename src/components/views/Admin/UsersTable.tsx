@@ -16,6 +16,9 @@ export default function UsersTable() {
   return (
     <Container
       style={{
+        padding: "3%",
+        backgroundColor: "white",
+        borderRadius: "5px",
         justifyContent: "center",
         textAlign: "center",
         gap: "20vw",
