@@ -42,20 +42,18 @@ export default function PageHero() {
       {!loggedIn && (
         <>
           <Button
-            color="secondary"
+            color="inherit"
             variant="contained"
             size="large"
-            component="a"
             onClick={() => navigate("/login")}
             sx={{ maxWidth: 200, margin: '1%' }}
           >
             Login
           </Button>
           <Button
-            color="secondary"
+            color="inherit"
             variant="contained"
             size="large"
-            component="a"
             onClick={() => navigate('/newUser')}
             sx={{ minWidth: 200 }}
           >
