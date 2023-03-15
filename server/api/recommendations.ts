@@ -7,6 +7,7 @@ import axios from 'axios'
 // api/recommendations
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
+    console.log('hello')
     const config = {
         headers: {
           Authorization:

@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RecType } from "../utils/interfaces";
 
 interface initialStateType {
-  recommendations: [];
+  recommendations: RecType[];
 }
 
 const initialState: initialStateType = {

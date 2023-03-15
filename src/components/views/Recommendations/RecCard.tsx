@@ -5,28 +5,29 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import recommendationsSlice from '../../../store/recommendationsSlice';
+import { RecType } from '../../../utils/interfaces';
 
-export default function RecCard() {
+export default function RecCard(rec: RecType) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt="recommendation image"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        src={`${rec.image_url}`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          {rec.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          INFO HERE!
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" href={`${rec.url}`}>Learn More</Button>
       </CardActions>
     </Card>
   );
