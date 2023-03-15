@@ -5,6 +5,7 @@ import profileRouter from './profile'
 import accountRouter from './account'
 import resourcesRouter from './resources'
 import allUsersRouter from './allUsers'
+import placesRouter from './places'
 import express from "express";
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.use("/profile", profileRouter);
 router.use("/account", accountRouter);
 router.use("/resources", resourcesRouter);
 router.use("/allUsers", allUsersRouter);
+router.use("/places", placesRouter);
 
 
 export default router;
