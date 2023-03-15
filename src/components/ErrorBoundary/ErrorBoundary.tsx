@@ -7,9 +7,9 @@ const ErrorBoundary = () => {
     <div id="error-page">
       <CssBaseline />
       <img
-        src="/static/page-not-found-puppy.png"
-        alt="A cute puppy covered in paint saying that there was an error."
-        id="error-puppy-img"
+        src="/static/page_doesnt_exist.png"
+        alt="you must be lost."
+        id="error-palm-img"
       />
     </div>
   );
