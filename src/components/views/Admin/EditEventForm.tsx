@@ -1,24 +1,21 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  Button,
   Container,
   FormControl,
   Input,
   InputLabel,
-  Typography,
 } from "@mui/material";
 import axios from "axios";
-import Box from "@mui/material/Box";
-import AlertDialog from "./AlertDialog";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../store";
 import {
   setEvents,
-  setEventToEdit,
   setUpdatedEventInfo,
 } from "../../../store/eventsSlice";
 import { TextField, MenuItem } from "@mui/material";
+import Button from "../../CustomMUI/Button";
+import Typography from "../../CustomMUI/Typography";
 
 const EditEventForm = () => {
   const eventToEdit = useSelector(
@@ -62,7 +59,6 @@ const EditEventForm = () => {
   //       // );
   //       const allNewevents = await axios.get("/api/events");
   //       // dispatch(setevents(allNewevents.data));
-  //       // dispatch(setEditInProgress(false));
   //     } catch (err) {
   //       console.error(err);
   //     }
@@ -70,6 +66,7 @@ const EditEventForm = () => {
   //     return;
   //   }
   // };
+
   const categories = [
     {
       value: "outdoor activity",
@@ -123,9 +120,6 @@ const EditEventForm = () => {
     }
   };
 
-  const seeAllProducts = () => {
-    // dispatch(setEditInProgress(false));
-  };
 
   return (
     <Container
@@ -134,11 +128,10 @@ const EditEventForm = () => {
         flexDirection: "column",
         placeSelf: "center",
         padding: "20px",
-        border: "1px solid gray",
       }}
     >
       <Typography sx={{ placeSelf: "center" }} variant={"h5"}>
-        Edit Event
+        Edit Event: {eventToEdit.name}
       </Typography>
 
       <form
@@ -147,6 +140,7 @@ const EditEventForm = () => {
           alignItems: "center",
           display: "flex",
           flexDirection: "row",
+          marginTop: '5%'
         }}
       >
         <Container

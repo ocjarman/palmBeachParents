@@ -10,7 +10,7 @@ export interface UserType {
   lastName: string | null;
   email: string | null;
   phoneNum: string | null;
-  birthday: string | null;
+  birthday: Date | null;
   address: string | null;
   accountType: string | null;
   avatarUrl: string | null;
@@ -22,7 +22,7 @@ interface UserToEdit {
   firstName: string | null;
   lastName: string | null;
   phoneNum: string | null;
-  birthday: string | null;
+  birthday: Date | null;
   address: string | null;
   avatarUrl: string | null;
   companyName: string | null;
@@ -44,7 +44,7 @@ const initialState: initialStateType = {
     fullName: '',
     email: '',
     phoneNum: '',
-    birthday: '',
+    birthday: null,
     address: '',
     accountType: '',
     avatarUrl: '',
@@ -80,7 +80,7 @@ export const userSlice = createSlice({
         fullName: '',
         email: '',
         phoneNum: '',
-        birthday: '',
+        birthday: null,
         address: '',
         accountType: '',
         avatarUrl: '',

@@ -4,51 +4,20 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { useDispatch, useSelector } from "react-redux";
-import { Autocomplete, Button, Typography } from "@mui/material";
-import TextField from "@mui/material/TextField";
+import { useSelector } from "react-redux";
+import Typography from "../../CustomMUI/Typography";
+import Button from "../../CustomMUI/Button";
 import { useNavigate } from "react-router-dom";
 import Container from "@mui/material/Container";
-import axios from "axios";
+import { RootState } from "../../../store";
 
-export default function UsersAdminView() {
-//   const users = useSelector((state) => state.adminUserList.users);
-  const [searchUser, setSearchUser] = useState();
-  const [searchFilter, setSearchFilter] = useState();
-
-  const dispatch = useDispatch();
+export default function AdminUsers() {
+  const allUsers = useSelector((state: RootState) => state.allUsers.allUsers);
 
   const navigate = useNavigate();
 
   const navUserAdd = () => navigate("./add");
   const navUserEdit = (event: { target: { value: any; }; }) => navigate(`./${event.target.value}`);
-
-  const handleSearchUser = (event: { target: { innerHTML: any; innerText: any; value: any; }; }) => {
-    setSearchUser(
-      event.target.innerHTML || event.target.innerText || event.target.value
-    );
-  };
-
-
-  const getUsers = async () => {
-    try {
-      const token = window.localStorage.getItem("token");
-      const tokenData = {
-        headers: {
-          authorization: token,
-        },
-      };
-
-      const users = await axios.get(`/api/user/userlist`, tokenData);
-    //   dispatch(setUserList(users.data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  React.useEffect(() => {
-    getUsers();
-  }, []);
 
   return (
     <Container
@@ -95,36 +64,24 @@ export default function UsersAdminView() {
             </TableRow>
           </TableHead>
           <TableBody>
-            
-              <TableRow key={344}>
-                <TableCell>users username</TableCell>
-                <TableCell>first</TableCell>
-                <TableCell>last</TableCell>
-                <TableCell>email</TableCell>
-                <TableCell>phone</TableCell>
-                <TableCell>birthday</TableCell>
-                <TableCell>
-                  <Button onClick={() => {navUserEdit}}>
-                    Edit
-                  </Button>
-                </TableCell>
-              </TableRow>
-            
-            {/* {searchFilter?.map((user) => (
+            {allUsers?.map((user) => (
               <TableRow key={user.id}>
                 <TableCell>{user.username}</TableCell>
                 <TableCell>{user.firstName}</TableCell>
                 <TableCell>{user.lastName}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.phoneNum}</TableCell>
-                <TableCell>{user.birthday.split("T")[0]}</TableCell>
+                <TableCell><>{user.birthday}</></TableCell>
                 <TableCell>
-                  <Button size="small" value={user.id} onClick={navUserEdit}>
+                  <Button size="small" value={user.id}>
                     Edit
                   </Button>
+                  {/* <Button size="small" value={user.id} onClick={navUserEdit}>
+                    Edit
+                  </Button> */}
                 </TableCell>
               </TableRow>
-            ))} */}
+            ))}
           </TableBody>
         </Table>
       </div>

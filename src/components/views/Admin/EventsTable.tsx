@@ -1,12 +1,10 @@
 import * as React from "react";
-
-import Link from "@mui/material/Link";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Typography } from "@mui/material";
+import Typography from "../../CustomMUI/Typography";
 import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import { RootState } from "../../../store";
@@ -32,11 +30,11 @@ export default function EventsTable() {
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell align="right">Sale Amount</TableCell>
+            <TableCell>Location</TableCell>
+            <TableCell>Event Name</TableCell>
+            <TableCell>Hosted By</TableCell>
+            <TableCell>Time</TableCell>
+            <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -4,7 +4,7 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Typography } from "@mui/material";
+import Typography from "../../CustomMUI/Typography";
 import { useSelector } from "react-redux";
 import Container from "@mui/material/Container";
 import { RootState } from "../../../store";
@@ -16,6 +16,9 @@ export default function UsersTable() {
   return (
     <Container
       style={{
+        padding: "3%",
+        backgroundColor: "white",
+        borderRadius: "5px",
         justifyContent: "center",
         textAlign: "center",
         gap: "20vw",
