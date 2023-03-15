@@ -6,13 +6,13 @@ import {
   FormControl,
   Input,
   InputLabel,
-  Typography,
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../store";
 import { setShowUpdateForm, setUserToEdit } from "../../../store/userSlice";
 import { setUser } from "../../../store/userSlice";
+import Typography from "../../CustomMUI/Typography";
 
 const UpdateUserInfoForm = () => {
   const userToEdit = useSelector((state: RootState) => state.user.userToEdit);
