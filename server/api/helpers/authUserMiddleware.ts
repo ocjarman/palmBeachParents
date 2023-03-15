@@ -26,7 +26,7 @@ export const authenticateUser = (req: Request, res: Response, next: NextFunction
          // Do stuff with our user
         
          if (typeof user === "object") {
-        const userInfo = await User.findByPk(user.id);
+        const userInfo = await User.findByPk(user.id, {attributes: {exclude: ['password']}});
         if (!userInfo) return res.sendStatus(404);
         req.body.user = userInfo;
         next();

@@ -8,6 +8,7 @@ import theme from "../theme";
 import GetEvents from "../utils/Custom Hooks/GetEvents";
 import { Outlet } from "react-router-dom";
 import AdminGetUsers from "../utils/Custom Hooks/AdminGetUsers";
+import GetRecommendations from "../utils/Custom Hooks/GetRecommendations";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const App = () => {
   // custom hooks
   GetEvents();
   AdminGetUsers();
+  GetRecommendations();
 
   return (
     <ThemeProvider theme={theme}>

@@ -27,7 +27,7 @@ export default function PageHero() {
   // };
 
   // const testTheYelp = async () => {
-  //   let response = await axios.get(`/api/places`)
+  //   let response = await axios.get(`/api/recommendations`)
   //   console.log({response})
   // }
 

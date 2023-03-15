@@ -4,7 +4,7 @@ const router = express.Router();
 // import { EventAttributes } from "db/models/Event";
 import axios from 'axios'
 
-// api/places
+// api/recommendations
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const config = {
@@ -14,20 +14,21 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
         },
         //     `Bearer ${process.env.YELP_API_KEY}`,
         params: {
-          term: "restaurants",
-          location: 'toronto',
-          radius: 1609,
+          term: "kids",
+          location: 'delray beach, FL',
+          radius: 20000,
           sort_by: "rating",
           limit: 50,
+          categories: ['kids', 'playground', 'daycare']
         },
       };
-    let places =  await axios.get(`https://api.yelp.com/v3/businesses/search`, config)
+    let recommendations =  await axios.get(`https://api.yelp.com/v3/businesses/search`, config)
 //     .then((data) => {
 //     console.log(data)
 // })
-console.log(places)
-res.send(places.data);
-    // res.send(places);
+console.log(recommendations)
+res.send(recommendations.data);
+    // res.send(recommendations);
   } catch (err) {
     res.sendStatus(404);
     console.log(err)
