@@ -10,8 +10,9 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     const config = {
         headers: {
           Authorization:
-            "Bearer TpzKp9pHCavPR0bZidhR5CgRzM5iiu31yCWzJFTDRfyBBgZlHsdXtjt8Dw6U5TU48JPUfOv4YBk9c5n2HpKQnMxWSEOxEFmjimy5EH6iWZMvA54n9sbLgxveOscRZHYx",
+            `Bearer TpzKp9pHCavPR0bZidhR5CgRzM5iiu31yCWzJFTDRfyBBgZlHsdXtjt8Dw6U5TU48JPUfOv4YBk9c5n2HpKQnMxWSEOxEFmjimy5EH6iWZMvA54n9sbLgxveOscRZHYx`,
         },
+        //     `Bearer ${process.env.YELP_API_KEY}`,
         params: {
           term: "restaurants",
           location: 'toronto',

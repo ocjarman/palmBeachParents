@@ -15,37 +15,21 @@ export default function PageHero() {
   const { user } = useSelector((state: RootState) => state.user);
   const loggedIn = user.id !== "" && user.id !== null;
 
-  const config = {
-    headers: {
-      Authorization:
-        "Bearer TpzKp9pHCavPR0bZidhR5CgRzM5iiu31yCWzJFTDRfyBBgZlHsdXtjt8Dw6U5TU48JPUfOv4YBk9c5n2HpKQnMxWSEOxEFmjimy5EH6iWZMvA54n9sbLgxveOscRZHYx",
-    },
-    params: {
-      term: "restaurants",
-      location: 'toronto',
-      radius: 1609,
-      sort_by: "rating",
-      limit: 50,
-    },
-  };
-
-  const testTheYelp = async () => {
+  // const config = {
    
-    let response = await axios.get(`/api/places`)
-    console.log({response})
-    // const corsApiUrl = 'https://cors-anywhere.herokuapp.com/';
-    // await axios.get(`${corsApiUrl}https://api.yelp.com/v3/businesses/search`, config)
-    // .then((res) => {
-    // console.log(res)
-    // })
-    // .catch((err) => {
-    // console.log (err)
-    // })
-  }
+  //   params: {
+  //     term: "restaurants",
+  //     location: 'toronto',
+  //     radius: 1609,
+  //     sort_by: "rating",
+  //     limit: 50,
+  //   },
+  // };
 
-
-// 	 Client ID
-// htHRKBMdXNa-H2ZLJVZFjA
+  // const testTheYelp = async () => {
+  //   let response = await axios.get(`/api/places`)
+  //   console.log({response})
+  // }
 
 
 
@@ -57,7 +41,6 @@ export default function PageHero() {
         backgroundPosition: "center",
       }}
     >
-      {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: "none" }}
         src={backgroundImage}
@@ -93,15 +76,6 @@ export default function PageHero() {
             sx={{ minWidth: 200 }}
           >
             Create Account
-          </Button>
-          <Button
-            color="inherit"
-            variant="contained"
-            size="large"
-            onClick={testTheYelp}
-            sx={{ minWidth: 200 }}
-          >
-            yelp test
           </Button>
         </>
       )}
