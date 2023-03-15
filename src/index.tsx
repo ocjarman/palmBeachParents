@@ -8,7 +8,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import Login from './components/Login';
 import NewUserForm from './components/NewUserForm';
 import Events from './components/views/Events/Events';
-import Resources from './components/views/Resources/Resources';
+import Recommendations from './components/views/Recommendations/Recommendations';
 import Profile from './components/views/Profile/Profile';
 import Dashboard from './components/views/Admin/Dashboard';
 import authTest from './utils/authTest';
@@ -73,8 +73,8 @@ const router = createBrowserRouter([
         loader: authTest,
       },
       {
-        path: "resources",
-        element: <Resources />,
+        path: "recommendations",
+        element: <Recommendations />,
         loader: authTest,
       },
       {

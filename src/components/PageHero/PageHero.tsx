@@ -3,8 +3,9 @@ import Button from "../CustomMUI/Button";
 import Typography from "../CustomMUI/Typography";
 import PageHeroLayout from "./PageHeroLayout";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import axios from "axios";
 
 const backgroundImage =
   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
@@ -14,6 +15,24 @@ export default function PageHero() {
   const { user } = useSelector((state: RootState) => state.user);
   const loggedIn = user.id !== "" && user.id !== null;
 
+  // const config = {
+   
+  //   params: {
+  //     term: "restaurants",
+  //     location: 'toronto',
+  //     radius: 1609,
+  //     sort_by: "rating",
+  //     limit: 50,
+  //   },
+  // };
+
+  // const testTheYelp = async () => {
+  //   let response = await axios.get(`/api/recommendations`)
+  //   console.log({response})
+  // }
+
+
+
   return (
     <PageHeroLayout
       sxBackground={{
@@ -22,7 +41,6 @@ export default function PageHero() {
         backgroundPosition: "center",
       }}
     >
-      {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: "none" }}
         src={backgroundImage}
@@ -46,7 +64,7 @@ export default function PageHero() {
             variant="contained"
             size="large"
             onClick={() => navigate("/login")}
-            sx={{ maxWidth: 200, margin: '1%' }}
+            sx={{ maxWidth: 200, margin: "1%" }}
           >
             Login
           </Button>
@@ -54,7 +72,7 @@ export default function PageHero() {
             color="inherit"
             variant="contained"
             size="large"
-            onClick={() => navigate('/newUser')}
+            onClick={() => navigate("/newUser")}
             sx={{ minWidth: 200 }}
           >
             Create Account

@@ -120,9 +120,9 @@ function ResponsiveAppBar() {
               <MenuItem onClick={handleCloseNavMenu}>
                 <Typography
                   textAlign="center"
-                  onClick={() => navigate("/resources")}
+                  onClick={() => navigate("/recommendations")}
                 >
-                  {"Resources"}
+                  {"Recommendations"}
                 </Typography>
               </MenuItem>
             </Menu>
@@ -159,10 +159,10 @@ function ResponsiveAppBar() {
               Events
             </Button>
             <Button
-              onClick={() => navigate("/resources")}
+              onClick={() => navigate("/recommendations")}
               sx={{ my: 2, color: "primary.dark", display: "block" }}
             >
-              Resources
+              Recommendations
             </Button>
           </Box>
             {loggedIn && 
