@@ -5,7 +5,6 @@ import "./errorBoundary.css";
 const ErrorBoundary = () => {
   return (
     <div id="error-page">
-      <CssBaseline />
       <img
         src="/static/page_doesnt_exist.png"
         alt="you must be lost."
