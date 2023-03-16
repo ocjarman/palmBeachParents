@@ -4,29 +4,30 @@ import FormControl from "@mui/material/FormControl";
 
 const RecFilter = () => {
   const [searchData, setSearchData] = useState<ParamType>({
-    term: null,
-    location: null,
-    radius: null,
-    sort_by: null,
-    limit: null,
+    term: "",
+    location: "Delray Beach",
+    radius: 8000,
+    sort_by: "best_match",
   });
 
   interface ParamType {
-    term: string | null;
-    location: string | null;
-    radius: number | null;
-    sort_by: string | null;
-    limit: number | null;
+    term: string;
+    location: string;
+    radius: number;
+    sort_by: string;
   }
 
-  const handleSearchParams = (e: BaseSyntheticEvent) => {
+  const handleSearchParams = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | (Event & { target: { value: string; name: string; }; }) | (Event & { target: { value: number; name: string; }; })) => {
+    console.log('changing')
     const target = e.target;
     const value = target.value;
     const name = target.name;
     setSearchData({ ...searchData, [name]: value });
+    console.log(searchData)
   };
 
-  const findRecommendations = () => {
+  const findRecommendations = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
     console.log("looking!");
     console.log(searchData);
   };
@@ -51,17 +52,17 @@ const RecFilter = () => {
           flexDirection: "column",
           alignItems: 'center'
         }}
+        onSubmit={findRecommendations}
       >
         <FormControl >
         <Input
           type="text"
           name="term"
+          value={searchData.term}
           placeholder="Keyword(s)"
           sx={{ margin: 0, padding: 0 }}
-          onChange={() => {
-            handleSearchParams;
-          }}
-        />
+          onChange={handleSearchParams}
+          />
         </FormControl>
         <Container sx={{display: 'flex', justifyContent: 'space-evenly', }}>
         <FormControl >
@@ -72,10 +73,9 @@ const RecFilter = () => {
             id="location-input"
             label="location"
             name="location"
+            value={searchData.location ? searchData.location : ""}
             sx={{ marginRight: 0, padding: 0, height: "5vh", width: 100 }}
-            onChange={() => {
-              handleSearchParams;
-            }}
+            onChange={handleSearchParams}
           >
             {locations.map((location) => (
               <MenuItem value={location} key={location}>
@@ -91,20 +91,18 @@ const RecFilter = () => {
             labelId="distance-input-label"
             id="distance-input"
             label="distance"
+            value={searchData.radius ? searchData.radius : 0}
             sx={{ margin: 0, padding: 0, height: "5vh", width: 100 }}
-            placeholder="Within x miles"
-            name="distance"
-            onChange={() => {
-              handleSearchParams;
-            }}
+            name="radius"
+            onChange={(event)=> {handleSearchParams(event)}}
           >
-            <MenuItem value={8000} key={8000}>
+            <MenuItem value={8000} key={5}>
               5 miles
             </MenuItem>
-            <MenuItem value={16000} key={8000}>
+            <MenuItem value={16000} key={10}>
               10 miles
             </MenuItem>
-            <MenuItem value={24000} key={8000}>
+            <MenuItem value={24000} key={15}>
               15 miles
             </MenuItem>
           </Select>
@@ -118,10 +116,10 @@ const RecFilter = () => {
             id="sort_by-input"
             label="sort_by"
             name="sort_by"
+            value={searchData.sort_by ? searchData.sort_by : "best_match"}
             sx={{ margin: 0, padding: 0, height: "5vh", width: 100 }}
-            onChange={() => {
-              handleSearchParams;
-            }}
+            onChange={(event)=> {handleSearchParams(event)}}
+
           >
             <MenuItem value={"rating"} key={0}>
               Rating
@@ -156,7 +154,6 @@ const RecFilter = () => {
         <Input
           type="submit"
           sx={{ margin: 0, padding: 0, width: 100 }}
-          onClick={findRecommendations}
         />
        </FormControl>
       </form>

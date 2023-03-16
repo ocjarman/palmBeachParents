@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import recommendationsSlice from '../../../store/recommendationsSlice';
 import { RecType } from '../../../utils/interfaces';
+import { Rating } from '@mui/material';
 
 export default function RecCard(rec: RecType) {
   return (
@@ -24,6 +25,7 @@ export default function RecCard(rec: RecType) {
         <Typography variant="body2" color="text.secondary">
           INFO HERE!
         </Typography>
+        <Rating name="read-only" value={rec.rating} readOnly />
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
