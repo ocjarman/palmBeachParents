@@ -27,6 +27,7 @@
     "css-loader": "^6.7.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "formik": "^2.2.9",
     "i": "^0.3.7",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
@@ -38,7 +39,8 @@
     "ts-loader": "^9.4.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5",
-    "volleyball": "^1.5.1"
+    "volleyball": "^1.5.1",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import axios from "axios";
+import SearchThingsToDo from "../SearchThingsToDo";
 
 const backgroundImage =
   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
@@ -77,6 +78,7 @@ export default function PageHero() {
           >
             Create Account
           </Button>
+          <SearchThingsToDo/>
         </>
       )}
     </PageHeroLayout>
