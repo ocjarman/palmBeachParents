@@ -31,10 +31,7 @@ const RecFilter = () => {
 
   const findRecommendations = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    console.log("looking!");
-    console.log(searchData);
     let filteredSearch = await axios.put('/api/recommendations/thingsToDo', searchData)
-    console.log(filteredSearch)
     dispatch(setRecommendations(filteredSearch.data.businesses))
 };
 

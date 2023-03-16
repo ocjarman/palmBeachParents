@@ -40,8 +40,6 @@ router.put(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { term, location, radius, sort_by } = req.body;
-      console.log(req.body)
-
       const config = {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,

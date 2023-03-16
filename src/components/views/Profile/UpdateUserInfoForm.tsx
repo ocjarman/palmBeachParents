@@ -49,7 +49,6 @@ const UpdateUserInfoForm = () => {
         companyName: userToEdit.companyName || user.companyName,
       };
 
-      console.log({ newData });
 
       const updatedUser = await axios.put(`/api/user/`, newData, tokenData);
       dispatch(setUser(updatedUser.data));

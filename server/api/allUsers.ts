@@ -7,9 +7,7 @@ import {authenticateUser} from "./helpers/authUserMiddleware";
 // api/allUsers
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        console.log('hello')
         const { userId } = req.body
-        console.log(userId)
         const foundUser = (await User.findByPk(req.body.userId))
         if (foundUser) {
             if (foundUser.isAdmin) {
