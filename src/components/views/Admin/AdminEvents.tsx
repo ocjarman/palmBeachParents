@@ -71,7 +71,6 @@ export default function AdminEvents() {
     let eventToEdit = events.find(
       (event) => Number(event.id) === Number(e.target.value)
     );
-    console.log({ eventToEdit });
     dispatch(setEventToEdit(eventToEdit));
     navigate("/dashboard/editEvent");
   };
