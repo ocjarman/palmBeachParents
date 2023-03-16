@@ -1,14 +1,19 @@
 import { Container, Input, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { BaseSyntheticEvent, useState } from "react";
 import FormControl from "@mui/material/FormControl";
+import axios from "axios";
+import { setRecommendations } from "../../../store/recommendationsSlice";
+import { useDispatch } from "react-redux";
 
 const RecFilter = () => {
   const [searchData, setSearchData] = useState<ParamType>({
     term: "",
-    location: "Delray Beach",
+    location: "Delray Beach, FL",
     radius: 8000,
     sort_by: "best_match",
   });
+
+  const dispatch = useDispatch()
 
   interface ParamType {
     term: string;
@@ -18,26 +23,27 @@ const RecFilter = () => {
   }
 
   const handleSearchParams = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | (Event & { target: { value: string; name: string; }; }) | (Event & { target: { value: number; name: string; }; })) => {
-    console.log('changing')
     const target = e.target;
     const value = target.value;
     const name = target.name;
     setSearchData({ ...searchData, [name]: value });
-    console.log(searchData)
   };
 
-  const findRecommendations = (event: { preventDefault: () => void; }) => {
+  const findRecommendations = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     console.log("looking!");
     console.log(searchData);
-  };
+    let filteredSearch = await axios.put('/api/recommendations/thingsToDo', searchData)
+    console.log(filteredSearch)
+    dispatch(setRecommendations(filteredSearch.data.businesses))
+};
 
   const locations = [
-    "Boca Raton",
-    "Delray Beach",
-    "Boynton Beach",
-    "West Palm Beach",
-    "Fort Lauderdale",
+    "Boca Raton, FL",
+    "Delray Beach, FL",
+    "Boynton Beach, FL",
+    "West Palm Beach, FL",
+    "Fort Lauderdale, FL",
   ];
   const limits = [10, 20, 50, 100];
 

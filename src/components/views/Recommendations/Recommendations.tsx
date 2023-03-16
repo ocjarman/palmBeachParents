@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container } from '@mui/system';
 import Typography from '../../CustomMUI/Typography';
 import RecCard from './RecCard';
@@ -9,6 +9,8 @@ import RecFilter from './RecFilter';
 
 const Recommendations = () => {
   const recommendations = useSelector((state: RootState) => state.recommendations.recommendations)
+
+  if (!recommendations) return <p>loading!!!</p>
   return (
   <Container sx={{display: 'flex', flexDirection: 'column', textAlign: 'center'}} maxWidth={false}>
     <Typography sx={{ placeSelf: "center", margin: '3%' }} variant={"h2"}>Things To Do</Typography>
