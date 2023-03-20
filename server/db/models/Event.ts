@@ -14,7 +14,7 @@ export interface EventAttributes
     InferCreationAttributes<EventAttributes>
   > {
   id?: number;
-  name: string | null;
+  name?: string | null;
   address: string | null;
   date: Date | null;
   time: string | null;
