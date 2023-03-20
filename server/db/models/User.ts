@@ -5,7 +5,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
-  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM
+  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM, DATEONLY
 } from "sequelize";
 import { EventAttributes } from "./Event";
 
@@ -119,10 +119,10 @@ const User = db.define<UserAttributes>("user", {
     },
   },
   birthday: {
-    type: DATE,
+    type: DATEONLY,
     allowNull: true,
     validate: {
-      isDate: true,
+      notEmpty: true,
     },
   },
   address: {
