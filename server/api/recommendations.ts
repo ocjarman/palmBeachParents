@@ -39,9 +39,7 @@ router.put(
   "/thingsToDo",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log('inside try')
-      const { term, location, radius, sort_by } = req.body;
-      console.log(req.body)
+      const { term, location, radius, sort_by } = req.body;    
       const config = {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,

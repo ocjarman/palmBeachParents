@@ -78,7 +78,7 @@ export default function PageHero() {
           >
             Create Account
           </Button>
-          <SearchThingsToDo/>
+
         </>
       )}
     </PageHeroLayout>
