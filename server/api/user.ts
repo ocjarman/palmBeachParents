@@ -105,7 +105,7 @@ router.put("/", async (req, res, next) => {
       phoneNum,
       birthday,
       address,
-      avatarUrl,
+      imageUrl,
       companyName,
     } = req.body;
 
@@ -115,7 +115,7 @@ router.put("/", async (req, res, next) => {
       phoneNum: req.body.phoneNum,
       birthday: req.body.birthday,
       address: req.body.address,
-      avatarUrl: req.body.avatarUrl,
+      imageUrl: req.body.imageUrl,
       companyName: req.body.companyName,
     });
     res.status(200).send(updatedUser);

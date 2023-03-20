@@ -5,7 +5,7 @@ import {
   InferAttributes,
   InferCreationAttributes,
   Model,
-  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM
+  STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM, DATEONLY
 } from "sequelize";
 import { EventAttributes } from "./Event";
 
@@ -31,7 +31,7 @@ export interface UserAttributes
   email: string;
   birthday: Date | null;
   address: string;
-  avatarUrl: string | null;
+  imageUrl: string | null;
   isAdmin?: boolean;
   companyName?: string | null;
   events?: [];
@@ -119,10 +119,10 @@ const User = db.define<UserAttributes>("user", {
     },
   },
   birthday: {
-    type: DATE,
+    type: DATEONLY,
     allowNull: true,
     validate: {
-      isDate: true,
+      notEmpty: true,
     },
   },
   address: {
@@ -132,7 +132,7 @@ const User = db.define<UserAttributes>("user", {
       notEmpty: true,
     },
   },
-  avatarUrl: {
+  imageUrl: {
     type: STRING,
     allowNull: true,
     defaultValue: "/static/person.png",

@@ -45,7 +45,7 @@ const UpdateUserInfoForm = () => {
         phoneNum: userToEdit.phoneNum || user.phoneNum,
         birthday: userToEdit.birthday || user.birthday,
         address: userToEdit.address || user.address,
-        avatarUrl: userToEdit.avatarUrl || user.avatarUrl,
+        imageUrl: userToEdit.imageUrl || user.imageUrl,
         companyName: userToEdit.companyName || user.companyName,
       };
 
@@ -124,8 +124,8 @@ const UpdateUserInfoForm = () => {
         <FormControl>
           <InputLabel htmlFor="image-input">Image</InputLabel>
           <Input
-            name="avatarUrl"
-            defaultValue={user.avatarUrl}
+            name="imageUrl"
+            defaultValue={user.imageUrl}
             sx={{ margin: "20px" }}
             onChange={handleUserStateChange}
           />

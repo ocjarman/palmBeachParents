@@ -20,6 +20,9 @@ app.use('/api', apiRouter);
 // Pass back everything else / front-end
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.use('/static', express.static(path.join(__dirname, '../static')));
-app.get('/', (req: Request, res: Response) => res.sendFile(path.join(__dirname, '../static/index.html')));
+
+app.use('*', (req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname, '../static/index.html'));
+  });
 
 export default app;
