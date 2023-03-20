@@ -31,7 +31,7 @@ export interface UserAttributes
   email: string;
   birthday: Date | null;
   address: string;
-  avatarUrl: string | null;
+  imageUrl: string | null;
   isAdmin?: boolean;
   companyName?: string | null;
   events?: [];
@@ -132,7 +132,7 @@ const User = db.define<UserAttributes>("user", {
       notEmpty: true,
     },
   },
-  avatarUrl: {
+  imageUrl: {
     type: STRING,
     allowNull: true,
     defaultValue: "/static/person.png",

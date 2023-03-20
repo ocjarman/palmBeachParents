@@ -265,10 +265,10 @@ const UserAdminEdit = () => {
               Your Avatar
             </InputLabel>
             <Input
-            //   disabled={!editing?.avatarUrl}
+            //   disabled={!editing?.imageUrl}
               onClick={handleEdittable}
-            //   value={userToCreate?.avatarUrl || ""}
-              name="avatarUrl"
+            //   value={userToCreate?.imageUrl || ""}
+              name="imageUrl"
               id="avatar-input"
               aria-describedby="avatar-helper-text"
               onChange={handleUserStateChange}

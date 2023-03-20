@@ -12,7 +12,7 @@ export interface UserType {
     email: string;
     birthday: Date;
     address: string;
-    avatarUrl: string | null;
+    imageUrl: string | null;
     isAdmin?: boolean;
     companyName?: string | null;
     }

@@ -25,7 +25,7 @@ const Profile = () => {
           </Typography>
           <div className="userInfo">
           <img
-            src={`${user.avatarUrl}`}
+            src={`${user.imageUrl}`}
             alt="profile picture"
             className="profilePicture"
           ></img>

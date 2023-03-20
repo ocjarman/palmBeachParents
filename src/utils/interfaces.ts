@@ -9,7 +9,7 @@ interface UserType {
   email: string;
   birthday: Date | null;
   address: string;
-  avatarUrl: string | null;
+  imageUrl: string | null;
   isAdmin?: boolean;
   companyName?: string | null;
 }
