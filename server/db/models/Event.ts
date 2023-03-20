@@ -19,7 +19,7 @@ export interface EventAttributes
   date: Date | null;
   time: string | null;
   description: string | null;
-  url: string | null;
+  webUrl: string | null;
   hostName: string | null;
   hostPhone: string | null;
   hostEmail: string | null;
@@ -70,7 +70,7 @@ const Event = db.define<EventAttributes>("event", {
       type: STRING,
       allowNull: true,
     },
-    url: {
+    webUrl: {
       type: STRING,
       allowNull: true,
     },

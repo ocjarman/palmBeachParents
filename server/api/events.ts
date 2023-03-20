@@ -24,7 +24,7 @@ router.post(
         date,
         time,
         description,
-        url,
+        webUrl,
         hostName,
         hostPhone,
         hostEmail,
@@ -40,7 +40,7 @@ router.post(
         date,
         time,
         description,
-        url,
+        webUrl,
         hostName,
         hostPhone,
         hostEmail,
@@ -63,12 +63,12 @@ router.post(
 // update event admin side
 router.put("/", async (req, res, next) => {
   try {
-    const { id, name, date, url, imageUrl, recurring, hostName, hostEmail, hostPhone, address, description, time, price, category, age } = req.body;
+    const { id, name, date, webUrl, imageUrl, recurring, hostName, hostEmail, hostPhone, address, description, time, price, category, age } = req.body;
       const event = await Event.findByPk(req.body.id)
        await event?.update({
         name: req.body.name,
         date: req.body.date,
-        url: req.body.url,
+        webUrl: req.body.webUrl,
         imageUrl: req.body.imageUrl, 
         recurring: req.body.recurring,
         hostName: req.body.hostName,
