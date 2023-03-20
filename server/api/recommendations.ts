@@ -39,18 +39,16 @@ router.put(
   "/thingsToDo",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { term, location, radius, sort_by } = req.body;
+      const { term, location, radius, sort_by } = req.body;    
       const config = {
         headers: {
           Authorization: `Bearer ${process.env.YELP_API_KEY}`,
         },
         params: {
-          term: req.body.term,
-          location: req.body.location,
-          radius: req.body.radius,
-          sort_by: req.body.sort_by,
-          // limit: 50,
-          // categories: ["kids", "playground", "daycare", "activities", "park"],
+          term: req.body.term || null,
+          location: req.body.location || null,
+          radius: Number(req.body.radius) || null,
+          sort_by: req.body.sort_by || null,
         },
       };
       let recommendations = await axios.get(
@@ -67,49 +65,3 @@ router.put(
 );
 
 export default router;
-
-// router.post(
-//   "/addEvent",
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//       const {
-//         name,
-//         address,
-//         date,
-//         time,
-//         description,
-//         url,
-//         hostName,
-//         hostPhone,
-//         hostEmail,
-//         price,
-//         imageUrl,
-//         recurring,
-//         category,
-//         age,
-//       } = req.body;
-//       const newEvent: EventAttributes = await Event.create({
-//         name,
-//         address,
-//         date,
-//         time,
-//         description,
-//         url,
-//         hostName,
-//         hostPhone,
-//         hostEmail,
-//         price,
-//         imageUrl,
-//         recurring,
-//         category,
-//         age,
-//       });
-//       let events = await Event.findAll();
-//       res.send(events);
-//     } catch (err) {
-//       res.sendStatus(404);
-//       console.log(console.error())
-//       next(err);
-//     }
-//   }
-// );
