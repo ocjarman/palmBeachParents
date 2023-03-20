@@ -155,8 +155,8 @@ const NewEventForm = () => {
           />
           <TextField
             required
-            id="url"
-            name="url"
+            id="webUrl"
+            name="webUrl"
             label="Link to Event"
             onChange={handleNewEvent}
             sx={{ marginBottom: "5%" }}

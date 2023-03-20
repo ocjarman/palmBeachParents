@@ -26,7 +26,7 @@ export default function EventCard(event: EventType) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <a href={`${event.url}`}>Learn More</a>
+        <a href={`${event.webUrl}`}>Learn More</a>
       </CardActions>
     </Card>
   );

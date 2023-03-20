@@ -100,7 +100,7 @@ const EditEventForm = () => {
         date: updatedEventInfo.date || eventToEdit.date,
         time: updatedEventInfo.time || eventToEdit.time,
         description: updatedEventInfo.description || eventToEdit.description,
-        url: updatedEventInfo.url || eventToEdit.url,
+        webUrl: updatedEventInfo.webUrl || eventToEdit.webUrl,
         hostName: updatedEventInfo.hostName || eventToEdit.hostName,
         hostPhone: updatedEventInfo.hostPhone || eventToEdit.hostPhone,
         hostEmail: updatedEventInfo.hostEmail || eventToEdit.hostEmail,
@@ -212,11 +212,11 @@ const EditEventForm = () => {
           />
           <TextField
             required
-            name="url"
+            name="webUrl"
             label="Event Website"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
-            defaultValue={eventToEdit.url}
+            defaultValue={eventToEdit.webUrl}
           />
           <TextField
             required

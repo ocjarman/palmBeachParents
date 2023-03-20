@@ -21,7 +21,7 @@ interface EventType {
   date: Date | null;
   time: string | null;
   description: string | null;
-  url: string | null;
+  webUrl: string | null;
   hostName: string | null;
   hostPhone: string | null;
   hostEmail: string | null;
