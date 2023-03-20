@@ -16,33 +16,39 @@ const seed = async () => {
 
       console.log('seeded users')
 
-      const [address1, address2, address3] = await Promise.all([
+      const [address1, address2, address3, address4, address5] = await Promise.all([
         Address.create({ address1: "151 SE 3rd Ave" , address2: 'Apartment 407', city: 'Delray Beach', state: 'FL', zipcode: 33483}),
         Address.create({ address1: "716 Sunset Road" , address2: null, city: 'Boynton Beach', state: 'FL', zipcode: 33435}),
         Address.create({ address1: "709 SW 28th Ave" , address2: null, city: 'Boynton Beach', state: 'FL', zipcode: 33435}),
+        Address.create({ address1: "125 cool lane" , address2: null, city: 'Boynton Beach', state: 'FL', zipcode: 33435}),
+        Address.create({ address1: "456 loser lane" , address2: null, city: 'Delray Beach', state: 'FL', zipcode: 33435}),
       ]);
 
       console.log('seeded addresses')
 
       const [savorTheAve, artAndJazz, event3, event4, event5, event6, event7, event8] = await Promise.all([
-        Event.create({ name: "Savor the Avenue" , address: 'Atlantic Avenue, Delray Beach, FL', date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: 15000, recurring: false , description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Art and Jazz on the Avenue" , address: 'Atlantic Avenue, Delray Beach, FL', date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Event 3" , address: 'Atlantic Avenue, Delray Beach, FL', date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Event 4" , address: 'Boca Raton, FL', date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Event 5" , address: 'Boynton Beach, FL', date: new Date(), time: '1:30PM - 3PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Event 6" , address: 'Deerfield Beach, FL', date: new Date(), time: '3:30PM - 4PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Event 7" , address: 'Daytona Beach, FL', date: new Date(), time: '11:30AM - 2PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
-        Event.create({ name: "Event 8" , address: 'Marathon, FL', date: new Date(), time: '10:00PM - 12PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: true, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Savor the Avenue" , date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: 15000, recurring: false , description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Art and Jazz on the Avenue" , date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Event 3" , date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Event 4" ,  date: new Date(), time: '5:30PM - 9PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Event 5" ,  date: new Date(), time: '1:30PM - 3PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Event 6" , date: new Date(), time: '3:30PM - 4PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Event 7" , date: new Date(), time: '11:30AM - 2PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
+        Event.create({ name: "Event 8" ,  date: new Date(), time: '10:00PM - 12PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: true, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
       ]);
 
       console.log('seeded events')
       console.log('starting associations')
 
+      // the below 2 chunks are making the same tables just organized differently. 
+      // which one makes more sense to keep?
+      // ('user_events' table keeps track of events for each user)
       olivia.addEvent(savorTheAve)
       bob.addEvent(savorTheAve)
       shane.addEvent(savorTheAve)
       olivia.addEvent(artAndJazz)
-      // test purposes, will mostly be using 'addEvent' for users
+      
+      // ('event_users' table keeps track of users for each event)
       artAndJazz.addUser(olivia)
       artAndJazz.addUser(shane)
       artAndJazz.addUser(bob)
@@ -50,6 +56,8 @@ const seed = async () => {
       address1.setUser(olivia)     
       address2.setUser(shane)     
       address3.setUser(bob)     
+      address4.setEvent(savorTheAve)     
+      address5.setEvent(artAndJazz)     
 
 
      console.log('ENDING SEED')

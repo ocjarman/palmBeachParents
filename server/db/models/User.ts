@@ -37,7 +37,6 @@ export interface UserAttributes
   events?: [];
   addressId?: number | null;
   addEvent(event: EventAttributes): unknown;
-  // addAddress(address: AddressAttributes): unknown;
 }
 
 const User = db.define<UserAttributes>("user", {

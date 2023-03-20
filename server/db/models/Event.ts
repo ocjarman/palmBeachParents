@@ -15,7 +15,7 @@ export interface EventAttributes
   > {
   id?: number;
   name?: string | null;
-  address: string | null;
+  // address: string | null;
   date: Date | null;
   time: string | null;
   description: string | null;
@@ -29,6 +29,7 @@ export interface EventAttributes
   category: string | null;
   age: string | null;
   users?: [] | null;
+  addressId?: number | null;
   addUser(user: UserAttributes): unknown;
 }
 
@@ -39,13 +40,6 @@ const Event = db.define<EventAttributes>("event", {
       primaryKey: true,
     },
     name: {
-      type: STRING,
-      allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    address: {
       type: STRING,
       allowNull: true,
       validate: {
