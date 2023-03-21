@@ -8,6 +8,7 @@ import {
   STRING, UUID, UUIDV4, BOOLEAN, DATE, AbstractDataType, VIRTUAL, ENUM, DATEONLY
 } from "sequelize";
 import { EventAttributes } from "./Event";
+import { AddressAttributes } from "./Address";
 
 interface ResponseError extends Error {
   status?: number;
@@ -30,11 +31,11 @@ export interface UserAttributes
   phoneNum: string;
   email: string;
   birthday: Date | null;
-  address: string;
   imageUrl: string | null;
   isAdmin?: boolean;
   companyName?: string | null;
   events?: [];
+  addressId?: number | null;
   addEvent(event: EventAttributes): unknown;
 }
 
@@ -121,13 +122,6 @@ const User = db.define<UserAttributes>("user", {
   birthday: {
     type: DATEONLY,
     allowNull: true,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  address: {
-    type: STRING,
-    allowNull: false,
     validate: {
       notEmpty: true,
     },

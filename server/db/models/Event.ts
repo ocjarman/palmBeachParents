@@ -14,8 +14,8 @@ export interface EventAttributes
     InferCreationAttributes<EventAttributes>
   > {
   id?: number;
-  name: string | null;
-  address: string | null;
+  name?: string | null;
+  // address: string | null;
   date: Date | null;
   time: string | null;
   description: string | null;
@@ -28,8 +28,9 @@ export interface EventAttributes
   recurring: boolean | null;
   category: string | null;
   age: string | null;
-  users?: [] | null;
-  addUser(user: UserAttributes): unknown;
+  // users?: [] | null;
+  addressId?: number | null;
+  // addUser(user: UserAttributes): unknown;
 }
 
 const Event = db.define<EventAttributes>("event", {
@@ -39,13 +40,6 @@ const Event = db.define<EventAttributes>("event", {
       primaryKey: true,
     },
     name: {
-      type: STRING,
-      allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    address: {
       type: STRING,
       allowNull: true,
       validate: {
