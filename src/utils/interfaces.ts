@@ -47,6 +47,15 @@ interface RecType {
   location: LocationType;
 }
 
+interface AddressType {
+  id?: number;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  zipcode: number | null;
+}
+
 interface LocationType {
   display_address: string[] | null;
 }

@@ -8,7 +8,6 @@ import { EventAttributes } from "db/models/Event";
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     let events = await Event.findAll({include: [{model: Address}]});
-    console.log({events})
     res.send(events);
   } catch (err) {
     res.sendStatus(404);
