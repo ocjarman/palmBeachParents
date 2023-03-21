@@ -1,12 +1,14 @@
 import express, { Request, Response, NextFunction } from "express";
-import { User, Event } from "../db/index";
+import { User, Event, Address } from "../db/index";
 const router = express.Router();
 import { EventAttributes } from "db/models/Event";
+
 
 // api/events
 router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
-    let events = await Event.findAll();
+    let events = await Event.findAll({include: [{model: Address}]});
+    console.log({events})
     res.send(events);
   } catch (err) {
     res.sendStatus(404);
@@ -34,9 +36,10 @@ router.post(
         category,
         age,
       } = req.body;
+
+      // const newAddress: AddressAttributes = await Address.create({ADDRESS INFO HERE})
       const newEvent: EventAttributes = await Event.create({
         name,
-        address,
         date,
         time,
         description,
@@ -50,6 +53,9 @@ router.post(
         category,
         age,
       });
+
+      // ASSOCIATE ADDRESS WITH NEW EVENT HERE
+
       let events = await Event.findAll();
       res.send(events);
     } catch (err) {
@@ -74,7 +80,7 @@ router.put("/", async (req, res, next) => {
         hostName: req.body.hostName,
         hostEmail: req.body.hostEmail, 
         hostPhone: req.body.hostPhone,
-        address: req.body.address,
+        // address: req.body.address,
         description: req.body.description,
         time: req.body.time,
         price: req.body.price,

@@ -38,7 +38,7 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
       lastName,
       email,
       phoneNum,
-      address,
+      // address,
       birthday,
     });
     res.send(newUser);
@@ -114,7 +114,7 @@ router.put("/", async (req, res, next) => {
       lastName: req.body.lastName,
       phoneNum: req.body.phoneNum,
       birthday: req.body.birthday,
-      address: req.body.address,
+      // address: req.body.address,
       imageUrl: req.body.imageUrl,
       companyName: req.body.companyName,
     });

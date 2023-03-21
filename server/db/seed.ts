@@ -48,16 +48,12 @@ const seed = async () => {
       shane.addEvent(savorTheAve)
       olivia.addEvent(artAndJazz)
       
-      // ('event_users' table keeps track of users for each event)
-      // artAndJazz.addUser(olivia)
-      // artAndJazz.addUser(shane)
-      // artAndJazz.addUser(bob)
-
-      address1.setUser(olivia)     
-      address2.setUser(shane)     
-      address3.setUser(bob)     
-      address4.setEvent(savorTheAve)     
-      address5.setEvent(artAndJazz)     
+ 
+      olivia.setAddress(address1)  
+      shane.setAddress(address2)  
+      bob.setAddress(address3)  
+      savorTheAve.setAddress(address4)  
+      event3.setAddress(address5)  
 
 
      console.log('ENDING SEED')

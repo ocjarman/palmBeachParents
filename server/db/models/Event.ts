@@ -4,9 +4,9 @@ import {
     InferAttributes,
     InferCreationAttributes,
     Model,
-    STRING, UUID, UUIDV4, BOOLEAN, DATE, INTEGER, DATEONLY
+    STRING, BOOLEAN, INTEGER, DATEONLY
   } from "sequelize";
-import { UserAttributes } from "./User";
+import { AddressAttributes } from "./Address";
 
 export interface EventAttributes
   extends Model<
@@ -15,7 +15,6 @@ export interface EventAttributes
   > {
   id?: number;
   name?: string | null;
-  // address: string | null;
   date: Date | null;
   time: string | null;
   description: string | null;
@@ -28,9 +27,8 @@ export interface EventAttributes
   recurring: boolean | null;
   category: string | null;
   age: string | null;
-  // users?: [] | null;
   addressId?: number | null;
-  // addUser(user: UserAttributes): unknown;
+  setAddress(address: AddressAttributes): unknown;
 }
 
 const Event = db.define<EventAttributes>("event", {
