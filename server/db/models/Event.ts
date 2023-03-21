@@ -28,9 +28,9 @@ export interface EventAttributes
   recurring: boolean | null;
   category: string | null;
   age: string | null;
-  users?: [] | null;
+  // users?: [] | null;
   addressId?: number | null;
-  addUser(user: UserAttributes): unknown;
+  // addUser(user: UserAttributes): unknown;
 }
 
 const Event = db.define<EventAttributes>("event", {

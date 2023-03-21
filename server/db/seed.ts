@@ -49,9 +49,9 @@ const seed = async () => {
       olivia.addEvent(artAndJazz)
       
       // ('event_users' table keeps track of users for each event)
-      artAndJazz.addUser(olivia)
-      artAndJazz.addUser(shane)
-      artAndJazz.addUser(bob)
+      // artAndJazz.addUser(olivia)
+      // artAndJazz.addUser(shane)
+      // artAndJazz.addUser(bob)
 
       address1.setUser(olivia)     
       address2.setUser(shane)     
