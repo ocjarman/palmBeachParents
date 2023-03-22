@@ -38,7 +38,7 @@ export default function UsersTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allUsers.map((user: UserType) => (
+          {allUsers.map((user) => (
             <TableRow key={user.id}>
               <TableCell>
                 {user.firstName} {user.lastName}
@@ -46,7 +46,7 @@ export default function UsersTable() {
               <TableCell>{user.accountType}</TableCell>
               <TableCell>{user.phoneNum}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>{user.address}</TableCell>
+              <TableCell>{user.address ? user.address.city : 'city not listed'}</TableCell>
             </TableRow>
           ))}
         </TableBody>

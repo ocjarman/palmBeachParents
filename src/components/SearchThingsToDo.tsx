@@ -7,13 +7,15 @@ import { useDispatch } from "react-redux";
 
 const SearchThingsToDo = () => {
   const dispatch = useDispatch();
+
+  
   return (
     <Formik
       initialValues={{
-        term: "",
-        location: "",
-        radius: "",
-        sort_by: "",
+        term: '',
+        location: '',
+        radius: '',
+        sort_by: '',
       }}
       validationSchema={Yup.object({
         term: Yup.string()

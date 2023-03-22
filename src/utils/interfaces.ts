@@ -4,14 +4,25 @@ interface UserType {
   password: string;
   firstName?: string;
   lastName?: string;
+  fullName: string;
   accountType?: string;
   phoneNum: string;
   email: string;
   birthday: Date | null;
   address: AddressType;
   imageUrl: string | null;
-  isAdmin?: boolean;
+  isAdmin?: boolean | null;
   companyName?: string | null;
+}
+
+interface UserToEdit {
+  firstName: string | null;
+  lastName: string | null;
+  phoneNum: string | null;
+  birthday: Date | null;
+  address: AddressType;
+  imageUrl: string | null;
+  companyName: string | null;
 }
 
 interface EventType {
@@ -60,4 +71,4 @@ interface LocationType {
   display_address: string[] | null;
 }
 
-export { UserType, EventType, RecType, AddressType };
+export { UserType, UserToEdit, EventType, RecType, AddressType };

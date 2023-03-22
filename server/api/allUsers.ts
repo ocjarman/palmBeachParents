@@ -1,4 +1,4 @@
-import { User } from "../db/index";
+import { Address, User } from "../db/index";
 import express, { NextFunction, Request, Response } from 'express';
 const router = express.Router();
 import {authenticateUser} from "./helpers/authUserMiddleware";
@@ -11,7 +11,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
         const foundUser = (await User.findByPk(req.body.userId))
         if (foundUser) {
             if (foundUser.isAdmin) {
-                const allUsersData = await User.findAll()
+                const allUsersData = await User.findAll({include: [Address]})
                 res.status(200).send(allUsersData);
             } else {
                 console.log('you dont have access to this!!')

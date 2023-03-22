@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AddressType } from "../utils/interfaces";
 
 
 export interface UserType {
@@ -11,7 +12,7 @@ export interface UserType {
     phoneNum: string;
     email: string;
     birthday: Date;
-    address: string;
+    address: AddressType;
     imageUrl: string | null;
     isAdmin?: boolean;
     companyName?: string | null;

@@ -6,10 +6,7 @@ import Address from './models/Address';
 
 // make associations here
 User.belongsToMany(Event, {through: 'users_events'} )
-// Event.belongsToMany(User, {through: 'event_users'})
 
-// Address.hasOne(User)
-// Address.hasOne(Event)
 User.hasOne(Address)
 Event.hasOne(Address)
 
