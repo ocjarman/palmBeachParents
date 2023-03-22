@@ -76,7 +76,10 @@ const Login = () => {
           <TextField
             placeholder="password"
             name="password"
+            required
+            type="password"
             value={credentials.password}
+            autoComplete="current-password"
             onChange={onChange}
             sx={{ width: "30vh", marginBottom: '5%', marginTop: '1%' }}
           />
