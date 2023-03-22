@@ -8,7 +8,7 @@ interface UserType {
   phoneNum: string;
   email: string;
   birthday: Date | null;
-  address: AddressType | {};
+  address: AddressType;
   imageUrl: string | null;
   isAdmin?: boolean;
   companyName?: string | null;

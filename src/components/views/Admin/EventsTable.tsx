@@ -40,7 +40,7 @@ export default function EventsTable() {
         <TableBody>
           {events.map((event: EventType) => (
             <TableRow key={event.id}>
-              <TableCell>{event.address}</TableCell>
+              <TableCell>{event.address ? event.address.city : null}</TableCell>
               <TableCell>
                 {event.name}
               </TableCell>

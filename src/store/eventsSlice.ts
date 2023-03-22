@@ -13,7 +13,13 @@ const initialState: initialStateType = {
   newEvent: {},
   eventToEdit: {
     name: null,
-    address: null,
+    address: {
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: null
+    },
     date: null,
     time: null,
     description: null,
@@ -30,7 +36,13 @@ const initialState: initialStateType = {
   },
   updatedEventInfo: {
     name: null,
-    address: null,
+    address: {
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: null
+    },
     date: null,
     time: null,
     description: null,

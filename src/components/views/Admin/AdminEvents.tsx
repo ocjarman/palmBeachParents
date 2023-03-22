@@ -131,7 +131,7 @@ export default function AdminEvents() {
                     <TableCell>{event.hostName}</TableCell>
                     <TableCell>{event.hostEmail}</TableCell>
                     <TableCell>{event.hostPhone}</TableCell>
-                    <TableCell>{event.address}</TableCell>
+                    <TableCell>{event.address ? event.address.city : null}</TableCell>
                     <TableCell>{event.description}</TableCell>
                     <TableCell>{event.time}</TableCell>
                     <TableCell>
