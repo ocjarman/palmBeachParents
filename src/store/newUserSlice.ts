@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserType } from "../utils/interfaces";
+import { AddressType, UserType } from "../utils/interfaces";
 
 interface NewUser {
   newUser: {
@@ -10,7 +10,7 @@ interface NewUser {
     email: string | null;
     phoneNum: string | null;
     birthday: string | null;
-    address: string | null;
+    address: AddressType;
   }
 }
 
@@ -24,7 +24,13 @@ const initialState: NewUser = {
     email: '',
     phoneNum: '',
     birthday: '',
-    address: '',
+    address: {
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: null
+    },
   },
 };
 

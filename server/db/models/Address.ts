@@ -6,8 +6,6 @@ import {
     Model,
     STRING, INTEGER
   } from "sequelize";
-import { UserAttributes } from "./User";
-import { EventAttributes } from "./Event";
 
 export interface AddressAttributes
   extends Model<
@@ -20,9 +18,6 @@ export interface AddressAttributes
   city: string | null;
   state: string | null;
   zipcode: number | null;
-  userId?: string | null;
-  setUser(user: UserAttributes): unknown;
-  setEvent(event: EventAttributes): unknown;
 }
 
 const Address = db.define<AddressAttributes>("address", {

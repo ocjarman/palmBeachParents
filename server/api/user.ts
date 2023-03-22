@@ -1,6 +1,7 @@
+import { AddressAttributes } from "db/models/Address";
 import { UserAttributes } from "db/models/User";
 import express, { Request, Response, NextFunction } from "express";
-import { User } from "../db/index";
+import { Address, User } from "../db/index";
 const router = express.Router();
 import { authenticateUser } from "./helpers/authUserMiddleware";
 
@@ -10,7 +11,8 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     const header = req.headers.authorization;
     const token = header && header.split(" ")[1];
     if (!token) return res.status(404).send("No Token Found");
-    const user = await (User as any).findByToken(token);
+    const user = await (User as any).findByToken(token, {include: [{model: Address}]});
+    
     res.send(user);
   } catch (err) {
     res.sendStatus(404);
@@ -31,6 +33,9 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
       birthday,
       address,
     } = req.body;
+
+    const newAddress : AddressAttributes = await Address.create({address1: req.body.address.address1, address2: req.body.address.address2, city: req.body.address.city, state: req.body.address.state, zipcode: req.body.address.zipcode})
+
     const newUser: UserAttributes = await User.create({
       username,
       password,
@@ -38,10 +43,14 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
       lastName,
       email,
       phoneNum,
-      address,
       birthday,
     });
-    res.send(newUser);
+
+    await newUser.setAddress(newAddress)
+
+    const userData = await User.findOne({where: {id: newUser.id}, include: [{model: Address}]})
+console.log(userData)
+    res.send(userData);
   } catch (err) {
     res.sendStatus(404);
     next(err);
@@ -114,7 +123,7 @@ router.put("/", async (req, res, next) => {
       lastName: req.body.lastName,
       phoneNum: req.body.phoneNum,
       birthday: req.body.birthday,
-      address: req.body.address,
+      // address: req.body.address,
       imageUrl: req.body.imageUrl,
       companyName: req.body.companyName,
     });
