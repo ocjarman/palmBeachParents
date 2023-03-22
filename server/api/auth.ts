@@ -9,7 +9,6 @@ router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const userbytoken = await (User as any).findByToken(req.headers.authorization)
         const userWithAdd = await User.findOne({where: {id: userbytoken.id}, include: [Address]})
-        console.log(userWithAdd)
         res.send(userWithAdd);
     }
     catch (error) {

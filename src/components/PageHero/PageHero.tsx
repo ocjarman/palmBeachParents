@@ -16,24 +16,6 @@ export default function PageHero() {
   const { user } = useSelector((state: RootState) => state.user);
   const loggedIn = user.id !== "" && user.id !== null;
 
-  // const config = {
-   
-  //   params: {
-  //     term: "restaurants",
-  //     location: 'toronto',
-  //     radius: 1609,
-  //     sort_by: "rating",
-  //     limit: 50,
-  //   },
-  // };
-
-  // const testTheYelp = async () => {
-  //   let response = await axios.get(`/api/recommendations`)
-  //   console.log({response})
-  // }
-
-
-
   return (
     <PageHeroLayout
       sxBackground={{

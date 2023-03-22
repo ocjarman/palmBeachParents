@@ -86,7 +86,6 @@ const NewUserForm = () => {
 
   useEffect(() => {
     if (!validity.username && !validity.email) {
-      console.log("passed username and email check");
       if (
         newUser.username &&
         newUser.password &&
@@ -98,7 +97,6 @@ const NewUserForm = () => {
         newUser.address.address1 && newUser.address.city && newUser.address.state && newUser.address.zipcode
       ) {
         setButtonEnabled(false);
-        console.log("button should show");
       } else {
         setButtonEnabled(true);
       }

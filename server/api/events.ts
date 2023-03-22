@@ -59,7 +59,6 @@ router.post(
       res.send(events);
     } catch (err) {
       res.sendStatus(404);
-      console.log(console.error())
       next(err);
     }
   }
