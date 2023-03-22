@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { setRecommendations } from "../store/recommendationsSlice";
+import { setRecommendations } from "../../../store/recommendationsSlice";
 import { useDispatch } from "react-redux";
 
 const SearchThingsToDo = () => {

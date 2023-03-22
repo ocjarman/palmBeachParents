@@ -5,7 +5,7 @@ import RecCard from './RecCard';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { RecType } from '../../../utils/interfaces';
-import SearchThingsToDo from '../../SearchThingsToDo';
+import SearchThingsToDo from './SearchThingsToDo';
 
 const Recommendations = () => {
   const recommendations = useSelector((state: RootState) => state.recommendations.recommendations)

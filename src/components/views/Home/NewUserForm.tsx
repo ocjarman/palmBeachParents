@@ -2,16 +2,16 @@ import React, { useState, BaseSyntheticEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Button from "../components/CustomMUI/Button";
+import Button from "../../CustomMUI/Button";
 import Container from "@mui/material/Container";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
-import Typography from "./CustomMUI/Typography";
-import { RootState } from "../store";
-import { setUser } from "../store/userSlice";
-import { setNewUser } from "../store/newUserSlice";
+import Typography from "../../CustomMUI/Typography";
+import { RootState } from "../../../store";
+import { setUser } from "../../../store/userSlice";
+import { setNewUser } from "../../../store/newUserSlice";
 import { useEffect } from "react";
 
 const NewUserForm = () => {
