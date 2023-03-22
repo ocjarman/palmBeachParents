@@ -1,33 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AddressType, UserType, UserToEdit } from "../utils/interfaces";
+import { UserType, UserToEdit } from "../utils/interfaces";
 
-
-// export interface UserType {
-//   id: string;
-//   username: string;
-//   password: string | null;
-//   fullName: string | null;
-//   firstName: string | null;
-//   lastName: string | null;
-//   email: string | null;
-//   phoneNum: string | null;
-//   birthday: Date | null;
-//   address: AddressType;
-//   accountType: string | null;
-//   imageUrl: string | null;
-//   isAdmin: boolean | null;
-//   companyName: string | null;
-// }
-
-// interface UserToEdit {
-//   firstName: string | null;
-//   lastName: string | null;
-//   phoneNum: string | null;
-//   birthday: Date | null;
-//   address: AddressType;
-//   imageUrl: string | null;
-//   companyName: string | null;
-// }
 
 interface initialStateType {
   user: UserType;
