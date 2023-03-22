@@ -50,6 +50,9 @@ export default function PageHero() {
       <Typography color="inherit" align="center" variant="h2" marked="center">
         Palm Beach Parents
       </Typography>
+      {loggedIn && <Typography color="inherit" align="center" variant="h5" style={{marginTop: '5%'}} >
+        Welcome, {user.firstName}!
+      </Typography>}
       <Typography
         color="inherit"
         align="center"
