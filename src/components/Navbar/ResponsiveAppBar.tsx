@@ -125,6 +125,14 @@ function ResponsiveAppBar() {
                   {"Recommendations"}
                 </Typography>
               </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography
+                  textAlign="center"
+                  onClick={() => navigate("/thingsToDo")}
+                >
+                  {"Things To Do"}
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -163,6 +171,12 @@ function ResponsiveAppBar() {
               sx={{ my: 2, color: "primary.dark", display: "block" }}
             >
               Recommendations
+            </Button>
+            <Button
+              onClick={() => navigate("/thingsToDo")}
+              sx={{ my: 2, color: "primary.dark", display: "block" }}
+            >
+              Things To Do
             </Button>
           </Box>
             {loggedIn && 

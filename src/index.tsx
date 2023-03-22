@@ -21,6 +21,7 @@ import Account from './components/views/User/Account';
 import Home from './components/views/Home/Home';
 import adminTest from './utils/adminTest';
 import EditEventForm from './components/views/Admin/EditEventForm';
+import ThingsToDo from './components/views/ThingsToDo/ThingsToDo';
 
 const userTokenTestTrue = async () => {
   try {
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
       {
         path: "recommendations",
         element: <Recommendations />,
+        loader: authTest,
+      },
+      {
+        path: "thingsToDo",
+        element: <ThingsToDo />,
         loader: authTest,
       },
       {

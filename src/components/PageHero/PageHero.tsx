@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import axios from "axios";
-import SearchThingsToDo from "../views/Recommendations/SearchThingsToDo";
+import SearchThingsToDo from "../views/ThingsToDo/SearchThingsToDo";
 
 const backgroundImage =
   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
