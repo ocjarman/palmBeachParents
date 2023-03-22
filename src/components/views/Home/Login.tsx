@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../store/userSlice";
+import { setUser } from "../../../store/userSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Button from "./CustomMUI/Button";
+import Button from "../../CustomMUI/Button";
 import FormControl from "@mui/material/FormControl";
 import Input from "@mui/material/Input";
 import './login.css'
 import Box from "@mui/material/Box"
-import { RootState } from "../store";
-import  Typography  from "./CustomMUI/Typography";
+import { RootState } from "../../../store";
+import  Typography  from "../../CustomMUI/Typography";
 import Container from "@mui/material/Container";
 import { TextField } from "@mui/material";
 const Login = () => {
@@ -76,7 +76,10 @@ const Login = () => {
           <TextField
             placeholder="password"
             name="password"
+            required
+            type="password"
             value={credentials.password}
+            autoComplete="current-password"
             onChange={onChange}
             sx={{ width: "30vh", marginBottom: '5%', marginTop: '1%' }}
           />

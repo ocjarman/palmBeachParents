@@ -69,6 +69,11 @@ interface AddressType {
 
 interface LocationType {
   display_address: string[] | null;
+  address1: string | null;
+  address2: string | null;
+  city: string | null;
+  state: string | null;
+  zip_code: string | null;
 }
 
 export { UserType, UserToEdit, EventType, RecType, AddressType };

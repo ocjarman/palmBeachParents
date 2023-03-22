@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import axios from "axios";
-import SearchThingsToDo from "../SearchThingsToDo";
+import SearchThingsToDo from "../views/ThingsToDo/SearchThingsToDo";
 
 const backgroundImage =
   "https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400";
@@ -15,24 +15,6 @@ export default function PageHero() {
   const navigate = useNavigate();
   const { user } = useSelector((state: RootState) => state.user);
   const loggedIn = user.id !== "" && user.id !== null;
-
-  // const config = {
-   
-  //   params: {
-  //     term: "restaurants",
-  //     location: 'toronto',
-  //     radius: 1609,
-  //     sort_by: "rating",
-  //     limit: 50,
-  //   },
-  // };
-
-  // const testTheYelp = async () => {
-  //   let response = await axios.get(`/api/recommendations`)
-  //   console.log({response})
-  // }
-
-
 
   return (
     <PageHeroLayout
@@ -50,6 +32,9 @@ export default function PageHero() {
       <Typography color="inherit" align="center" variant="h2" marked="center">
         Palm Beach Parents
       </Typography>
+      {loggedIn && <Typography color="inherit" align="center" variant="h5" style={{marginTop: '5%'}} >
+        Welcome, {user.firstName}!
+      </Typography>}
       <Typography
         color="inherit"
         align="center"

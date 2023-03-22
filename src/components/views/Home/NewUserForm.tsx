@@ -1,17 +1,17 @@
 import React, { useState, BaseSyntheticEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Form, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Button from "../components/CustomMUI/Button";
+import Button from "../../CustomMUI/Button";
 import Container from "@mui/material/Container";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
-import Typography from "./CustomMUI/Typography";
-import { RootState } from "../store";
-import { setUser } from "../store/userSlice";
-import { setNewUser } from "../store/newUserSlice";
+import Typography from "../../CustomMUI/Typography";
+import { RootState } from "../../../store";
+import { setUser } from "../../../store/userSlice";
+import { setNewUser } from "../../../store/newUserSlice";
 import { useEffect } from "react";
 
 const NewUserForm = () => {
@@ -29,12 +29,12 @@ const NewUserForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleAddressStateChange = (e: { target: any; }) => {
+  const handleAddressStateChange = (e: { target: any }) => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
     setAddress({ ...address, [name]: value });
-    dispatch(setNewUser({ ...newUser, ['address']: address }));
+    dispatch(setNewUser({ ...newUser, ["address"]: address }));
   };
   const handleUserStateChange = (e: BaseSyntheticEvent) => {
     const target = e.target;
@@ -52,6 +52,7 @@ const NewUserForm = () => {
         dispatch(setNewUser({}));
         navigate("/");
       } catch (error) {
+        alert('please check form input before submitting')
         console.error(error);
       }
     }
@@ -85,7 +86,6 @@ const NewUserForm = () => {
 
   useEffect(() => {
     if (!validity.username && !validity.email) {
-      console.log("passed username and email check");
       if (
         newUser.username &&
         newUser.password &&
@@ -94,10 +94,9 @@ const NewUserForm = () => {
         newUser.email &&
         newUser.phoneNum &&
         newUser.birthday &&
-        newUser.address
+        newUser.address.address1 && newUser.address.city && newUser.address.state && newUser.address.zipcode
       ) {
         setButtonEnabled(false);
-        console.log("button should show");
       } else {
         setButtonEnabled(true);
       }
@@ -113,22 +112,27 @@ const NewUserForm = () => {
         flexDirection: "column",
         placeSelf: "center",
         marginTop: "10%",
+        border: '1px solid gray',
+        borderRadius: 5,
+        paddingTop: '3%',
       }}
     >
       <Typography sx={{ placeSelf: "center" }} variant={"h5"}>
         Join Palm Beach Parents
       </Typography>
       <form
-        style={{ placeSelf: "center", display: "flex", alignItems: "center" }}
+        style={{ placeSelf: "center", alignItems: "center", display: 'flex', flexDirection: 'row'}}
       >
         <Container
-          sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}
+          sx={{ display: "flex", flexDirection: 'column', justifyContent: "space-between", gap: 1 }}
         >
           <FormControl error={validity.username} required>
             <InputLabel htmlFor="username-input">Username</InputLabel>
             <Input
+              type="text"
               name="username"
               id="username-input"
+              required
               aria-describedby="username-helper-text"
               onChange={(event) => {
                 handleUserStateChange(event);
@@ -145,6 +149,9 @@ const NewUserForm = () => {
             <Input
               name="password"
               id="password-input"
+              type="password"
+              required
+              autoComplete="current-password"
               aria-describedby="password-helper-text"
               onChange={handleUserStateChange}
               sx={{ width: "15vw" }}
@@ -153,8 +160,10 @@ const NewUserForm = () => {
           <FormControl required sx={{}}>
             <InputLabel htmlFor="firstName-input">First Name</InputLabel>
             <Input
+              type="text"
               name="firstName"
               id="firstName-input"
+              required
               aria-describedby="firstName-helper-text"
               onChange={handleUserStateChange}
               sx={{ width: "15vw" }}
@@ -163,8 +172,10 @@ const NewUserForm = () => {
           <FormControl required sx={{}}>
             <InputLabel htmlFor="lastName-input">Last Name</InputLabel>
             <Input
+              type="text"
               name="lastName"
               id="lastName-input"
+              required
               aria-describedby="lastName-helper-text"
               onChange={handleUserStateChange}
               sx={{ width: "15vw" }}
@@ -172,14 +183,16 @@ const NewUserForm = () => {
           </FormControl>
         </Container>
         <Container
-          sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}
+          sx={{ display: "flex", justifyContent: "space-between", gap: 1, flexDirection: 'column' }}
         >
           <FormControl error={validity.email} required>
             <InputLabel htmlFor="email-input">E-mail</InputLabel>
             <Input
               error={validity.email}
               name="email"
+              type="email"
               id="email-input"
+              required
               aria-describedby="email-helper-text"
               onChange={(event) => {
                 handleUserStateChange(event);
@@ -196,8 +209,10 @@ const NewUserForm = () => {
           <FormControl required>
             <InputLabel htmlFor="phoneNum-input">Phone Number</InputLabel>
             <Input
+              type="tel"
               name="phoneNum"
               id="phoneNum-input"
+              required
               aria-describedby="phoneNum-helper-text"
               onChange={handleUserStateChange}
               sx={{ width: "15vw" }}
@@ -222,13 +237,15 @@ const NewUserForm = () => {
         </Container>
 
         <Container
-          sx={{ display: "flex", justifyContent: "space-between", gap: 1 }}
+          sx={{ display: "flex", justifyContent: "space-between", gap: 1, flexDirection: 'column', }}
         >
           <FormControl required>
             <InputLabel htmlFor="address-input">Street</InputLabel>
             <Input
+              type="text"
               name="address1"
               id="address-input"
+              required
               aria-describedby="address-helper-text"
               onChange={handleAddressStateChange}
               sx={{ width: "15vw" }}
@@ -238,6 +255,7 @@ const NewUserForm = () => {
             <InputLabel htmlFor="address-input">Apt/Ste</InputLabel>
 
             <Input
+              type="text"
               name="address2"
               aria-describedby="address-helper-text"
               onChange={handleAddressStateChange}
@@ -247,6 +265,7 @@ const NewUserForm = () => {
           <FormControl required>
             <InputLabel htmlFor="address-input">City</InputLabel>
             <Input
+              type="text"
               name="city"
               aria-describedby="address-helper-text"
               onChange={handleAddressStateChange}
@@ -256,6 +275,7 @@ const NewUserForm = () => {
           <FormControl required>
             <InputLabel htmlFor="address-input">State</InputLabel>
             <Input
+              type="text"
               name="state"
               aria-describedby="address-helper-text"
               onChange={handleAddressStateChange}
@@ -265,6 +285,7 @@ const NewUserForm = () => {
           <FormControl required>
             <InputLabel htmlFor="address-input">Zipcode</InputLabel>
             <Input
+              type="number"
               name="zipcode"
               aria-describedby="address-helper-text"
               onChange={handleAddressStateChange}
@@ -272,6 +293,11 @@ const NewUserForm = () => {
             />
           </FormControl>
         </Container>
+      </form>
+        <Container
+          sx={{ display: "flex", justifyContent: "space-between", gap: 1, flexDirection: 'column', }}
+        >
+
         <Button
           size="small"
           onClick={handleSubmit}
@@ -282,11 +308,12 @@ const NewUserForm = () => {
             color: "secondary.light",
             display: "block",
             maxWidth: "25vw",
+            placeSelf: 'center'
           }}
         >
           Create Account
         </Button>
-      </form>
+        </Container>
     </Container>
   );
 };

@@ -49,7 +49,7 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
     await newUser.setAddress(newAddress)
 
     const userData = await User.findOne({where: {id: newUser.id}, include: [{model: Address}]})
-console.log(userData)
+
     res.send(userData);
   } catch (err) {
     res.sendStatus(404);
@@ -74,7 +74,7 @@ router.post(
         }
       }
     } catch (err) {
-      res.sendStatus(404);
+      res.sendStatus(406);
       next(err);
     }
   }
@@ -96,7 +96,7 @@ router.post(
         }
       }
     } catch (err) {
-      res.sendStatus(404);
+      res.sendStatus(406);
       next(err);
     }
   }

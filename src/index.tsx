@@ -5,11 +5,11 @@ import store from './store';
 import { createBrowserRouter, RouterProvider, redirect } from "react-router-dom";
 import App from './components/App';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
-import Login from './components/Login';
-import NewUserForm from './components/NewUserForm';
+import Login from './components/views/Home/Login';
+import NewUserForm from './components/views/Home/NewUserForm';
 import Events from './components/views/Events/Events';
 import Recommendations from './components/views/Recommendations/Recommendations';
-import Profile from './components/views/Profile/Profile';
+import Profile from './components/views/User/Profile';
 import Dashboard from './components/views/Admin/Dashboard';
 import authTest from './utils/authTest';
 import DashboardHome from './components/views/Admin/DashboardHome';
@@ -17,10 +17,11 @@ import AdminEvents from './components/views/Admin/AdminEvents';
 import AdminUsers from './components/views/Admin/AdminUsers';
 import NewEventForm from './components/views/Admin/NewEventForm';
 import PageHero from './components/PageHero/PageHero';
-import Account from './components/views/Account';
-import Home from './components/Home';
+import Account from './components/views/User/Account';
+import Home from './components/views/Home/Home';
 import adminTest from './utils/adminTest';
 import EditEventForm from './components/views/Admin/EditEventForm';
+import ThingsToDo from './components/views/ThingsToDo/ThingsToDo';
 
 const userTokenTestTrue = async () => {
   try {
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
       {
         path: "recommendations",
         element: <Recommendations />,
+        loader: authTest,
+      },
+      {
+        path: "thingsToDo",
+        element: <ThingsToDo />,
         loader: authTest,
       },
       {

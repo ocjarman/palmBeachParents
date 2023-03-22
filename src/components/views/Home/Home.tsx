@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { resetUser } from "../store/userSlice";
-import { RootState } from "../store";
+import { resetUser } from "../../../store/userSlice";
+import { RootState } from "../../../store";
 import axios from "axios";
-import Typography from "./CustomMUI/Typography";
+import Typography from "../../CustomMUI/Typography";
 import { Container } from "@mui/system";
 
 const Home = () => {
