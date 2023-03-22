@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import newUserReducer from './newUserSlice'
 import eventsReducer from './eventsSlice';
 import allUsersReducer from './allUsersSlice';
-import recommendationsReducer from './recommendationsSlice';
+import thingsToDoReducer from './thingsToDoSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,7 +12,7 @@ const store = configureStore({
         newUser: newUserReducer,
         events: eventsReducer,
         allUsers: allUsersReducer,
-        recommendations: recommendationsReducer
+        thingsToDo: thingsToDoReducer
     }
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { setRecommendations } from "../../../store/recommendationsSlice";
+import { setThingsToDo } from "../../../store/thingsToDoSlice";
 import { useDispatch } from "react-redux";
 
 const SearchThingsToDo = () => {
@@ -25,10 +25,10 @@ const SearchThingsToDo = () => {
       onSubmit={async (values) => {
         console.log({values})
         let filteredSearch = await axios.put(
-          "/api/recommendations/thingsToDo",
+          "/api/thingsToDo",
           values
         );
-        dispatch(setRecommendations(filteredSearch.data.businesses));
+        dispatch(setThingsToDo(filteredSearch.data.businesses));
       }}
     >
       {(formik) => (
