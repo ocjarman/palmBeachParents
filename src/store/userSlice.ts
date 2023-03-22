@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { AddressType } from "../utils/interfaces";
 
 
 export interface UserType {
@@ -11,7 +12,7 @@ export interface UserType {
   email: string | null;
   phoneNum: string | null;
   birthday: Date | null;
-  address: string | null;
+  address: AddressType;
   accountType: string | null;
   imageUrl: string | null;
   isAdmin: boolean | null;
@@ -23,7 +24,7 @@ interface UserToEdit {
   lastName: string | null;
   phoneNum: string | null;
   birthday: Date | null;
-  address: string | null;
+  address: AddressType;
   imageUrl: string | null;
   companyName: string | null;
 }
@@ -45,7 +46,13 @@ const initialState: initialStateType = {
     email: '',
     phoneNum: '',
     birthday: null,
-    address: '',
+    address: {
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: null
+    },
     accountType: '',
     imageUrl: '',
     isAdmin: null,
@@ -56,7 +63,13 @@ const initialState: initialStateType = {
     lastName: null,
     phoneNum: null,
     birthday: null,
-    address: null,
+    address: {
+      address1: '',
+      address2: '',
+      city: '',
+      state: '',
+      zipcode: null
+    },
     imageUrl: null,
     companyName: null,
   },
@@ -81,7 +94,7 @@ export const userSlice = createSlice({
         email: '',
         phoneNum: '',
         birthday: null,
-        address: '',
+        address: {},
         accountType: '',
         imageUrl: '',
         isAdmin: null,

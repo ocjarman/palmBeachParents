@@ -8,7 +8,7 @@ interface UserType {
   phoneNum: string;
   email: string;
   birthday: Date | null;
-  address: string;
+  address: AddressType | {};
   imageUrl: string | null;
   isAdmin?: boolean;
   companyName?: string | null;
@@ -17,7 +17,7 @@ interface UserType {
 interface EventType {
   id?: string;
   name?: string | null;
-  address: string | null;
+  address: AddressType;
   date: Date | null;
   time: string | null;
   description: string | null;
@@ -60,4 +60,4 @@ interface LocationType {
   display_address: string[] | null;
 }
 
-export { UserType, EventType, RecType };
+export { UserType, EventType, RecType, AddressType };

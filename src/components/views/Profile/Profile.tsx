@@ -52,7 +52,7 @@ const Profile = () => {
               </>
             </Typography>
             <Typography className="profileHeader" variant={"body1"}>
-              Mailing Address: {user.address}
+              Mailing Address: {user.address?.city}
             </Typography>
             <Typography className="profileHeader" variant={"body1"}>
               Company Name: {user.companyName ? user.companyName : "not listed"}
