@@ -1,5 +1,5 @@
 import db from "./db";
-import {User, Event, Address} from './index'
+import {User, Event, Address, Favorite} from './index'
 
 const seed = async () => {
     console.log('STARTING SEED')
@@ -38,6 +38,23 @@ const seed = async () => {
       ]);
 
       console.log('seeded events')
+
+      const [delrayChildrensGarden] = await Promise.all([
+        Favorite.create({name: 'Delray Beach Childrens Garden',
+                imageUrl: null,
+                yelp_review_count: 55,
+                yelp_rating: 5,
+                yelp_url: 'https://www.yelp.com/biz/delray-beach-childrens-garden-delray-beach',
+                description: null,
+                display_phone: '(561) 463-2528',
+                distance: '8000',
+                is_closed: false})
+      ])
+
+
+      console.log('seeded favorites')
+
+
       console.log('starting associations')
 
       // the below 2 chunks are making the same tables just organized differently. 
@@ -48,13 +65,18 @@ const seed = async () => {
       shane.addEvent(savorTheAve)
       olivia.addEvent(artAndJazz)
       
- 
-      olivia.setAddress(address1)  
-      shane.setAddress(address2)  
-      bob.setAddress(address3)  
-      savorTheAve.setAddress(address4)  
-      event3.setAddress(address5)  
 
+      // 'user_favorites' table. User belongsToMany Favorite
+      olivia.addFavorite(delrayChildrensGarden)
+      shane.addFavorite(delrayChildrensGarden)
+      bob.addFavorite(delrayChildrensGarden)
+
+      //setting this way allows users, events, and favorites to have an 'addressId'
+      address1.setUser(olivia)
+      address2.setEvent(savorTheAve)
+      address3.setFavorite(delrayChildrensGarden)
+      address4.setUser(shane)
+      address5.setEvent(artAndJazz)
 
      console.log('ENDING SEED')
       return {

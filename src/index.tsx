@@ -22,6 +22,7 @@ import Home from './components/views/Home/Home';
 import adminTest from './utils/adminTest';
 import EditEventForm from './components/views/Admin/EditEventForm';
 import ThingsToDo from './components/views/ThingsToDo/ThingsToDo';
+import Favorites from './components/views/User/Favorites';
 
 const userTokenTestTrue = async () => {
   try {
@@ -86,6 +87,11 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+        loader: authTest,
+      },
+      {
+        path: "favorites",
+        element: <Favorites />,
         loader: authTest,
       },
       {

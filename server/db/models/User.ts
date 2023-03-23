@@ -9,6 +9,7 @@ import {
 } from "sequelize";
 import { EventAttributes } from "./Event";
 import { AddressAttributes } from "./Address";
+import { FavoriteAttributes } from "./Favorite";
 
 interface ResponseError extends Error {
   status?: number;
@@ -36,8 +37,11 @@ export interface UserAttributes
   companyName?: string | null;
   events?: [];
   addressId?: number | null;
+  favorites?: []
   addEvent(event: EventAttributes): unknown;
   setAddress(address: AddressAttributes): unknown;
+  addFavorite(favorite: FavoriteAttributes): unknown;
+
 }
 
 const User = db.define<UserAttributes>("user", {
