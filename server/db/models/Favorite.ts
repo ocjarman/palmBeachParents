@@ -4,9 +4,10 @@ import {
     InferAttributes,
     InferCreationAttributes,
     Model,
-    STRING, BOOLEAN, INTEGER, DATEONLY, AbstractDataType, VIRTUAL
+    STRING, BOOLEAN, INTEGER, AbstractDataType, VIRTUAL
   } from "sequelize";
 import { UserAttributes } from "./User";
+import { AddressAttributes } from "./Address";
 
 export interface FavoriteAttributes
   extends Model<
@@ -24,9 +25,9 @@ export interface FavoriteAttributes
   distance: string | null;
   distanceInMiles: AbstractDataType | null;
   is_closed: boolean | null;
-  location: string | null;
   addressId?: number | null;
   users?: UserAttributes[] | null;
+  setAddress(address: AddressAttributes): unknown;
 //   categories: string[] | null;
 }
 
@@ -66,10 +67,6 @@ const Favorite = db.define<FavoriteAttributes>("favorite", {
     },
     is_closed: {
       type: BOOLEAN,
-      allowNull: true,
-    },
-    location: {
-      type: STRING,
       allowNull: true,
     },
     distance: {

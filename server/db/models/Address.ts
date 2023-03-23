@@ -6,6 +6,9 @@ import {
     Model,
     STRING, INTEGER
   } from "sequelize";
+import { UserAttributes } from "./User";
+import { EventAttributes } from "./Event";
+import { FavoriteAttributes } from "./Favorite";
 
 export interface AddressAttributes
   extends Model<
@@ -18,6 +21,10 @@ export interface AddressAttributes
   city: string | null;
   state: string | null;
   zipcode: number | null;
+  setUser(user: UserAttributes): unknown;
+  setEvent(event: EventAttributes): unknown;
+  setFavorite(favorite: FavoriteAttributes): unknown;
+
 }
 
 const Address = db.define<AddressAttributes>("address", {

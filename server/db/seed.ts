@@ -48,8 +48,7 @@ const seed = async () => {
                 description: null,
                 display_phone: '(561) 463-2528',
                 distance: '8000',
-                is_closed: false,
-                location: '137 SW 2nd Ave Delray Beach, FL 33444',})
+                is_closed: false})
       ])
 
 
@@ -67,17 +66,22 @@ const seed = async () => {
       olivia.addEvent(artAndJazz)
       
 
-      
+      // 'user_favorites' table. User belongsToMany Favorite
       olivia.addFavorite(delrayChildrensGarden)
       shane.addFavorite(delrayChildrensGarden)
       bob.addFavorite(delrayChildrensGarden)
  
-      olivia.setAddress(address1)  
-      shane.setAddress(address2)  
-      bob.setAddress(address3)  
-      savorTheAve.setAddress(address4)  
-      event3.setAddress(address5)  
+      // olivia.setAddress(address1)  
+      // shane.setAddress(address2)  
+      // bob.setAddress(address3)  
+      // savorTheAve.setAddress(address4)  
+      // event3.setAddress(address5)  
 
+      address1.setUser(olivia)
+      address2.setEvent(savorTheAve)
+      address3.setFavorite(delrayChildrensGarden)
+      address4.setUser(shane)
+      address5.setEvent(artAndJazz)
 
      console.log('ENDING SEED')
       return {
