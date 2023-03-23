@@ -40,9 +40,13 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
         }
       });
 
-      // await newOrFoundFavorite.setAddress(addressOfFavorite)
-  
-      console.log({newOrFoundFavorite})
+      const existingFavorite = await Favorite.findOne({where: {name: req.body.name}})
+      if (existingFavorite) {
+        console.log(existingFavorite)
+        // await existingFavorite.addAddress(addressOfFavorite)
+        await addressOfFavorite.setFavorite(existingFavorite)
+        // console.log({newOrFoundFavorite})
+      }
     }
 
     // find user and associate with them

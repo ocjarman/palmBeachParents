@@ -10,13 +10,13 @@ User.belongsToMany(Event, {through: 'users_events'} )
 User.belongsToMany(Favorite, {through: 'user_favorites'})
 
 
-// User.hasOne(Address)
-// Event.hasOne(Address)
-// Favorite.hasOne(Address)
+User.hasOne(Address)
+Event.hasOne(Address)
+Favorite.hasOne(Address)
 
-Address.hasOne(User)
-Address.hasOne(Event)
-Address.hasOne(Favorite)
+Address.belongsTo(User)
+Address.belongsTo(Event)
+Address.belongsTo(Favorite)
 
 
 export { User, Event, Address, db, Favorite };

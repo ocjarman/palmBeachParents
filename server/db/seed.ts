@@ -70,13 +70,8 @@ const seed = async () => {
       olivia.addFavorite(delrayChildrensGarden)
       shane.addFavorite(delrayChildrensGarden)
       bob.addFavorite(delrayChildrensGarden)
- 
-      // olivia.setAddress(address1)  
-      // shane.setAddress(address2)  
-      // bob.setAddress(address3)  
-      // savorTheAve.setAddress(address4)  
-      // event3.setAddress(address5)  
 
+      //setting this way allows users, events, and favorites to have an 'addressId'
       address1.setUser(olivia)
       address2.setEvent(savorTheAve)
       address3.setFavorite(delrayChildrensGarden)

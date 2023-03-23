@@ -21,10 +21,10 @@ export interface AddressAttributes
   city: string | null;
   state: string | null;
   zipcode: number | null;
+  favoriteId?: number | null;
   setUser(user: UserAttributes): unknown;
   setEvent(event: EventAttributes): unknown;
   setFavorite(favorite: FavoriteAttributes): unknown;
-
 }
 
 const Address = db.define<AddressAttributes>("address", {
