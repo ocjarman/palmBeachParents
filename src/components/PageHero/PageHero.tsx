@@ -33,7 +33,7 @@ export default function PageHero() {
         Palm Beach Parents
       </Typography>
       {loggedIn && <Typography color="inherit" align="center" variant="h5" style={{marginTop: '5%'}} >
-        Welcome, {user.firstName}!
+        Welcome, {user.fullName}!
       </Typography>}
       <Typography
         color="inherit"
