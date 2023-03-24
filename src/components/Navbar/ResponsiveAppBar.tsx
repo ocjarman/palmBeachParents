@@ -186,7 +186,6 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  {/* <Avatar alt="user image" src={`${user.imageUrl}`} /> */}
                   <PersonOutlineIcon color="primary"/>
                 </IconButton>
               </Tooltip>
@@ -253,7 +252,9 @@ function ResponsiveAppBar() {
                   </Typography>
                 </MenuItem>
               </Menu>
-              <FavoriteBorderIcon color="primary"/>
+              <IconButton onClick={() => navigate('/favorites')} sx={{ p: 0 }}>
+                <FavoriteBorderIcon color="primary"/>
+              </IconButton>
             </Box>
             }
         </Toolbar>

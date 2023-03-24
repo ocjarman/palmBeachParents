@@ -11,24 +11,35 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 export default function ThingToDoCard(rec: RecType) {
   const [favorite, setFavorite] = useState<boolean>(false)
+  const user = useSelector((state: RootState) => state.user.user)
 
   const toggleFavorite = async () => {
-    //if favorite === true
-    //axios.put request to destroy favorite
-    //if favorite === false
     if (!favorite) {
       console.log('making favorite')
-      const { data: created } = await axios.post('/api/favorites', rec)
-      console.log(created)
+      const token = window.localStorage.getItem("token");
+      if (token) {
+        await axios.post("/api/favorites", rec, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        });
+        const usersFavorites = await axios.get("/api/favorites", {
+          headers: { Authorization: "Bearer " + token },
+        });
+        console.log(usersFavorites)
+        // dispatch(setFavorites(usersFavorites.data));
       setFavorite(true)
     } else {
       await axios.put('/favorites/delete')
       setFavorite(false)
     }
   }
+}
 
   return (
     <Card sx={{ maxWidth: 345 }}>

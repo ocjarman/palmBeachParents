@@ -47,7 +47,7 @@ const seed = async () => {
                 yelp_url: 'https://www.yelp.com/biz/delray-beach-childrens-garden-delray-beach',
                 description: null,
                 display_phone: '(561) 463-2528',
-                distance: '8000',
+                distance: 8000,
                 is_closed: false})
       ])
 
