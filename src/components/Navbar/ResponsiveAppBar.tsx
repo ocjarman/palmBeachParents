@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import Typography from "../CustomMUI/Typography";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 
 function ResponsiveAppBar() {
   const { user } = useSelector((state: RootState) => state.user);
@@ -179,11 +181,13 @@ function ResponsiveAppBar() {
               Things To Do
             </Button>
           </Box>
+
             {loggedIn && 
-            <Box sx={{ flexGrow: 0 }}>
+            <Box sx={{ flexGrow: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src={`${user.imageUrl}`} />
+                  {/* <Avatar alt="user image" src={`${user.imageUrl}`} /> */}
+                  <PersonOutlineIcon color="primary"/>
                 </IconButton>
               </Tooltip>
               <Menu
@@ -249,6 +253,7 @@ function ResponsiveAppBar() {
                   </Typography>
                 </MenuItem>
               </Menu>
+              <FavoriteBorderIcon color="primary"/>
             </Box>
             }
         </Toolbar>
