@@ -27,7 +27,7 @@ export interface FavoriteAttributes
   is_closed: boolean | null;
   addressId?: number | null;
   users?: UserAttributes[] | null;
-  addAddress(address: AddressAttributes): unknown;
+  setAddress(address: AddressAttributes): unknown;
 //   categories: string[] | null;
 }
 

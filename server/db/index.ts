@@ -14,9 +14,9 @@ User.hasOne(Address)
 Event.hasOne(Address)
 Favorite.hasOne(Address)
 
-Address.belongsTo(User)
-Address.belongsTo(Event)
-Address.belongsTo(Favorite)
+// Address.belongsTo(User)
+// Address.belongsTo(Event)
+// Address.belongsTo(Favorite)
 
 
 export { User, Event, Address, db, Favorite };

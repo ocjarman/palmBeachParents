@@ -42,10 +42,11 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 
       const existingFavorite = await Favorite.findOne({where: {name: req.body.name}})
       if (existingFavorite) {
-        console.log(existingFavorite)
         // await existingFavorite.addAddress(addressOfFavorite)
-        await addressOfFavorite.setFavorite(existingFavorite)
-        // console.log({newOrFoundFavorite})
+        await existingFavorite.setAddress(addressOfFavorite)
+        console.log('favorite made!')
+      } else {
+        console.log('something went wrong!')
       }
     }
 
