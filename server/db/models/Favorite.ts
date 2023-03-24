@@ -22,10 +22,11 @@ export interface FavoriteAttributes
   yelp_url: string | null;
   description: string | null;
   display_phone: string | null;
-  distance: string | null;
+  distance: number | null;
   distanceInMiles: AbstractDataType | null;
   is_closed: boolean | null;
   addressId?: number | null;
+  userId?: string | null;
   users?: UserAttributes[] | null;
   setAddress(address: AddressAttributes): unknown;
 //   categories: string[] | null;
@@ -72,13 +73,16 @@ const Favorite = db.define<FavoriteAttributes>("favorite", {
     distance: {
       type: INTEGER,
       allowNull: true,
+      set(value: number) {
+        this.setDataValue("distance", Math.floor(value));
+      },
     },
     distanceInMiles: {
       type: VIRTUAL,
       allowNull: true,
     },
     display_phone: {
-      type: VIRTUAL,
+      type: STRING,
       allowNull: true,
     },
   });
