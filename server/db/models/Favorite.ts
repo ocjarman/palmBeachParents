@@ -52,7 +52,7 @@ const Favorite = db.define<FavoriteAttributes>("favorite", {
     imageUrl: {
       type: STRING,
       allowNull: true,
-      // defaultValue: "/static/palmBeach.png",
+      defaultValue: "/static/palmBeach.png",
     },
     yelp_url: {
         type: STRING,
@@ -85,7 +85,7 @@ const Favorite = db.define<FavoriteAttributes>("favorite", {
       },
     },
     distanceInMiles: {
-      type: VIRTUAL,
+      type: INTEGER,
       allowNull: true,
     },
     display_phone: {

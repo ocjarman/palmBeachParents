@@ -19,7 +19,7 @@ import { setFavorites } from '../../../store/favoritesSlice';
 export default function FavCard(fav: FavType) {
   const [favorite, setFavorite] = useState<boolean>(false)
   const user = useSelector((state: RootState) => state.user.user)
-
+console.log(fav)
   const dispatch = useDispatch()
 //   const toggleFavorite = async () => {
 //     if (!favorite) {
@@ -73,7 +73,7 @@ export default function FavCard(fav: FavType) {
         <Typography variant="body2" color="text.secondary">
           {fav.address.address1}, {fav.address.city}, {fav.address.state}, {fav.address.zip_code}
         </Typography>
-        <Rating name="read-only" value={fav.yelp_rating} readOnly /> ({fav.yelp_review_count})
+        <Rating name="read-only" value={Number(fav.yelp_rating)} readOnly /> ({fav.yelp_review_count})
       </CardContent>
       <CardActions>
         {/* {!favorite && <Button size="small" onClick={toggleFavorite}><FavoriteBorderIcon/></Button>}

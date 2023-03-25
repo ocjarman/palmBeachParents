@@ -37,7 +37,7 @@ const Favorites = () => {
             imageUrl={fav.imageUrl}
             is_closed={fav.is_closed}
             yelp_review_count={fav.yelp_review_count}
-            yelp_rating={fav.yelp_rating}
+            yelp_rating={Number(fav.yelp_rating)}
             yelp_url={fav.yelp_url}
             display_phone={fav.display_phone}
             distance={fav.distance}
