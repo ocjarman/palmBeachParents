@@ -15,6 +15,7 @@ export interface FavoriteAttributes
     InferCreationAttributes<FavoriteAttributes>
   > {
   id?: number;
+  yelp_id: string;
   name?: string | null;
   imageUrl: string | null;
   yelp_review_count: number | null;
@@ -37,6 +38,9 @@ const Favorite = db.define<FavoriteAttributes>("favorite", {
       type: INTEGER,
       autoIncrement: true,
       primaryKey: true,
+    },
+    yelp_id: {
+      type: STRING,
     },
     name: {
       type: STRING,

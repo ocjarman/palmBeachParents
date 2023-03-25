@@ -5,10 +5,18 @@ import { authenticateUser } from "./helpers/authUserMiddleware";
 const router = express.Router();
 
 // api/favorites
-router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/", authenticateUser, async (req: Request, res: Response, next: NextFunction) => {
   try {
     //get all favorites for user
-    res.send("favorites page");
+    const userId = req.body.user.id;
+    const foundUser = await User.findByPk(userId);
+    if (foundUser) {
+      const usersFavorites = await Favorite.findAll({where: {userId: foundUser.id}, include: [Address]})
+      res.send(usersFavorites);
+    } else {
+      //redirect to login
+      console.log('please login')
+    }
   } catch (err) {
     res.sendStatus(404);
     next(err);
@@ -22,7 +30,19 @@ router.post(
   authenticateUser,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { rec } = req.body;
+      const { yelp_id,
+        name,
+        imageUrl,
+        yelp_review_count,
+        yelp_rating,
+        yelp_url,
+        description,
+        is_closed,
+        distance, 
+        distanceInMiles, 
+        display_phone, 
+        location,
+        categories} = req.body;
       const userId = req.body.user.id;
       const foundUser = await User.findByPk(userId);
       console.log(req.body)
@@ -38,16 +58,18 @@ router.post(
 
           console.log(addressOfFavorite)
           const newFavorite = await Favorite.create({
+              yelp_id: req.body.yelp_id,
               name: req.body.name,
               imageUrl: req.body.image_url,
-              yelp_review_count: req.body.review_count,
-              yelp_rating: req.body.rating,
-              yelp_url: req.body.url,
+              yelp_review_count: req.body.yelp_review_count,
+              yelp_rating: req.body.yelp_rating,
+              yelp_url: req.body.yelp_url,
               description: null,
               is_closed: req.body.is_closed,
               distance: req.body.distance,
-              distanceInMiles: null,
+              distanceInMiles: req.body.distanceInMiles,
               display_phone: req.body.display_phone,
+              //not fiddling with categories yet
           });
           if (newFavorite) {
             await newFavorite.setAddress(addressOfFavorite);

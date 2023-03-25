@@ -23,7 +23,23 @@ export default function ThingToDoCard(rec: RecType) {
       console.log('making favorite')
       const token = window.localStorage.getItem("token");
       if (token) {
-        await axios.post("/api/favorites", rec, {
+        let newFavorite = {
+          yelp_id: rec.id,
+          name: rec.name,
+          imageUrl: rec.image_url,
+          yelp_review_count: rec.review_count, 
+          yelp_rating: rec.rating, 
+          yelp_url: rec.url, 
+          description: null,
+          is_closed: rec.is_closed, 
+          distance: rec.distance, 
+          distanceInMiles: (rec.distance * 0.0006).toFixed(), 
+          display_phone: rec.display_phone, 
+          categories: rec.categories,
+          location: rec.location
+        }
+
+        await axios.post("/api/favorites", newFavorite, {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -31,7 +47,7 @@ export default function ThingToDoCard(rec: RecType) {
         const usersFavorites = await axios.get("/api/favorites", {
           headers: { Authorization: "Bearer " + token },
         });
-        console.log(usersFavorites)
+        console.log(usersFavorites.data)
         // dispatch(setFavorites(usersFavorites.data));
       setFavorite(true)
     } else {
