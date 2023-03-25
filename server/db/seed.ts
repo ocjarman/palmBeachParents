@@ -41,6 +41,7 @@ const seed = async () => {
 
       const [delrayChildrensGarden] = await Promise.all([
         Favorite.create({name: 'Delray Beach Childrens Garden',
+                yelp_id: 'bhjfbjsdbnjds7y3789',
                 imageUrl: null,
                 yelp_review_count: 55,
                 yelp_rating: 5,

@@ -52,10 +52,25 @@ interface RecType {
   rating: number | null;
   url: string | null;
   display_phone: string | null;
-  distance: number | null;
+  distance: number;
   categories: string[] | null;
   is_closed: boolean | null;
   location: LocationType;
+}
+interface FavType {
+  id?: string;
+  yelp_id: string;
+  name: string | null;
+  imageUrl: string | null;
+  yelp_review_count: number | null;
+  yelp_rating: number | null;
+  yelp_url: string | null;
+  description: string | null;
+  display_phone: string | null;
+  distance: number;
+  categories: string[] | null;
+  is_closed: boolean | null;
+  address: LocationType;
 }
 
 interface AddressType {
@@ -76,4 +91,4 @@ interface LocationType {
   zip_code: string | null;
 }
 
-export { UserType, UserToEdit, EventType, RecType, AddressType };
+export { UserType, UserToEdit, EventType, RecType, AddressType, FavType };

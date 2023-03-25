@@ -13,31 +13,53 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store';
-
+import { useDispatch } from 'react-redux';
+import { setFavorites } from '../../../store/favoritesSlice';
 export default function ThingToDoCard(rec: RecType) {
   const [favorite, setFavorite] = useState<boolean>(false)
   const user = useSelector((state: RootState) => state.user.user)
 
+  const dispatch = useDispatch()
   const toggleFavorite = async () => {
-    if (!favorite) {
-      console.log('making favorite')
-      const token = window.localStorage.getItem("token");
-      if (token) {
-        await axios.post("/api/favorites", rec, {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-        const usersFavorites = await axios.get("/api/favorites", {
-          headers: { Authorization: "Bearer " + token },
-        });
-        console.log(usersFavorites)
-        // dispatch(setFavorites(usersFavorites.data));
-      setFavorite(true)
-    } else {
-      await axios.put('/favorites/delete')
-      setFavorite(false)
-    }
+    try {
+
+      if (!favorite) {
+        console.log('making favorite')
+        const token = window.localStorage.getItem("token");
+        if (token) {
+          let newFavorite = {
+            yelp_id: rec.id,
+            name: rec.name,
+            imageUrl: rec.image_url,
+            yelp_review_count: rec.review_count, 
+            yelp_rating: (rec.rating)?.toFixed(1), 
+            yelp_url: rec.url, 
+            description: null,
+            is_closed: rec.is_closed, 
+            distance: rec.distance, 
+            distanceInMiles: (rec.distance * 0.0006).toFixed(), 
+            display_phone: rec.display_phone, 
+            categories: rec.categories,
+            location: rec.location
+          }
+          console.log({rec})
+          await axios.post("/api/favorites", newFavorite, {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          });
+          const usersFavorites = await axios.get("/api/favorites", {
+            headers: { Authorization: "Bearer " + token },
+          });
+          dispatch(setFavorites(usersFavorites.data));
+        setFavorite(true)
+      } else {
+        await axios.put('/favorites/delete')
+        setFavorite(false)
+      }
+    } 
+  }catch(error) {
+    console.log(error)
   }
 }
 

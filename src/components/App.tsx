@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { setUser } from "../store/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ResponsiveAppBar from "./Navbar/ResponsiveAppBar";
 import { ThemeProvider } from "@mui/material/styles";
@@ -9,6 +9,8 @@ import GetEvents from "../utils/Custom Hooks/GetEvents";
 import { Outlet } from "react-router-dom";
 import AdminGetUsers from "../utils/Custom Hooks/AdminGetUsers";
 import GetThingsToDo from "../utils/Custom Hooks/GetThingsToDo";
+import GetFavorites from "../utils/Custom Hooks/GetFavorites";
+import { RootState } from "../store";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +35,7 @@ const App = () => {
   GetEvents();
   AdminGetUsers();
   GetThingsToDo();
+  GetFavorites();
 
   return (
     <ThemeProvider theme={theme}>
