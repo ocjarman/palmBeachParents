@@ -4,7 +4,7 @@ import {
     InferAttributes,
     InferCreationAttributes,
     Model,
-    STRING, BOOLEAN, INTEGER, AbstractDataType, VIRTUAL
+    STRING, BOOLEAN, INTEGER, AbstractDataType, VIRTUAL, DECIMAL
   } from "sequelize";
 import { UserAttributes } from "./User";
 import { AddressAttributes } from "./Address";
@@ -52,15 +52,18 @@ const Favorite = db.define<FavoriteAttributes>("favorite", {
     imageUrl: {
       type: STRING,
       allowNull: true,
-      defaultValue: "/static/palmBeach.png",
+      // defaultValue: "/static/palmBeach.png",
     },
     yelp_url: {
         type: STRING,
         allowNull: true,
     },
     yelp_rating: {
-        type: INTEGER,
+        type: DECIMAL,
         allowNull: true,
+        validate: {
+          isDecimal: true
+        }
     },
     yelp_review_count: {
         type: INTEGER,

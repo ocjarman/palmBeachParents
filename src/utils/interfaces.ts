@@ -61,7 +61,7 @@ interface FavType {
   id?: string;
   yelp_id: string;
   name: string | null;
-  image_url: string | null;
+  imageUrl: string | null;
   yelp_review_count: number | null;
   yelp_rating: number | null;
   yelp_url: string | null;
@@ -70,7 +70,7 @@ interface FavType {
   distance: number;
   categories: string[] | null;
   is_closed: boolean | null;
-  location: LocationType;
+  address: LocationType;
 }
 
 interface AddressType {

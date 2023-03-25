@@ -5,6 +5,7 @@ import newUserReducer from './newUserSlice'
 import eventsReducer from './eventsSlice';
 import allUsersReducer from './allUsersSlice';
 import thingsToDoReducer from './thingsToDoSlice';
+import favoritesReducer from './favoritesSlice';
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
         newUser: newUserReducer,
         events: eventsReducer,
         allUsers: allUsersReducer,
-        thingsToDo: thingsToDoReducer
+        thingsToDo: thingsToDoReducer,
+        favorites: favoritesReducer
     }
 });
 

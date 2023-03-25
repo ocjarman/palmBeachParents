@@ -36,9 +36,6 @@ const Address = db.define<AddressAttributes>("address", {
     address1: {
       type: STRING,
       allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
     },
     address2: {
       type: STRING,
@@ -47,23 +44,14 @@ const Address = db.define<AddressAttributes>("address", {
     city: {
       type: STRING,
       allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
     },
     state: {
       type: STRING,
       allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
     },
     zipcode: {
       type: INTEGER,
       allowNull: true,
-      validate: {
-        notEmpty: true,
-      },
     },
   });
 

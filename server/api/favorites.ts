@@ -43,9 +43,10 @@ router.post(
         display_phone, 
         location,
         categories} = req.body;
+
       const userId = req.body.user.id;
-      const foundUser = await User.findByPk(userId);
       console.log(req.body)
+      const foundUser = await User.findByPk(userId);
       if (foundUser) {
         if (req.body) {
           const addressOfFavorite = await Address.create({
@@ -56,13 +57,12 @@ router.post(
             zipcode: req.body.location.zip_code,
           });
 
-          console.log(addressOfFavorite)
           const newFavorite = await Favorite.create({
               yelp_id: req.body.yelp_id,
               name: req.body.name,
-              imageUrl: req.body.image_url,
+              imageUrl: req.body.imageUrl,
               yelp_review_count: req.body.yelp_review_count,
-              yelp_rating: req.body.yelp_rating,
+              yelp_rating: Number(req.body.yelp_rating),
               yelp_url: req.body.yelp_url,
               description: null,
               is_closed: req.body.is_closed,
@@ -72,6 +72,7 @@ router.post(
               //not fiddling with categories yet
           });
           if (newFavorite) {
+            console.log(newFavorite)
             await newFavorite.setAddress(addressOfFavorite);
             await foundUser.addFavorite(newFavorite)
             await Favorite.findAll({where: {userId: foundUser.id}, include: [Address]})
@@ -83,19 +84,7 @@ router.post(
           console.log('no req.body')
         }
       }
-
-      // find user and associate with them
-      // const user = User.findByPk(u)
-
-      // await user.setFavorite(newFavorite)
-
-      // const allFavoritesData = await Favorite.findAll({where: {userId: user.id}})
-
-      // res.send(allFavoritesData);
-      // collect data from req.body, will be yelp info
-      // save it to our favorites table in db
-      // associate with that user
-      res.send("sending back all favorites");
+      res.sendStatus(200);
     } catch (err) {
       console.log(err)
       res.sendStatus(404);
