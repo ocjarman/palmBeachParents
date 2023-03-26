@@ -10,7 +10,6 @@ import { Outlet } from "react-router-dom";
 import AdminGetUsers from "../utils/Custom Hooks/AdminGetUsers";
 import GetThingsToDo from "../utils/Custom Hooks/GetThingsToDo";
 import GetFavorites from "../utils/Custom Hooks/GetFavorites";
-import { RootState } from "../store";
 
 const App = () => {
   const dispatch = useDispatch();

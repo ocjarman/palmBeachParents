@@ -45,7 +45,6 @@ router.post(
         categories} = req.body;
 
       const userId = req.body.user.id;
-      console.log(req.body)
       const foundUser = await User.findByPk(userId);
       if (foundUser) {
         if (req.body) {
@@ -72,11 +71,9 @@ router.post(
               //not fiddling with categories yet
           });
           if (newFavorite) {
-            console.log(newFavorite)
             await newFavorite.setAddress(addressOfFavorite);
             await foundUser.addFavorite(newFavorite)
             await Favorite.findAll({where: {userId: foundUser.id}, include: [Address]})
-            console.log("favorite made!");
           } else {
             console.log('no new fav')
           }
@@ -94,12 +91,18 @@ router.post(
 );
 
 router.put(
-  "/delete",
+  "/delete", authenticateUser,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       //get all favorites for user
-
-      res.send("favorites page");
+      const { rec } = req.body
+      const favToDelete = await Favorite.findOne({where: {
+        yelp_id: req.body.id,
+        userId: req.body.user.id
+      }})
+      await favToDelete?.destroy()
+      const usersFavorites = await Favorite.findAll({where: {userId: req.body.user.id}, include: [Address]})
+      res.send(usersFavorites);
     } catch (err) {
       res.sendStatus(404);
       next(err);
