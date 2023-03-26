@@ -16,11 +16,8 @@ const ThingsToDo = () => {
     let favArray: string[] = []
     if (favorites) {
       const favIds = favorites.forEach((favorite: FavType) => {
-        console.log(favorite.yelp_id)
         favArray.push(favorite.yelp_id)
-        console.log(favArray)
       })
-      console.log({favArray})
       setFavoriteYelpIds(favArray)
     } else {
       return
@@ -32,7 +29,6 @@ const ThingsToDo = () => {
   }
 
   useEffect(() => {
-    console.log('hitting getFavs')
     getFavoriteIds()
   }, [favorites])
 

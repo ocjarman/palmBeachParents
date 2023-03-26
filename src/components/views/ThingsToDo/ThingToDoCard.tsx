@@ -18,14 +18,12 @@ import { setFavorites } from '../../../store/favoritesSlice';
 export default function ThingToDoCard(rec: RecType) {
   const [favorite, setFavorite] = useState<boolean>(false)
 
-  console.log(rec)
 
   const dispatch = useDispatch()
   const toggleFavorite = async () => {
     try {
 
       if (!favorite) {
-        console.log('making favorite')
         const token = window.localStorage.getItem("token");
         if (token) {
           let newFavorite = {
@@ -43,7 +41,6 @@ export default function ThingToDoCard(rec: RecType) {
             categories: rec.categories,
             location: rec.location
           }
-          console.log({rec})
           await axios.post("/api/favorites", newFavorite, {
             headers: {
               authorization: `Bearer ${token}`,
