@@ -56,6 +56,7 @@ interface RecType {
   categories: string[] | null;
   is_closed: boolean | null;
   location: LocationType;
+  isFavorite: boolean;
 }
 interface FavType {
   id?: string;

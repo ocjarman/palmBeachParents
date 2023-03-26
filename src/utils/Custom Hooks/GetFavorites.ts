@@ -14,7 +14,6 @@ const GetFavorites = () => {
             const usersFavorites = await axios.get("/api/favorites", {
                 headers: { Authorization: "Bearer " + token },
               });
-              console.log(usersFavorites)
             dispatch(setFavorites(usersFavorites.data));
         } else {
             console.log('must be logged in for favorites')

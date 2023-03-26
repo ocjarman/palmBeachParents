@@ -17,14 +17,13 @@ import { useDispatch } from 'react-redux';
 import { setFavorites } from '../../../store/favoritesSlice';
 export default function ThingToDoCard(rec: RecType) {
   const [favorite, setFavorite] = useState<boolean>(false)
-  const user = useSelector((state: RootState) => state.user.user)
+
 
   const dispatch = useDispatch()
   const toggleFavorite = async () => {
     try {
 
       if (!favorite) {
-        console.log('making favorite')
         const token = window.localStorage.getItem("token");
         if (token) {
           let newFavorite = {
@@ -42,7 +41,6 @@ export default function ThingToDoCard(rec: RecType) {
             categories: rec.categories,
             location: rec.location
           }
-          console.log({rec})
           await axios.post("/api/favorites", newFavorite, {
             headers: {
               authorization: `Bearer ${token}`,
@@ -81,8 +79,8 @@ export default function ThingToDoCard(rec: RecType) {
         <Rating name="read-only" value={rec.rating} readOnly /> ({rec.review_count})
       </CardContent>
       <CardActions>
-        {!favorite && <Button size="small" onClick={toggleFavorite}><FavoriteBorderIcon/></Button>}
-        {favorite && <Button size="small" onClick={toggleFavorite}><FavoriteIcon/></Button>}
+        {!rec.isFavorite && <Button size="small" onClick={toggleFavorite}><FavoriteBorderIcon/></Button>}
+        {rec.isFavorite && <Button size="small" onClick={toggleFavorite}><FavoriteIcon/></Button>}
         <Button size="small" href={`${rec.url}`}>Learn More</Button>
       </CardActions>
     </Card>
