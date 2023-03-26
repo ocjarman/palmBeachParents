@@ -17,7 +17,8 @@ import { useDispatch } from 'react-redux';
 import { setFavorites } from '../../../store/favoritesSlice';
 export default function ThingToDoCard(rec: RecType) {
   const [favorite, setFavorite] = useState<boolean>(false)
-  const user = useSelector((state: RootState) => state.user.user)
+
+  console.log(rec)
 
   const dispatch = useDispatch()
   const toggleFavorite = async () => {
@@ -81,8 +82,8 @@ export default function ThingToDoCard(rec: RecType) {
         <Rating name="read-only" value={rec.rating} readOnly /> ({rec.review_count})
       </CardContent>
       <CardActions>
-        {!favorite && <Button size="small" onClick={toggleFavorite}><FavoriteBorderIcon/></Button>}
-        {favorite && <Button size="small" onClick={toggleFavorite}><FavoriteIcon/></Button>}
+        {!rec.isFavorite && <Button size="small" onClick={toggleFavorite}><FavoriteBorderIcon/></Button>}
+        {rec.isFavorite && <Button size="small" onClick={toggleFavorite}><FavoriteIcon/></Button>}
         <Button size="small" href={`${rec.url}`}>Learn More</Button>
       </CardActions>
     </Card>
