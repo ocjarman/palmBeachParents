@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { Container } from "@mui/system";
 import Typography from "../../CustomMUI/Typography";
-import ThingToDoCard from "../ThingsToDo/ThingToDoCard";
 import { FavType } from "../../../utils/interfaces";
 import FavCard from "./FavCard";
 const Favorites = () => {
