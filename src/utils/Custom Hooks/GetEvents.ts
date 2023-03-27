@@ -7,7 +7,8 @@ function GetEvents() {
   const dispatch = useDispatch();
   const getAllEvents = async () => {
     let response = await axios.get("/api/events");
-    dispatch(setEvents(response.data));
+    console.log(response)
+    dispatch(setEvents(response.data.events));
   };
 
   useEffect(() => {

@@ -13,7 +13,8 @@ const Events = () => {
       <Typography sx={{ placeSelf: "center", margin: '3%' }} variant={"h2"}>Events</Typography>
       <Container sx={{display: 'flex', flexWrap: 'wrap', gap: 3, alignContent: 'center', justifyContent: 'center'}} maxWidth={false}>
        {events.map((event: EventType) => (
-            <EventCard key={event.id} name={event.name} address={event.address} date={event.date} time={event.time} description={event.description} webUrl={event.webUrl} hostName={event.hostName} hostPhone={event.hostPhone} hostEmail={event.hostEmail} price={event.price} imageUrl={event.imageUrl} recurring={event.recurring} users={event.users} category={event.category} age={event.age}/>
+            <EventCard key={event.id} name={event.name}  description={event.description} image_url={event.image_url} category={event.category} cost={event.cost} is_free={event.isFree}/>
+            // <EventCard key={event.id} name={event.name} address={event.address} date={event.date} time={event.time} description={event.description} webUrl={event.webUrl} hostName={event.hostName} hostPhone={event.hostPhone} hostEmail={event.hostEmail} price={event.price} imageUrl={event.imageUrl} recurring={event.recurring} users={event.users} category={event.category} age={event.age}/>
         ))}
       </Container>
     </Container>

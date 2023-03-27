@@ -14,7 +14,7 @@ export default function EventCard(event: EventType) {
         component="img"
         alt="descriptor of image"
         height="140"
-        src={`${event.imageUrl}`}
+        src={`${event.image_url}`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -26,7 +26,8 @@ export default function EventCard(event: EventType) {
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <a href={`${event.webUrl}`}>Learn More</a>
+        <a href={`${event.event_site_url}`}>Learn More</a>
+        <a href={`${event.tickets_url}`}>Get Tickets</a>
       </CardActions>
     </Card>
   );
