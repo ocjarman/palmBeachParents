@@ -13,6 +13,10 @@ import { EventType } from "../../../utils/interfaces";
 export default function EventsTable() {
   const events = useSelector((state: RootState) => state.events.events);
 
+  function getDate(time_start: Date | null): React.ReactNode {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <Container
       style={{
@@ -40,13 +44,13 @@ export default function EventsTable() {
         <TableBody>
           {events.map((event: EventType) => (
             <TableRow key={event.id}>
-              <TableCell>{event.address ? event.address.city : null}</TableCell>
+              <TableCell>{event.location ? event.location.city : null}</TableCell>
               <TableCell>
                 {event.name}
               </TableCell>
-              <TableCell>{event.hostName}</TableCell>
-              <TableCell>{event.time}</TableCell>
-              <TableCell>{event.price}</TableCell>
+              <TableCell>{event.category}</TableCell>
+              <TableCell>{event.time_start?.toDateString()}</TableCell>
+              <TableCell>{event.tickets_url}</TableCell>
             </TableRow>
           ))}
         </TableBody>

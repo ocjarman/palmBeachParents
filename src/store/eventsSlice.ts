@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { EventType } from "../utils/interfaces";
+import { EventType, LocationType } from "../utils/interfaces";
 
 interface initialStateType {
   events: EventType[];
@@ -12,50 +12,45 @@ const initialState: initialStateType = {
   events: [],
   newEvent: {},
   eventToEdit: {
-    name: null,
-    address: {
+    id: '',
+    name: '',
+    category: '',
+    cost: '',
+    location: {
       address1: '',
       address2: '',
       city: '',
       state: '',
-      zipcode: null
+      zip_code: '',
+      display_address: []
     },
-    date: null,
-    time: null,
-    description: null,
-    webUrl: null,
-    hostName: null,
-    hostPhone: null,
-    hostEmail: null,
-    price: null,
-    imageUrl: null,
-    recurring: null,
-    category: null,
-    age: null,
-    users: null
+    description: '',
+    is_free: false,
+    event_site_url: '',
+    tickets_url: '',
+    time_start: null,
+    time_end: null,
+    image_url: '',
   },
   updatedEventInfo: {
-    name: null,
-    address: {
-      address1: '',
-      address2: '',
-      city: '',
-      state: '',
-      zipcode: null
-    },
-    date: null,
-    time: null,
-    description: null,
-    webUrl: null,
-    hostName: null,
-    hostPhone: null,
-    hostEmail: null,
-    price: null,
-    imageUrl: null,
-    recurring: null,
-    category: null,
-    age: null,
-    users: null
+      name: null,
+      category: null,
+      cost: null,
+      location: {
+        address1: null,
+        address2: null,
+        city: null,
+        state: null,
+        zip_code: null,
+        display_address: []
+      },
+      description: null,
+      is_free: false,
+      event_site_url: null,
+      tickets_url: null,
+      time_start: null,
+      time_end: null,
+      image_url: null,
   },
 };
 

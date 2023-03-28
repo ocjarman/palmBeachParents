@@ -37,36 +37,6 @@ const EditEventForm = () => {
     dispatch(setUpdatedEventInfo({ ...updatedEventInfo, [name]: value }));
   };
 
-  // const handleDeleteEvent = async (event: { preventDefault: () => void; }) => {
-  //   const response = confirm("are you sure you want to delete this event?");
-  //   if (response === true) {
-  //     try {
-  //       event.preventDefault();
-  //       // get token of logged in user
-  //       const token = window.localStorage.getItem("token");
-  //       // data to send to backend
-  //       const tokenData = {
-  //         headers: {
-  //           authorization: token,
-  //         },
-  //       };
-  //       // await axios.delete(`/api/events/${eventToEdit.id}`, tokenData);
-  //       // update front end and redux store
-  //       // dispatch(
-  //       //   deleteevent({
-  //       //     id: eventToEdit.id,
-  //       //   })
-  //       // );
-  //       const allNewevents = await axios.get("/api/events");
-  //       // dispatch(setevents(allNewevents.data));
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   } else {
-  //     return;
-  //   }
-  // };
-
   const categories = [
     {
       value: "outdoor activity",
@@ -89,36 +59,40 @@ const EditEventForm = () => {
       label: "Other",
     },
   ];
-  const handleUpdateEvent = async (event: { preventDefault: () => void }) => {
-    try {
-      event.preventDefault();
+  function getDate(time_start: Date | null): unknown {
+    throw new Error("Function not implemented.");
+  }
 
-      const updatedEventData = {
-        id: updatedEventInfo.id || eventToEdit.id,
-        name: updatedEventInfo.name || eventToEdit.name,
-        address: updatedEventInfo.address || eventToEdit.address,
-        date: updatedEventInfo.date || eventToEdit.date,
-        time: updatedEventInfo.time || eventToEdit.time,
-        description: updatedEventInfo.description || eventToEdit.description,
-        webUrl: updatedEventInfo.webUrl || eventToEdit.webUrl,
-        hostName: updatedEventInfo.hostName || eventToEdit.hostName,
-        hostPhone: updatedEventInfo.hostPhone || eventToEdit.hostPhone,
-        hostEmail: updatedEventInfo.hostEmail || eventToEdit.hostEmail,
-        price: updatedEventInfo.price || eventToEdit.price,
-        imageUrl: updatedEventInfo.imageUrl || eventToEdit.imageUrl,
-        recurring: updatedEventInfo.recurring || eventToEdit.recurring,
-        category: updatedEventInfo.category || eventToEdit.category,
-        age: updatedEventInfo.age || eventToEdit.age,
-      };
+  // const handleUpdateEvent = async (event: { preventDefault: () => void }) => {
+  //   try {
+  //     event.preventDefault();
 
-      await axios.put(`/api/events`, updatedEventData);
-        const allUpdatedEvents = await axios.get(`/api/events/`);
-        dispatch(setEvents(allUpdatedEvents.data));
-      navAllEvents();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //     const updatedEventData = {
+  //       id: updatedEventInfo.id || eventToEdit.id,
+  //       name: updatedEventInfo.name || eventToEdit.name,
+  //       address: updatedEventInfo.address || eventToEdit.address,
+  //       date: updatedEventInfo.date || eventToEdit.date,
+  //       time: updatedEventInfo.time || eventToEdit.time,
+  //       description: updatedEventInfo.description || eventToEdit.description,
+  //       webUrl: updatedEventInfo.webUrl || eventToEdit.webUrl,
+  //       hostName: updatedEventInfo.hostName || eventToEdit.hostName,
+  //       hostPhone: updatedEventInfo.hostPhone || eventToEdit.hostPhone,
+  //       hostEmail: updatedEventInfo.hostEmail || eventToEdit.hostEmail,
+  //       price: updatedEventInfo.price || eventToEdit.price,
+  //       imageUrl: updatedEventInfo.imageUrl || eventToEdit.imageUrl,
+  //       recurring: updatedEventInfo.recurring || eventToEdit.recurring,
+  //       category: updatedEventInfo.category || eventToEdit.category,
+  //       age: updatedEventInfo.age || eventToEdit.age,
+  //     };
+
+  //     await axios.put(`/api/events`, updatedEventData);
+  //       const allUpdatedEvents = await axios.get(`/api/events/`);
+  //       dispatch(setEvents(allUpdatedEvents.data));
+  //     navAllEvents();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
 
   return (
@@ -165,7 +139,7 @@ const EditEventForm = () => {
             label="Event Address"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
-            defaultValue={eventToEdit.address}
+            defaultValue={eventToEdit.location.display_address}
           />
 
           <TextField
@@ -174,7 +148,7 @@ const EditEventForm = () => {
             label="Time of Event"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
-            defaultValue={eventToEdit.time}
+            defaultValue={eventToEdit.time_start}
           />
           <TextField
             required
@@ -183,16 +157,16 @@ const EditEventForm = () => {
             label="Price"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
-            defaultValue={Number(eventToEdit.price)}
+            defaultValue={Number(eventToEdit.cost)}
           />
-          <TextField
+          {/* <TextField
             required
             name="age"
             label="Recommended Ages"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
             defaultValue={eventToEdit.age}
-          />
+          /> */}
         </Container>
         <Container
           sx={{
@@ -216,17 +190,17 @@ const EditEventForm = () => {
             label="Event Website"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
-            defaultValue={eventToEdit.webUrl}
+            defaultValue={eventToEdit.event_site_url}
           />
-          <TextField
+          {/* <TextField
             required
             name="hostName"
             label="Company/Organization/Host"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
             defaultValue={eventToEdit.hostName}
-          />
-          <TextField
+          /> */}
+          {/* <TextField
             required
             name="hostPhone"
             label="Event phone number"
@@ -241,7 +215,7 @@ const EditEventForm = () => {
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
             defaultValue={eventToEdit.hostEmail}
-          />
+          /> */}
         </Container>
         <Container
           sx={{
@@ -256,10 +230,10 @@ const EditEventForm = () => {
             name="imageUrl"
             onChange={handleEventStateChange}
             sx={{ marginBottom: "5%" }}
-            defaultValue={eventToEdit.imageUrl}
+            defaultValue={eventToEdit.image_url}
             label="Image URL"
           />
-          <TextField
+          {/* <TextField
             select
             name="recurring"
             label="Is this a recurring event?"
@@ -269,7 +243,7 @@ const EditEventForm = () => {
           >
             <MenuItem value={"yes"}>Yes</MenuItem>
             <MenuItem value={"no"}>No</MenuItem>
-          </TextField>
+          </TextField> */}
           <TextField
             select
             name="category"
@@ -300,7 +274,7 @@ const EditEventForm = () => {
                 padding: "5%",
                 width: "200px",
               }}
-              defaultValue={eventToEdit.date}
+              defaultValue={getDate(eventToEdit?.time_start)}
             />
           </FormControl>
         </Container>
@@ -318,7 +292,7 @@ const EditEventForm = () => {
           variant="contained"
           size="small"
           component="button"
-          onClick={handleUpdateEvent}
+          // onClick={handleUpdateEvent}
         >
           Update Event
         </Button>

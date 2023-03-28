@@ -26,22 +26,18 @@ interface UserToEdit {
 }
 
 interface EventType {
-  id?: string;
-  name?: string | null;
-  address: AddressType;
-  date: Date | null;
-  time: string | null;
-  description: string | null;
-  webUrl: string | null;
-  hostName: string | null;
-  hostPhone: string | null;
-  hostEmail: string | null;
-  price: number | null;
-  imageUrl: string | null;
-  recurring: boolean | null;
-  category: string | null;
-  age: string | null;
-  users: UserType[] | null;
+    id?: string;
+    name?: string | null;
+    category: string | null;
+    cost: string | null
+    location: LocationType;
+    description: string | null;
+    is_free: boolean | null;
+    event_site_url: string | null;
+    tickets_url: string | null;
+    time_start: Date | null;
+    time_end: Date | null;
+    image_url: string | null;
 }
 
 interface RecType {
@@ -92,4 +88,4 @@ interface LocationType {
   zip_code: string | null;
 }
 
-export { UserType, UserToEdit, EventType, RecType, AddressType, FavType };
+export { UserType, UserToEdit, EventType, RecType, AddressType, FavType, LocationType };

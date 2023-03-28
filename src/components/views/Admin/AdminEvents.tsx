@@ -114,6 +114,14 @@ export default function AdminEvents() {
             {events
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((event) => {
+                function getTime(time_start: Date | null): React.ReactNode {
+                  throw new Error("Function not implemented.");
+                }
+
+                function getDate(time_start: Date | null): React.ReactNode {
+                  throw new Error("Function not implemented.");
+                }
+
                 return (
                   <TableRow hover tabIndex={-1} key={event.id}>
                     <TableCell sx={{ width: "10px" }}>
@@ -127,22 +135,22 @@ export default function AdminEvents() {
                     </TableCell>
                     <TableCell>{event.id}</TableCell>
                     <TableCell width={150}>{event.name}</TableCell>
-                    <TableCell width={150}>{event.date?.toString().slice(0, 10)}</TableCell>
-                    <TableCell>{event.hostName}</TableCell>
-                    <TableCell>{event.hostEmail}</TableCell>
-                    <TableCell>{event.hostPhone}</TableCell>
-                    <TableCell>{event.address ? event.address.city : null}</TableCell>
+                    <TableCell width={150}>{event.time_start?.toDateString()}</TableCell>
                     <TableCell>{event.description}</TableCell>
-                    <TableCell>{event.time}</TableCell>
+                    <TableCell>{event.event_site_url}</TableCell>
+                    <TableCell>{event.is_free}</TableCell>
+                    <TableCell>{event.location ? event.location.city : null}</TableCell>
+                    <TableCell>{event.description}</TableCell>
+                    <TableCell width={150}>{getTime(event.time_start)}</TableCell>
                     <TableCell>
-                      {event.price ? event.price : "not listed"}
+                      {event.cost ? event.cost : "not listed"}
                     </TableCell>
                     <TableCell>
                       {event.category ? event.category : "not listed"}
                     </TableCell>
-                    <TableCell sx={{ width: "5%" }}>
+                    {/* <TableCell sx={{ width: "5%" }}>
                       {event.age ? event.age : "not listed"}
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 );
               })}
