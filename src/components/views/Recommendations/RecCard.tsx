@@ -11,7 +11,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
 
-export default function RecCard(rec: RecType) {
+export default function RecCard() {
   const [favorite, setFavorite] = useState<boolean>(false)
 
   const toggleFavorite = () => {

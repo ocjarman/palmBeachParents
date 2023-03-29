@@ -13,7 +13,7 @@ export interface RecCategoryAttributes
     InferAttributes<RecCategoryAttributes>,
     InferCreationAttributes<RecCategoryAttributes>
   > {
-  id: number;
+  id?: number;
   name: string;
 }
 

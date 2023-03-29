@@ -1,5 +1,6 @@
 import db from "./db";
 import {User, Event, Address, Favorite} from './index'
+import RecommendationCategory from "./models/RecommendationCategory";
 
 const seed = async () => {
     console.log('STARTING SEED')
@@ -36,6 +37,15 @@ const seed = async () => {
         Event.create({ name: "Event 7" , date: new Date(), time: '11:30AM - 2PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: false, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
         Event.create({ name: "Event 8" ,  date: new Date(), time: '10:00PM - 12PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: true, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
       ]);
+
+      const [medical, family, sports, parentMeetups, pregnancy, babyClasses] = await Promise.all([
+        RecommendationCategory.create({ name: "Medical" }),
+        RecommendationCategory.create({ name: "Family Friendly Activities" }),
+        RecommendationCategory.create({ name: "Youth Sports & Activities" }),
+        RecommendationCategory.create({ name: "Parent Meetups" }),
+        RecommendationCategory.create({ name: "Pregnancy" }),
+        RecommendationCategory.create({ name: "Baby Classes" }),
+        ]);
 
       console.log('seeded events')
 
