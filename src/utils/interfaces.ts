@@ -58,6 +58,12 @@ interface RecType {
   location: LocationType;
   isFavorite: boolean;
 }
+
+interface RecCategoryType {
+  id?: number;
+  name: string;
+}
+
 interface FavType {
   id?: string;
   yelp_id: string;
@@ -92,4 +98,4 @@ interface LocationType {
   zip_code: string | null;
 }
 
-export { UserType, UserToEdit, EventType, RecType, AddressType, FavType };
+export { UserType, UserToEdit, EventType, RecType, AddressType, FavType, RecCategoryType };

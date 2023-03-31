@@ -10,6 +10,7 @@ import { Outlet } from "react-router-dom";
 import AdminGetUsers from "../utils/Custom Hooks/AdminGetUsers";
 import GetThingsToDo from "../utils/Custom Hooks/GetThingsToDo";
 import GetFavorites from "../utils/Custom Hooks/GetFavorites";
+import GetRecommendations from "../utils/Custom Hooks/GetRecCategories";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App = () => {
   AdminGetUsers();
   GetThingsToDo();
   GetFavorites();
+  GetRecommendations();
 
   return (
     <ThemeProvider theme={theme}>
