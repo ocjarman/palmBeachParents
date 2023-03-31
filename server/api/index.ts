@@ -7,7 +7,9 @@ import resourcesRouter from './resources'
 import allUsersRouter from './allUsers'
 import thingsToDoRouter from './thingsToDo'
 import favoritesRouter from './favorites'
+import recommendationsRouter from './recommendations'
 import express from "express";
+
 const router = express.Router();
 
 
@@ -20,6 +22,7 @@ router.use("/resources", resourcesRouter);
 router.use("/allUsers", allUsersRouter);
 router.use("/thingsToDo", thingsToDoRouter);
 router.use("/favorites", favoritesRouter);
+router.use("/recommendations", recommendationsRouter);
 
 
 export default router;
