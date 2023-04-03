@@ -63,6 +63,7 @@ interface RecCategoryType {
   id?: number;
   name: string;
   image_url: string;
+  url: string;
 }
 
 interface FavType {

@@ -23,28 +23,9 @@ import adminTest from './utils/adminTest';
 import EditEventForm from './components/views/Admin/EditEventForm';
 import ThingsToDo from './components/views/ThingsToDo/ThingsToDo';
 import Favorites from './components/views/User/Favorites';
-
-const userTokenTestTrue = async () => {
-  try {
-    const token = window.localStorage.getItem("token");
-    if (token) throw redirect("/home");
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-const userTokenTestFalse = async () => {
-  try {
-    const token = window.localStorage.getItem("token");
-    if (token === null) {
-      throw redirect("/");
-    }
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
+import KidsAndFamily from './components/views/Recommendations/Categories/KidsAndFamily';
+import HealthAndWellness from './components/views/Recommendations/Categories/HealthAndWellness';
+import HomeLife from './components/views/Recommendations/Categories/HomeLife';
 
 
 const router = createBrowserRouter([
@@ -77,6 +58,23 @@ const router = createBrowserRouter([
       {
         path: "recommendations",
         element: <Recommendations />,
+        loader: authTest,
+      },
+      {
+        path: "kidsAndFamily",
+        element: <KidsAndFamily />,
+        loader: authTest,
+
+      },
+      {
+        path: "healthAndWellness",
+        element: <HealthAndWellness />,
+        loader: authTest,
+
+      },
+      {
+        path: "homelife",
+        element: <HomeLife />,
         loader: authTest,
       },
       {

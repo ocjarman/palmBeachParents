@@ -30,7 +30,6 @@ export interface FavoriteAttributes
   userId?: string | null;
   users?: UserAttributes[] | null;
   setAddress(address: AddressAttributes): unknown;
-//   categories: string[] | null;
 }
 
 const Favorite = db.define<FavoriteAttributes>("favorite", {

@@ -41,7 +41,6 @@ export interface UserAttributes
   addEvent(event: EventAttributes): unknown;
   setAddress(address: AddressAttributes): unknown;
   addFavorite(favorite: FavoriteAttributes): unknown;
-
 }
 
 const User = db.define<UserAttributes>("user", {

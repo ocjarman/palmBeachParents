@@ -17,7 +17,7 @@ const Recommendations = () => {
     {/* <SearchThingsToDo/> */}
     <Container sx={{display: 'flex', flexWrap: 'wrap', gap: 3, alignContent: 'center', justifyContent: 'center'}} maxWidth={false}>
      {recCategories?.map((recCategory: RecCategoryType) => (
-          <RecCard key={recCategory.id} name={recCategory.name} image_url={recCategory.image_url}/>
+          <RecCard key={recCategory.id} name={recCategory.name} image_url={recCategory.image_url} url={recCategory.url}/>
       ))}
     </Container>
   </Container>

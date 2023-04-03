@@ -1,6 +1,6 @@
 import db from "./db";
-import {User, Event, Address, Favorite} from './index'
-import RecommendationCategory from "./models/RecommendationCategory";
+import {User, Event, Address, Favorite, RecommendationCategory, SubCategory} from './index'
+
 
 const seed = async () => {
     console.log('STARTING SEED')
@@ -38,14 +38,22 @@ const seed = async () => {
         Event.create({ name: "Event 8" ,  date: new Date(), time: '10:00PM - 12PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: true, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
       ]);
 
-      const [medical, family, sports, parentMeetups, pregnancy, babyClasses] = await Promise.all([
-        RecommendationCategory.create({ name: "Medical", image_url: 'static/seedImages/medical.jpeg' }),
-        RecommendationCategory.create({ name: "Family Friendly Activities", image_url: 'static/seedImages/family_friendly.jpeg' }),
-        RecommendationCategory.create({ name: "Youth Sports & Activities", image_url: 'static/seedImages/youth_sports.jpeg' }),
-        RecommendationCategory.create({ name: "Parent Meetups", image_url: 'static/seedImages/parent_meetups.jpeg' }),
-        RecommendationCategory.create({ name: "Pregnancy", image_url: 'static/seedImages/pregnancy_wellness.jpeg' }),
-        RecommendationCategory.create({ name: "Baby Classes", image_url: 'static/seedImages/baby_classes.jpeg' }),
+      const [wellness, family, home] = await Promise.all([
+        RecommendationCategory.create({ name: "Health & Wellness", image_url: 'static/seedImages/medical.jpeg', url: '/healthAndWellness' }),
+        RecommendationCategory.create({ name: "Kids & Family", image_url: 'static/seedImages/family_friendly.jpeg', url: '/kidsAndFamily' }),
+        RecommendationCategory.create({ name: "Home Life", image_url: 'static/seedImages/home_life.jpeg', url: '/homeLife' }),
         ]);
+
+      const [childcare, activities, health, baby, party, safety, travel] = await Promise.all([
+        SubCategory.create({ name: "Childcare, Education, Camps", image_url: 'static/seedImages/childcare.jpeg' }),
+        SubCategory.create({ name: "Classes & Activities", image_url: 'static/seedImages/baby_classes.jpeg' }),
+        SubCategory.create({ name: "Physical & Mental Health", image_url: 'static/seedImages/medical.jpeg' }),
+        SubCategory.create({ name: "Kid & Baby Needs", image_url: 'static/seedImages/kid_baby.jpeg' }),
+        SubCategory.create({ name: "Party Resources", image_url: 'static/seedImages/party.jpeg' }),
+        SubCategory.create({ name: "Safety", image_url: 'static/seedImages/safe.jpeg' }),
+        SubCategory.create({ name: "Travel", image_url: 'static/seedImages/baby_travel.jpeg' }),
+        ]);
+
 
       console.log('seeded events')
 
@@ -68,9 +76,6 @@ const seed = async () => {
 
       console.log('starting associations')
 
-      // the below 2 chunks are making the same tables just organized differently. 
-      // which one makes more sense to keep?
-      // ('user_events' table keeps track of events for each user)
       olivia.addEvent(savorTheAve)
       bob.addEvent(savorTheAve)
       shane.addEvent(savorTheAve)
@@ -82,17 +87,24 @@ const seed = async () => {
       shane.addFavorite(delrayChildrensGarden)
       bob.addFavorite(delrayChildrensGarden)
 
-      //setting this way allows users, events, and favorites to have an 'addressId'
-      // address1.setUser(olivia)
-      // address2.setEvent(savorTheAve)
-      // address3.setFavorite(delrayChildrensGarden)
-      // address4.setUser(shane)
-      // address5.setEvent(artAndJazz)
+   
       olivia.setAddress(address1)
       bob.setAddress(address2)
       savorTheAve.setAddress(address3)
       shane.setAddress(address4)
       delrayChildrensGarden.setAddress(address5)
+
+
+        // await health.setRecommendationCategory(wellness)
+        wellness.addSubCategory(health)
+        family.addSubCategory(childcare)
+        family.addSubCategory(activities)
+        family.addSubCategory(baby)
+        family.addSubCategory(party)
+        home.addSubCategory(childcare)
+        home.addSubCategory(baby)
+        home.addSubCategory(safety)
+        home.addSubCategory(travel)
 
      console.log('ENDING SEED')
       return {
