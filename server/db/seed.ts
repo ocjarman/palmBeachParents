@@ -1,6 +1,6 @@
 import db from "./db";
-import {User, Event, Address, Favorite} from './index'
-import RecommendationCategory from "./models/RecommendationCategory";
+import {User, Event, Address, Favorite, RecommendationCategory, SubCategory} from './index'
+
 
 const seed = async () => {
     console.log('STARTING SEED')
@@ -38,14 +38,30 @@ const seed = async () => {
         Event.create({ name: "Event 8" ,  date: new Date(), time: '10:00PM - 12PM', hostName: null, hostPhone: '561-243-1077', hostEmail: 'dda@downtowndelraybeach.com', price: null, recurring: true, description: 'gdfhjgkhdf gjkhdfkjg hdfjkghdfkj ghdfgjkd fhgjkdfhgjkdfh gkjdfh', webUrl: 'https://www.google.com'}),
       ]);
 
-      const [medical, family, sports, parentMeetups, pregnancy, babyClasses] = await Promise.all([
-        RecommendationCategory.create({ name: "Medical", image_url: 'static/seedImages/medical.jpeg' }),
-        RecommendationCategory.create({ name: "Family Friendly Activities", image_url: 'static/seedImages/family_friendly.jpeg' }),
-        RecommendationCategory.create({ name: "Youth Sports & Activities", image_url: 'static/seedImages/youth_sports.jpeg' }),
-        RecommendationCategory.create({ name: "Parent Meetups", image_url: 'static/seedImages/parent_meetups.jpeg' }),
-        RecommendationCategory.create({ name: "Pregnancy", image_url: 'static/seedImages/pregnancy_wellness.jpeg' }),
-        RecommendationCategory.create({ name: "Baby Classes", image_url: 'static/seedImages/baby_classes.jpeg' }),
+      const [wellness, family, home] = await Promise.all([
+        RecommendationCategory.create({ name: "Health & Wellness", image_url: 'static/seedImages/medical.jpeg' }),
+        RecommendationCategory.create({ name: "Kids & Family", image_url: 'static/seedImages/family_friendly.jpeg' }),
+        RecommendationCategory.create({ name: "Home Life", image_url: 'static/seedImages/home_life.jpeg' }),
         ]);
+
+      const [childcare, activities, health, baby, party, safety, travel] = await Promise.all([
+        SubCategory.create({ name: "Childcare, Education, Camps", image_url: 'static/seedImages/childcare.jpeg' }),
+        SubCategory.create({ name: "Classes & Activities", image_url: 'static/seedImages/baby_classes.jpeg' }),
+        SubCategory.create({ name: "Physical & Mental Health", image_url: 'static/seedImages/medical.jpeg' }),
+        SubCategory.create({ name: "Kid & Baby Needs", image_url: 'static/seedImages/kid_baby.jpeg' }),
+        SubCategory.create({ name: "Party Resources", image_url: 'static/seedImages/party.jpeg' }),
+        SubCategory.create({ name: "Safety", image_url: 'static/seedImages/safe.jpeg' }),
+        SubCategory.create({ name: "Travel", image_url: 'static/seedImages/baby_travel.jpeg' }),
+        ]);
+
+        // await health.setRecommendationCategory(wellness)
+        // wellness.addSubcategory(health)
+        // family.addSubcategory(childcare)
+        // family.addSubcategory(activities)
+        // family.addSubcategory(baby)
+        // family.addSubcategory(party)
+
+        // home.addSubcategory(childcare, baby, safety, travel)
 
       console.log('seeded events')
 

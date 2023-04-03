@@ -16,11 +16,10 @@ export interface RecCategoryAttributes
   id?: number;
   name: string;
   image_url: string;
-
-
+  
 }
 
-const RecommendationCategory = db.define<RecCategoryAttributes>("recommendationCategory", {
+const SubCategory = db.define<RecCategoryAttributes>("subCategory", {
     id: {
       type: INTEGER,
       autoIncrement: true,
@@ -34,4 +33,4 @@ const RecommendationCategory = db.define<RecCategoryAttributes>("recommendationC
     }
   });
 
-  export default RecommendationCategory;
+  export default SubCategory;
