@@ -39,12 +39,12 @@ const seed = async () => {
       ]);
 
       const [medical, family, sports, parentMeetups, pregnancy, babyClasses] = await Promise.all([
-        RecommendationCategory.create({ name: "Medical" }),
-        RecommendationCategory.create({ name: "Family Friendly Activities" }),
-        RecommendationCategory.create({ name: "Youth Sports & Activities" }),
-        RecommendationCategory.create({ name: "Parent Meetups" }),
-        RecommendationCategory.create({ name: "Pregnancy" }),
-        RecommendationCategory.create({ name: "Baby Classes" }),
+        RecommendationCategory.create({ name: "Medical", image_url: 'static/seedImages/medical.jpeg' }),
+        RecommendationCategory.create({ name: "Family Friendly Activities", image_url: 'static/seedImages/family_friendly.jpeg' }),
+        RecommendationCategory.create({ name: "Youth Sports & Activities", image_url: 'static/seedImages/youth_sports.jpeg' }),
+        RecommendationCategory.create({ name: "Parent Meetups", image_url: 'static/seedImages/parent_meetups.jpeg' }),
+        RecommendationCategory.create({ name: "Pregnancy", image_url: 'static/seedImages/pregnancy_wellness.jpeg' }),
+        RecommendationCategory.create({ name: "Baby Classes", image_url: 'static/seedImages/baby_classes.jpeg' }),
         ]);
 
       console.log('seeded events')
