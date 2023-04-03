@@ -54,14 +54,6 @@ const seed = async () => {
         SubCategory.create({ name: "Travel", image_url: 'static/seedImages/baby_travel.jpeg' }),
         ]);
 
-        // await health.setRecommendationCategory(wellness)
-        // wellness.addSubcategory(health)
-        // family.addSubcategory(childcare)
-        // family.addSubcategory(activities)
-        // family.addSubcategory(baby)
-        // family.addSubcategory(party)
-
-        // home.addSubcategory(childcare, baby, safety, travel)
 
       console.log('seeded events')
 
@@ -98,17 +90,24 @@ const seed = async () => {
       shane.addFavorite(delrayChildrensGarden)
       bob.addFavorite(delrayChildrensGarden)
 
-      //setting this way allows users, events, and favorites to have an 'addressId'
-      // address1.setUser(olivia)
-      // address2.setEvent(savorTheAve)
-      // address3.setFavorite(delrayChildrensGarden)
-      // address4.setUser(shane)
-      // address5.setEvent(artAndJazz)
+   
       olivia.setAddress(address1)
       bob.setAddress(address2)
       savorTheAve.setAddress(address3)
       shane.setAddress(address4)
       delrayChildrensGarden.setAddress(address5)
+
+
+        // await health.setRecommendationCategory(wellness)
+      wellness.addSubCategory(health)
+        family.addSubCategory(childcare)
+        family.addSubCategory(activities)
+        family.addSubCategory(baby)
+        family.addSubCategory(party)
+        home.addSubCategory(childcare)
+        home.addSubCategory(baby)
+        home.addSubCategory(safety)
+        home.addSubCategory(travel)
 
      console.log('ENDING SEED')
       return {

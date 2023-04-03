@@ -8,18 +8,18 @@ import {
   } from "sequelize";
 
 
-export interface RecCategoryAttributes
+export interface SubCategoryAttributes
   extends Model<
-    InferAttributes<RecCategoryAttributes>,
-    InferCreationAttributes<RecCategoryAttributes>
+    InferAttributes<SubCategoryAttributes>,
+    InferCreationAttributes<SubCategoryAttributes>
   > {
   id?: number;
   name: string;
   image_url: string;
-  
+  recommendationCategoryId?: number | null;
 }
 
-const SubCategory = db.define<RecCategoryAttributes>("subCategory", {
+const SubCategory = db.define<SubCategoryAttributes>("subCategory", {
     id: {
       type: INTEGER,
       autoIncrement: true,

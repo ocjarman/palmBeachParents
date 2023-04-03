@@ -6,6 +6,7 @@ import {
     Model,
     STRING, INTEGER
   } from "sequelize";
+import { SubCategoryAttributes } from "./SubCategory";
 
 
 export interface RecCategoryAttributes
@@ -16,8 +17,8 @@ export interface RecCategoryAttributes
   id?: number;
   name: string;
   image_url: string;
-
-
+  subCategories?: SubCategoryAttributes[];
+  addSubCategory(subcategory: SubCategoryAttributes): unknown;
 }
 
 const RecommendationCategory = db.define<RecCategoryAttributes>("recommendationCategory", {

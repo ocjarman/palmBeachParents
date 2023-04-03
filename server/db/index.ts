@@ -11,7 +11,7 @@ import SubCategory from './models/SubCategory';
 User.belongsToMany(Event, {through: 'users_events'} )
 User.hasMany(Favorite)
 
-// RecommendationCategory.hasMany(SubCategory)
+RecommendationCategory.hasMany(SubCategory)
 
 User.hasOne(Address)
 Event.hasOne(Address)
