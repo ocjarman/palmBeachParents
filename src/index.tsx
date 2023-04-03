@@ -24,28 +24,6 @@ import EditEventForm from './components/views/Admin/EditEventForm';
 import ThingsToDo from './components/views/ThingsToDo/ThingsToDo';
 import Favorites from './components/views/User/Favorites';
 
-const userTokenTestTrue = async () => {
-  try {
-    const token = window.localStorage.getItem("token");
-    if (token) throw redirect("/home");
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-const userTokenTestFalse = async () => {
-  try {
-    const token = window.localStorage.getItem("token");
-    if (token === null) {
-      throw redirect("/");
-    }
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
 
 const router = createBrowserRouter([
   {

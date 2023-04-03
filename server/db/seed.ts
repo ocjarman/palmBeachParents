@@ -76,9 +76,6 @@ const seed = async () => {
 
       console.log('starting associations')
 
-      // the below 2 chunks are making the same tables just organized differently. 
-      // which one makes more sense to keep?
-      // ('user_events' table keeps track of events for each user)
       olivia.addEvent(savorTheAve)
       bob.addEvent(savorTheAve)
       shane.addEvent(savorTheAve)
@@ -99,7 +96,7 @@ const seed = async () => {
 
 
         // await health.setRecommendationCategory(wellness)
-      wellness.addSubCategory(health)
+        wellness.addSubCategory(health)
         family.addSubCategory(childcare)
         family.addSubCategory(activities)
         family.addSubCategory(baby)
