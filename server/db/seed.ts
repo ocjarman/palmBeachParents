@@ -39,9 +39,9 @@ const seed = async () => {
       ]);
 
       const [wellness, family, home] = await Promise.all([
-        RecommendationCategory.create({ name: "Health & Wellness", image_url: 'static/seedImages/medical.jpeg' }),
-        RecommendationCategory.create({ name: "Kids & Family", image_url: 'static/seedImages/family_friendly.jpeg' }),
-        RecommendationCategory.create({ name: "Home Life", image_url: 'static/seedImages/home_life.jpeg' }),
+        RecommendationCategory.create({ name: "Health & Wellness", image_url: 'static/seedImages/medical.jpeg', url: '/healthAndWellness' }),
+        RecommendationCategory.create({ name: "Kids & Family", image_url: 'static/seedImages/family_friendly.jpeg', url: '/kidsAndFamily' }),
+        RecommendationCategory.create({ name: "Home Life", image_url: 'static/seedImages/home_life.jpeg', url: '/homeLife' }),
         ]);
 
       const [childcare, activities, health, baby, party, safety, travel] = await Promise.all([

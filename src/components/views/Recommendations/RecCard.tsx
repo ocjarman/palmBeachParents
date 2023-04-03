@@ -10,6 +10,7 @@ import { Rating } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function RecCard(recCategory: RecCategoryType) {
   const [favorite, setFavorite] = useState<boolean>(false)
@@ -17,6 +18,8 @@ export default function RecCard(recCategory: RecCategoryType) {
   const toggleFavorite = () => {
     setFavorite((val) => !val)
   }
+
+  const navigate = useNavigate()
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -31,7 +34,8 @@ export default function RecCard(recCategory: RecCategoryType) {
           {recCategory.name}
         </Typography>
       </CardContent>
-
+      <Button size="small"onClick={() => navigate(`${recCategory.url}`)}
+>Learn More</Button>
     </Card>
   );
 }
