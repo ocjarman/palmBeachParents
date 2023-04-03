@@ -15,6 +15,7 @@ export interface RecCategoryAttributes
   > {
   id?: number;
   name: string;
+  image_url: string;
 }
 
 const RecommendationCategory = db.define<RecCategoryAttributes>("recommendationCategory", {
@@ -24,6 +25,9 @@ const RecommendationCategory = db.define<RecCategoryAttributes>("recommendationC
       primaryKey: true,
     },
     name: {
+      type: STRING,
+    },
+    image_url: {
       type: STRING,
     }
   });

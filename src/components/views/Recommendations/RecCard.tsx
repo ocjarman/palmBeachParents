@@ -24,17 +24,14 @@ export default function RecCard(recCategory: RecCategoryType) {
         component="img"
         alt="recommendation image"
         height="140"
-        // src={`${recCategory.image_url}`}
+        src={`${recCategory.image_url}`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {recCategory.name}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" >Learn More</Button>
-        {/* <Button size="small" href={`${rec.url}`}>Learn More</Button> */}
-      </CardActions>
+
     </Card>
   );
 }
