@@ -5,6 +5,7 @@ const router = express.Router();
 // api/recommendations
 router.get("/categories", async (req: Request, res: Response, next: NextFunction) => {
   try {
+    console.log(req.params)
     const recCategories = await RecommendationCategory.findAll()
     res.send(recCategories);
   } catch (err) {

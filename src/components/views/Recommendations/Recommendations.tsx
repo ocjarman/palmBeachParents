@@ -10,6 +10,7 @@ import SearchThingsToDo from '../ThingsToDo/SearchThingsToDo';
 const Recommendations = () => {
   const recCategories = useSelector((state: RootState) => state.recommendations.recCategories)
 
+  
   if (!recCategories) return <p>loading!!!</p>
   return (
   <Container sx={{display: 'flex', flexDirection: 'column', textAlign: 'center'}} maxWidth={false}>

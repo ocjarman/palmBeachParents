@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from '@mui/system';
 import Typography from '../../../CustomMUI/Typography';
-
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const HealthAndWellness = () => {
+  const params = useParams()
+  
+  console.log(params)
+  const getSubcategories = async () => {
+    console.log('logging subcategories')
+    let response = await axios.get('/api/recommendations/categories/')
+    console.log(response.data)
+  }
+  useEffect(() => {
+    getSubcategories()
+  }, [])
 
   return (
   <Container sx={{display: 'flex', flexDirection: 'column', textAlign: 'center'}} maxWidth={false}>
