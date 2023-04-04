@@ -65,6 +65,13 @@ interface RecCategoryType {
   image_url: string;
   url: string;
 }
+interface SubcategoryType {
+  id?: number;
+  name: string | null;
+  image_url: string | null;
+}
+
+
 
 interface FavType {
   id?: string;
@@ -100,4 +107,4 @@ interface LocationType {
   zip_code: string | null;
 }
 
-export { UserType, UserToEdit, EventType, RecType, AddressType, FavType, RecCategoryType };
+export { UserType, UserToEdit, EventType, RecType, AddressType, FavType, RecCategoryType, SubcategoryType };

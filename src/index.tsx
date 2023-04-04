@@ -24,8 +24,9 @@ import EditEventForm from './components/views/Admin/EditEventForm';
 import ThingsToDo from './components/views/ThingsToDo/ThingsToDo';
 import Favorites from './components/views/User/Favorites';
 import KidsAndFamily from './components/views/Recommendations/Categories/KidsAndFamily';
-import HealthAndWellness from './components/views/Recommendations/Categories/HealthAndWellness';
+import HealthAndWellness from './components/views/Recommendations/Categories/SingleRecommendation';
 import HomeLife from './components/views/Recommendations/Categories/HomeLife';
+import SingleRecommendation from './components/views/Recommendations/Categories/SingleRecommendation';
 
 
 const router = createBrowserRouter([
@@ -61,22 +62,27 @@ const router = createBrowserRouter([
         loader: authTest,
       },
       {
-        path: "kidsAndFamily",
-        element: <KidsAndFamily />,
+        path: "recommendations/:id",
+        element: <SingleRecommendation />,
         loader: authTest,
+      },
+      // {
+      //   path: "kidsAndFamily",
+      //   element: <KidsAndFamily />,
+      //   loader: authTest,
 
-      },
-      {
-        path: "healthAndWellness",
-        element: <HealthAndWellness />,
-        loader: authTest,
+      // },
+      // {
+      //   path: "healthAndWellness",
+      //   element: <HealthAndWellness />,
+      //   loader: authTest,
 
-      },
-      {
-        path: "homelife",
-        element: <HomeLife />,
-        loader: authTest,
-      },
+      // },
+      // {
+      //   path: "homelife",
+      //   element: <HomeLife />,
+      //   loader: authTest,
+      // },
       {
         path: "thingsToDo",
         element: <ThingsToDo />,

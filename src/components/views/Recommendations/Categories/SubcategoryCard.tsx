@@ -4,25 +4,28 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { RecCategoryType } from '../../../utils/interfaces';
+import { SubcategoryType } from '../../../../utils/interfaces';
+import { useEffect } from 'react';
 
-export default function RecCard(recCategory: RecCategoryType) {
-  const singleRecPageUrl = `/recommendations/${recCategory.id}`;
+export default function SubcategoryCard(subcategory: SubcategoryType) {
+//   const singleRecPageUrl = `/recommendations/${subcategory.id}`;
+useEffect(() => {
+}, [])
 
-  return (
+return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         alt="recommendation image"
         height="140"
-        src={`${recCategory.image_url}`}
+        src={`${subcategory.image_url}`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {recCategory.name}
+          {subcategory.name}
         </Typography>
       </CardContent>
-      <Button size="small" href={singleRecPageUrl}>Learn More</Button>
+      <Button size="small" >Learn More</Button>
     </Card>
   );
 }

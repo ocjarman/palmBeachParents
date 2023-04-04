@@ -23,7 +23,6 @@ const SearchThingsToDo = () => {
           .required("Required"),
       })}
       onSubmit={async (values) => {
-        console.log({values})
         let filteredSearch = await axios.put(
           "/api/thingsToDo",
           values

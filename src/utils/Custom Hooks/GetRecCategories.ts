@@ -5,10 +5,9 @@ import { RootState } from "../../store";
 import { setRecCategories } from "../../store/recommendationsSlice";
 
 function GetRecommendations() {
-  const recCategories = useSelector((state: RootState) => state.recommendations.recCategories)
   const dispatch = useDispatch();
   const getAllRecommendations = async () => {
-    let categories = await axios.get("/api/recommendations/categories");
+    let categories = await axios.get("/api/recommendations/");
     dispatch(setRecCategories(categories.data));
   };
 
