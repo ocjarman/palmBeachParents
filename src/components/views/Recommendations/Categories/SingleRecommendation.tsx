@@ -23,6 +23,7 @@ const SingleRecommendation = () => {
     getSubcategories()
   }, [])
 
+
   if (loading) return <p>loading...</p>
   return (
   <Container sx={{display: 'flex', flexDirection: 'column', textAlign: 'center'}} maxWidth={false}>
