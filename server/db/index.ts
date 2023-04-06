@@ -5,13 +5,19 @@ import Address from './models/Address';
 import Favorite from './models/Favorite';
 import RecommendationCategory from './models/RecommendationCategory';
 import SubCategory from './models/SubCategory';
-// import UserFavorites from './models/UserFavorites';
+import Review from './models/Review'
 
 // make associations here
 User.belongsToMany(Event, {through: 'users_events'} )
 User.hasMany(Favorite)
+User.hasMany(Review)
+
 
 RecommendationCategory.hasMany(SubCategory)
+
+//need to create topic model
+// instead of seeding subcategories, they should come from a yelp api request
+//that includes those keywords, and then PBP users can add their own experiences reviews on those places/businesses
 
 User.hasOne(Address)
 Event.hasOne(Address)
