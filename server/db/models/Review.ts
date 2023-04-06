@@ -1,7 +1,17 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
 import db from "../db";
 
-const Review = db.define('Review', {
+export interface ReviewAttributes
+  extends Model<
+    InferAttributes<ReviewAttributes>,
+    InferCreationAttributes<ReviewAttributes>
+  > {
+  id?: number;
+  title: string;
+  body: string;
+}
+
+const Review = db.define<ReviewAttributes>('Review', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
@@ -16,10 +26,6 @@ const Review = db.define('Review', {
     type: DataTypes.TEXT,
     allowNull: false,
   },
-  rating: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
 });
 
-module.exports = Review;
+export default Review;
