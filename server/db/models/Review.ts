@@ -12,7 +12,7 @@ export interface ReviewAttributes
     InferAttributes<ReviewAttributes>,
     InferCreationAttributes<ReviewAttributes>
   > {
-  id: number;
+  id?: number;
   title: string;
   body: string;
   topicId?: number;

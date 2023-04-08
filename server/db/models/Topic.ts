@@ -15,7 +15,7 @@ export interface TopicAttributes
     InferCreationAttributes<TopicAttributes>
   > {
   id?: number;
-  name?: string;
+  title?: string;
   subCategoryId?: number;
   reviews?: ReviewAttributes[] | null;
   addReview(review: ReviewAttributes): unknown;
@@ -28,7 +28,7 @@ const Topic = db.define<TopicAttributes>("Topic", {
       primaryKey: true,
       allowNull: false,
     },
-    name: {
+    title: {
       type: STRING,
       allowNull: false,
     }

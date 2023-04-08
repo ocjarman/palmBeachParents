@@ -1,5 +1,5 @@
 import db from "./db";
-import {User, Event, Address, Favorite, RecommendationCategory, SubCategory, Review} from './index'
+import {User, Event, Address, Favorite, RecommendationCategory, SubCategory, Review, Topic} from './index'
 
 
 const seed = async () => {
@@ -73,15 +73,27 @@ const seed = async () => {
 
       console.log('seeded favorites')
 
-      // const [rev1, rev2, rev3, rev4, rev5, rev6, rev7] = await Promise.all([
-      //   Review.create({ title: "activity suggestions!", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   Review.create({ title: "love this doctor", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   Review.create({ title: "Physical & Mental Health", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   Review.create({ title: "Kid & Baby Needs", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   Review.create({ title: "Party Resources", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   Review.create({ title: "Safety", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   Review.create({ title: "Travel", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
-      //   ]);
+
+
+      const [top1, top2, top3, top4, top5, top6, top7] = await Promise.all([
+        Topic.create({ title: "st. joes closing" }),
+        Topic.create({ title: "pediatrics by the sea" }),
+        Topic.create({ title: "baby travel tips" }),
+        Topic.create({ title: "new meetup group in delray" }),
+        Topic.create({ title: "summer camps" }),
+        Topic.create({ title: "afternoon activities" }),
+        Topic.create({ title: "baby music classes" }),
+        ]);
+
+      const [rev1, rev2, rev3, rev4, rev5, rev6, rev7] = await Promise.all([
+        Review.create({ title: "i'm so sad!", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        Review.create({ title: "love this doctor", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        Review.create({ title: "traveling is so hard", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        Review.create({ title: "going away email!", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        Review.create({ title: "best music class ever", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        Review.create({ title: "love Vered!", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        Review.create({ title: "schoolhouse museum great afternoon activity", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." }),
+        ]);
 
         // console.log('seeded reviews')
 
@@ -106,16 +118,34 @@ const seed = async () => {
       delrayChildrensGarden.setAddress(address5)
 
 
-        // await health.setRecommendationCategory(wellness)
-        wellness.addSubCategory(health)
-        family.addSubCategory(childcare)
-        family.addSubCategory(activities)
-        family.addSubCategory(baby)
-        family.addSubCategory(party)
-        home.addSubCategory(childcare)
-        home.addSubCategory(baby)
-        home.addSubCategory(safety)
-        home.addSubCategory(travel)
+      wellness.addSubCategory(health)
+      family.addSubCategory(childcare)
+      family.addSubCategory(activities)
+      family.addSubCategory(baby)
+      family.addSubCategory(party)
+      home.addSubCategory(childcare)
+      home.addSubCategory(baby)
+      home.addSubCategory(safety)
+      home.addSubCategory(travel)
+
+      //add topics to subcategories
+      health.addTopic(top2)
+      childcare.addTopic(top1)
+      childcare.addTopic(top5)
+      activities.addTopic(top4)
+      activities.addTopic(top5)
+      activities.addTopic(top6)
+      activities.addTopic(top7)
+      travel.addTopic(top3)
+
+      // add reviews to topics
+      // top1.addReview(rev1)
+      // top2.addReview(rev2)
+      // top3.addReview(rev3)
+      // top4.addReview(rev4)
+      // top3.addReview(rev5)
+      // top5.addReview(rev6)
+      // top5.addReview(rev7)
 
      console.log('ENDING SEED')
       return {
