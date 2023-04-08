@@ -139,13 +139,13 @@ const seed = async () => {
       travel.addTopic(top3)
 
       // add reviews to topics
-      // top1.addReview(rev1)
-      // top2.addReview(rev2)
-      // top3.addReview(rev3)
-      // top4.addReview(rev4)
-      // top3.addReview(rev5)
-      // top5.addReview(rev6)
-      // top5.addReview(rev7)
+      top1.addReview(rev1)
+      top2.addReview(rev2)
+      top3.addReview(rev3)
+      top4.addReview(rev4)
+      top3.addReview(rev5)
+      top5.addReview(rev6)
+      top5.addReview(rev7)
 
      console.log('ENDING SEED')
       return {
