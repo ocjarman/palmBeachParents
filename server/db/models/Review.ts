@@ -1,5 +1,11 @@
-import { DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
 import db from "../db";
+import {
+  InferAttributes,
+  InferCreationAttributes,
+  TEXT,
+  Model,
+  STRING, INTEGER
+} from "sequelize";
 
 export interface ReviewAttributes
   extends Model<
@@ -9,21 +15,22 @@ export interface ReviewAttributes
   id?: number;
   title: string;
   body: string;
+  topicId?: number;
 }
 
 const Review = db.define<ReviewAttributes>('Review', {
   id: {
-    type: DataTypes.INTEGER,
+    type: INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
   title: {
-    type: DataTypes.STRING,
+    type: STRING,
     allowNull: false,
   },
   body: {
-    type: DataTypes.TEXT,
+    type: TEXT,
     allowNull: false,
   },
 });

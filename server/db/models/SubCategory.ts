@@ -6,6 +6,7 @@ import {
     Model,
     STRING, INTEGER
   } from "sequelize";
+import { TopicAttributes } from "./Topic";
 
 
 export interface SubCategoryAttributes
@@ -17,6 +18,7 @@ export interface SubCategoryAttributes
   name: string;
   image_url: string;
   recommendationCategoryId?: number | null;
+  addTopic(topic: TopicAttributes) : unknown;
 }
 
 const SubCategory = db.define<SubCategoryAttributes>("subCategory", {
