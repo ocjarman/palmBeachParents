@@ -11,6 +11,7 @@ import AdminGetUsers from "../utils/Custom Hooks/AdminGetUsers";
 import GetThingsToDo from "../utils/Custom Hooks/GetThingsToDo";
 import GetFavorites from "../utils/Custom Hooks/GetFavorites";
 import GetRecommendations from "../utils/Custom Hooks/GetRecCategories";
+import CssBaseline from '@mui/material/CssBaseline';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <ResponsiveAppBar />
       <Outlet />
     </ThemeProvider>
