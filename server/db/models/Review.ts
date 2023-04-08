@@ -16,6 +16,7 @@ export interface ReviewAttributes
   title: string;
   body: string;
   topicId?: number;
+  userId?: string;
 }
 
 const Review = db.define<ReviewAttributes>('Review', {

@@ -16,7 +16,7 @@ User.hasMany(Review)
 
 RecommendationCategory.hasMany(SubCategory)
 SubCategory.hasMany(Topic)
-// Topic.hasMany(Review)
+Topic.hasMany(Review)
 
 //need to create topic model
 // instead of seeding subcategories, they should come from a yelp api request
