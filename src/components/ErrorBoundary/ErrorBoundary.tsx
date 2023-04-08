@@ -1,4 +1,3 @@
-import { CssBaseline } from "@mui/material";
 import React from "react";
 import "./errorBoundary.css";
 
