@@ -1,7 +1,6 @@
 import React from "react";
 import { RootState } from "../../../store";
 import { useSelector } from "react-redux";
-import { Container } from "@mui/system";
 import Button from "../../CustomMUI/Button";
 import Typography from "../../CustomMUI/Typography";
 import "./profile.css";

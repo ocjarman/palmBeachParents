@@ -8,7 +8,6 @@ import {
   InputLabel,
 } from "@mui/material";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../store";
 import { setShowUpdateForm, setUserToEdit } from "../../../store/userSlice";
 import { setUser } from "../../../store/userSlice";
@@ -17,7 +16,6 @@ import Typography from "../../CustomMUI/Typography";
 const UpdateUserInfoForm = () => {
   const userToEdit = useSelector((state: RootState) => state.user.userToEdit);
   const user = useSelector((state: RootState) => state.user.user);
-  const showUpdateForm = useSelector((state: RootState) => state.user.showUpdateForm);
   const dispatch = useDispatch();
 
   const handleUserStateChange = (e: { target: any }) => {
