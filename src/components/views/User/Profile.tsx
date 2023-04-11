@@ -16,6 +16,7 @@ const Profile = () => {
   );
   const dispatch = useDispatch();
 
+  const userAddress = `${user.address.address1}, ${user.address.address2}, ${user.address.city}, ${user.address.state}, ${user.address.zipcode}`
   return (
     <> 
     {!showUpdateForm && (
@@ -52,7 +53,7 @@ const Profile = () => {
               </>
             </Typography>
             <Typography className="profileHeader" variant={"body1"}>
-              Mailing Address: {user.address?.city}
+              Mailing Address: {user.address ? userAddress : 'NOT LISTED'}
             </Typography>
             <Typography className="profileHeader" variant={"body1"}>
               Company Name: {user.companyName ? user.companyName : "not listed"}

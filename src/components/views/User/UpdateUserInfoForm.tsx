@@ -58,6 +58,9 @@ const UpdateUserInfoForm = () => {
     }
   };
 
+  const userAddress = `${user.address.address1}, ${user.address.address2}, ${user.address.city}, ${user.address.state}, ${user.address.zipcode}`
+
+
   return (
     <Container
       sx={{
@@ -116,7 +119,7 @@ const UpdateUserInfoForm = () => {
           <InputLabel htmlFor="address-input">Mailing Address</InputLabel>
           <Input
             name="address"
-            defaultValue={user.address}
+            defaultValue={userAddress}
             sx={{ margin: "20px" }}
             onChange={handleUserStateChange}
           />
