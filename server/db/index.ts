@@ -18,10 +18,6 @@ RecommendationCategory.hasMany(SubCategory)
 SubCategory.hasMany(Topic)
 Topic.hasMany(Review)
 
-//need to create topic model
-// instead of seeding subcategories, they should come from a yelp api request
-//that includes those keywords, and then PBP users can add their own experiences reviews on those places/businesses
-
 User.hasOne(Address)
 Event.hasOne(Address)
 Favorite.hasOne(Address)
